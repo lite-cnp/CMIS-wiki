@@ -15,6 +15,32 @@ Start with:
 - `synthesis/cmis-5-4-implementer-map.md`
 - `synthesis/cmis-document-family-map.md`
 
+## Requirements
+
+Basic reading:
+
+- Required: `git` and any Markdown viewer/editor.
+- Obsidian is not required.
+
+Best human wiki experience:
+
+- Install the Obsidian desktop app.
+- Open the cloned repository folder as a vault.
+- No Obsidian plugins are required.
+
+Querying with Codex:
+
+- Install and configure Codex.
+- Run Codex from the cloned repository root.
+- Obsidian is not required.
+- Obsidian CLI is not required.
+- The root `AGENTS.md` file gives Codex the local wiki instructions.
+
+Maintainer automation:
+
+- Obsidian CLI and Obsidian-related Codex skills are optional.
+- They are only useful for automated vault opening, structured note generation, or future maintenance workflows.
+
 ## Scope
 
 The vault is centered on OIF CMIS 5.4, with supporting notes for CMIS 5.3, OIF supplements, draft extensions, IEEE references, and vendor-specific source stubs.
