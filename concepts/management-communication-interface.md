@@ -10,7 +10,7 @@ sources: [oif-cmis-05-4, oif-cmis-05-3, oif2026-057-01-i3cmci-draft]
 
 # Management Communication Interface
 
-The Management Communication Interface (MCI) is the data transfer layer that carries [[register-access-layer]] operations between the [[cmis-host]] and the [[cmis-managed-module]].
+The Management Communication Interface (MCI) is the data transfer layer that carries [register-access-layer](register-access-layer.md) operations between the [cmis-host](../entities/cmis-host.md) and the [cmis-managed-module](../entities/cmis-managed-module.md).
 
 ## Roles
 
@@ -22,7 +22,7 @@ The host is always the initiator. The module is always the target.
 |---|---|---|
 | I2CMCI | I2C-based MCI | Initial CMIS MCI, formerly described as TWI in older versions |
 | SPIMCI | SPI-based MCI | Added to support use cases such as CPO and higher-bandwidth management |
-| I3CMCI | I3C-based MCI | Draft/future-direction variant; see [[i3c-based-management-communication-interface]] |
+| I3CMCI | I3C-based MCI | Draft/future-direction variant; see [i3c-based-management-communication-interface](i3c-based-management-communication-interface.md) |
 
 ## I2CMCI Notes
 
@@ -36,6 +36,6 @@ Separating MCI from RAL lets CMIS carry the same management application model ov
 
 ## Draft I3CMCI Direction
 
-CMIS 5.4 lists an I2C-compatible MCI based on I3C as a future direction. The draft I3CMCI contribution keeps byte-addressed [[register-access-layer]] operations but moves transport negotiation, dynamic addressing, and higher-speed transfer behavior into MIPI I3C Basic semantics.
+CMIS 5.4 lists an I2C-compatible MCI based on I3C as a future direction. The draft I3CMCI contribution keeps byte-addressed [register-access-layer](register-access-layer.md) operations but moves transport negotiation, dynamic addressing, and higher-speed transfer behavior into MIPI I3C Basic semantics.
 
 Source anchors: CMIS 5.4 Appendix B and future directions section; OIF 2026.057.01 draft Appendix B.4.

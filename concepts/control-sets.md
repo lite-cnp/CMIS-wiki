@@ -34,6 +34,6 @@ Apply operations are Data Path operations. A host normally triggers all lanes of
 
 ## Versatile Control Sets
 
-[[cmis-versatile-control-set]] extends the Control Set idea for module-specific signal-integrity parameters. A VCS-aware host discovers the parameter list and locations from the supplement-defined parameter space, but still treats configuration as part of the CMIS Control Set flow.
+[cmis-versatile-control-set](cmis-versatile-control-set.md) extends the Control Set idea for module-specific signal-integrity parameters. A VCS-aware host discovers the parameter list and locations from the supplement-defined parameter space, but still treats configuration as part of the CMIS Control Set flow.
 
 Source anchors: CMIS 5.4 sections 6.2.3-6.2.4; OIF-CMIS-VCS-01.1 abstract.

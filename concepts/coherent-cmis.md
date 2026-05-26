@@ -26,8 +26,8 @@ A host should first use base CMIS discovery and capability advertisement. Cohere
 
 ## Related Pages
 
-- [[sources/oif-c-cmis-01-4]]
-- [[command-data-block]]
-- [[versatile-diagnostics-monitoring]]
-- [[management-memory-map]]
-- [[cmis-supplements]]
+- [oif-c-cmis-01-4](../sources/oif-c-cmis-01-4.md)
+- [command-data-block](command-data-block.md)
+- [versatile-diagnostics-monitoring](versatile-diagnostics-monitoring.md)
+- [management-memory-map](management-memory-map.md)
+- [cmis-supplements](cmis-supplements.md)

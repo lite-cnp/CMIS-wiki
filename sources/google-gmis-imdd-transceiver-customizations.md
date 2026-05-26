@@ -21,4 +21,4 @@ The raw PDF text extraction is noisy and contains many CID/mojibake artifacts. T
 
 ## Wiki Use
 
-Use [[vendor-specific-cmis-customizations]] for the current interpretation boundary: vendor-specific CMIS behavior belongs behind advertised custom capability or custom memory spaces and should not be mistaken for base CMIS or OIF supplement behavior.
+Use [vendor-specific-cmis-customizations](../concepts/vendor-specific-cmis-customizations.md) for the current interpretation boundary: vendor-specific CMIS behavior belongs behind advertised custom capability or custom memory spaces and should not be mistaken for base CMIS or OIF supplement behavior.

@@ -37,6 +37,6 @@ CMIS defines CDB groups for module commands, capabilities inquiry, firmware mana
 
 ## CMIS 5.4 Notes
 
-CMIS 5.4 adds Get/Set Module Time commands, an EPL variant of Get Application Attributes, firmware management additions, and new interface attributes. It also reserves command ID space for supplements such as [[coherent-cmis]] and [[cmis-versatile-control-set]].
+CMIS 5.4 adds Get/Set Module Time commands, an EPL variant of Get Application Attributes, firmware management additions, and new interface attributes. It also reserves command ID space for supplements such as [coherent-cmis](coherent-cmis.md) and [cmis-versatile-control-set](cmis-versatile-control-set.md).
 
 Source anchors: CMIS 5.4 revision history, section 7.2, sections 8.23-8.24, and chapter 9.

@@ -14,16 +14,16 @@ This page is the current working entry point for implementing or reviewing CMIS 
 
 ## Read First
 
-1. [[sources/oif-cmis-05-4]] for the current source map.
-2. [[cmis-5-3-to-5-4]] for the delta from the earlier wiki baseline.
-3. [[cmis-management-stack]] for the management layering.
-4. [[management-memory-map]] for addressing, pages, banks, access types, flags, and masks.
-5. [[module-state-machine]], [[applications-and-data-paths]], [[control-sets]], and [[data-path-state-machine]] for core bring-up behavior.
+1. [oif-cmis-05-4](../sources/oif-cmis-05-4.md) for the current source map.
+2. [cmis-5-3-to-5-4](../comparisons/cmis-5-3-to-5-4.md) for the delta from the earlier wiki baseline.
+3. [cmis-management-stack](../concepts/cmis-management-stack.md) for the management layering.
+4. [management-memory-map](../concepts/management-memory-map.md) for addressing, pages, banks, access types, flags, and masks.
+5. [module-state-machine](../concepts/module-state-machine.md), [applications-and-data-paths](../concepts/applications-and-data-paths.md), [control-sets](../concepts/control-sets.md), and [data-path-state-machine](../concepts/data-path-state-machine.md) for core bring-up behavior.
 
 ## New 5.4 Areas to Check
 
 - Supported page and named feature advertisement on Page 0Ch.
-- Firmware management additions on Page 0Dh and related [[command-data-block]] commands.
+- Firmware management additions on Page 0Dh and related [command-data-block](../concepts/command-data-block.md) commands.
 - Lane/Data Path management and monitoring on Pages 60h and 61h.
 - Media lane thresholds on Page 62h.
 - Media lane switching on Page 6Dh.
@@ -31,12 +31,12 @@ This page is the current working entry point for implementing or reviewing CMIS 
 
 ## Extension Branches
 
-- [[cmis-versatile-control-set]] for flexible signal-integrity controls.
-- [[coherent-cmis]] for coherent module management.
-- [[cmis-form-factor-management]] for form-factor hardware signal mapping.
-- [[elsfp-cmis]] for external laser resource modules.
-- [[autonomous-path-startup]] for draft 802.3dj APSU integration.
-- [[i3c-based-management-communication-interface]] for draft I3C-based transport.
+- [cmis-versatile-control-set](../concepts/cmis-versatile-control-set.md) for flexible signal-integrity controls.
+- [coherent-cmis](../concepts/coherent-cmis.md) for coherent module management.
+- [cmis-form-factor-management](../concepts/cmis-form-factor-management.md) for form-factor hardware signal mapping.
+- [elsfp-cmis](../concepts/elsfp-cmis.md) for external laser resource modules.
+- [autonomous-path-startup](../concepts/autonomous-path-startup.md) for draft 802.3dj APSU integration.
+- [i3c-based-management-communication-interface](../concepts/i3c-based-management-communication-interface.md) for draft I3C-based transport.
 
 ## Practical Rule
 

@@ -55,11 +55,11 @@ git pull
 
 Then open or reload the vault in Obsidian.
 
-When contributing, keep internal links in Obsidian wikilink format, for example:
+When contributing, keep internal links in GitHub-navigable relative Markdown format, for example:
 
 ```md
-[[cmis-5-4]]
-[[sources/oif-cmis-05-4]]
+[cmis-5-4](concepts/cmis-5-4.md)
+[oif-cmis-05-4](sources/oif-cmis-05-4.md)
 ```
 
 ## Query With Codex

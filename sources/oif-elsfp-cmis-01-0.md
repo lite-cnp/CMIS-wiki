@@ -25,15 +25,15 @@ This is tracked in this vault as a standalone companion implementation agreement
 
 - ELSFP modules use the CMIS two-wire MCI model.
 - CMIS 5.3 resource module concepts are the base.
-- ELSFP modules implement the [[module-state-machine]] but do not need Data Path or Network Path state machines.
+- ELSFP modules implement the [module-state-machine](../concepts/module-state-machine.md) but do not need Data Path or Network Path state machines.
 - ELSFP-specific advertisements, flags, controls, and monitors are placed on Pages 1Ah and 1Bh.
 - The IA covers module and lane thresholds, flags, masks, save/restore behavior, output fiber checks, bias current, output power, lane frequency, and firmware upgrade handling.
 
 ## Wiki Entry Points
 
-- [[elsfp-cmis]]
-- [[management-memory-map]]
-- [[cmis-supplements]]
-- [[module-state-machine]]
+- [elsfp-cmis](../concepts/elsfp-cmis.md)
+- [management-memory-map](../concepts/management-memory-map.md)
+- [cmis-supplements](../concepts/cmis-supplements.md)
+- [module-state-machine](../concepts/module-state-machine.md)
 
 Source anchors: abstract, management interface section, resource module definition, and page list, OIF-ELSFP-CMIS-01.0.

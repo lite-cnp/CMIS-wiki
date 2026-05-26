@@ -21,13 +21,13 @@ OIF-CMIS-05.3 is Revision 5.3 of the **Common Management Interface Specification
 
 The base specification targets module suppliers, transceiver suppliers, system manufacturers, and system integrators. It is intended to let host and module software share a common management model across form factors and module capabilities.
 
-The spec applies to modules managed over a CMIS-defined [[management-communication-interface]], with basic operations exposed through a 256-byte addressable window and dynamic page/bank mapping for larger management spaces.
+The spec applies to modules managed over a CMIS-defined [management-communication-interface](../concepts/management-communication-interface.md), with basic operations exposed through a 256-byte addressable window and dynamic page/bank mapping for larger management spaces.
 
 Source anchor: section 1.1, PDF pages 26-27.
 
 ## Module Classes
 
-- [[cmis-managed-module]] - generic managed target of the host management interface.
+- [cmis-managed-module](../entities/cmis-managed-module.md) - generic managed target of the host management interface.
 - Transmission modules - modules that provide data transmission service to a host system.
 - Resource modules - modules that provide resources, such as external laser sources, without implementing a transmission path.
 - Basic modules - data-agnostic system interface modules.
@@ -40,14 +40,14 @@ Source anchors: sections 1.1 and 4.1, PDF pages 26-48.
 
 - Chapter 1 introduces purpose, scope, supplements, and document organization.
 - Chapter 3 defines vocabulary and data types.
-- Chapter 4 explains general concepts and the [[cmis-management-stack]].
-- Chapter 5 defines the [[management-interface]] and [[register-access-layer]].
-- Chapter 6 defines core management features such as [[applications-and-data-paths]], [[control-sets]], [[module-state-machine]], and [[data-path-state-machine]].
-- Chapter 7 defines advanced features, including [[versatile-diagnostics-monitoring]], [[command-data-block]], [[network-path-applications]], and host lane switching.
-- Chapter 8 defines the [[management-memory-map]].
+- Chapter 4 explains general concepts and the [cmis-management-stack](../concepts/cmis-management-stack.md).
+- Chapter 5 defines the [management-interface](../concepts/management-interface.md) and [register-access-layer](../concepts/register-access-layer.md).
+- Chapter 6 defines core management features such as [applications-and-data-paths](../concepts/applications-and-data-paths.md), [control-sets](../concepts/control-sets.md), [module-state-machine](../concepts/module-state-machine.md), and [data-path-state-machine](../concepts/data-path-state-machine.md).
+- Chapter 7 defines advanced features, including [versatile-diagnostics-monitoring](../concepts/versatile-diagnostics-monitoring.md), [command-data-block](../concepts/command-data-block.md), [network-path-applications](../concepts/network-path-applications.md), and host lane switching.
+- Chapter 8 defines the [management-memory-map](../concepts/management-memory-map.md).
 - Chapter 9 is the CDB command catalog.
-- Chapter 10 defines the [[cmis-timing-model]].
-- Appendix B defines [[management-communication-interface]] variants.
+- Chapter 10 defines the [cmis-timing-model](../concepts/cmis-timing-model.md).
+- Appendix B defines [management-communication-interface](../concepts/management-communication-interface.md) variants.
 
 Source anchor: section 1.2, PDF page 28.
 
@@ -59,10 +59,10 @@ Source anchor: revision history, PDF pages 8-10.
 
 ## Wiki Entry Points
 
-- [[cmis-5-3-implementer-map]]
-- [[cmis-5-2-to-5-3]]
-- [[cmis-management-stack]]
-- [[management-memory-map]]
-- [[applications-and-data-paths]]
-- [[command-data-block]]
-- [[versatile-diagnostics-monitoring]]
+- [cmis-5-3-implementer-map](../synthesis/cmis-5-3-implementer-map.md)
+- [cmis-5-2-to-5-3](../comparisons/cmis-5-2-to-5-3.md)
+- [cmis-management-stack](../concepts/cmis-management-stack.md)
+- [management-memory-map](../concepts/management-memory-map.md)
+- [applications-and-data-paths](../concepts/applications-and-data-paths.md)
+- [command-data-block](../concepts/command-data-block.md)
+- [versatile-diagnostics-monitoring](../concepts/versatile-diagnostics-monitoring.md)

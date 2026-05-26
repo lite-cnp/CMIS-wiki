@@ -37,6 +37,6 @@ CMIS 5.3 adds VDM power-saving support, adds symbol error weight statistics, and
 
 ## Important 5.4 Notes
 
-CMIS 5.4 corrects and clarifies some VDM observable definitions, especially tunable laser observables, and refines VDM Freeze timing and handshake behavior. It also retains VDM as a key extension point used by supplements such as [[coherent-cmis]].
+CMIS 5.4 corrects and clarifies some VDM observable definitions, especially tunable laser observables, and refines VDM Freeze timing and handshake behavior. It also retains VDM as a key extension point used by supplements such as [coherent-cmis](coherent-cmis.md).
 
 Source anchors: CMIS 5.4 revision history, section 7.1, and VDM page descriptions.

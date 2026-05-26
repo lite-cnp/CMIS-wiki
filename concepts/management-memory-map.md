@@ -2,9 +2,9 @@
 type: concept
 title: Management Memory Map
 created: 2026-05-25
-updated: 2026-05-25
+updated: 2026-05-26
 tags: [cmis, memory-map, pages, banks]
-related: [register-access-layer, low-memory-register-map, command-data-block, versatile-diagnostics-monitoring, applications-and-data-paths, cmis-5-4]
+related: [register-access-layer, low-memory-register-map, upper-page-00h-register-map, upper-page-01h-register-map, upper-page-02h-register-map, upper-page-04h-register-map, upper-page-10h-register-map, upper-page-11h-register-map, upper-page-12h-register-map, upper-page-13h-register-map, upper-page-14h-register-map, upper-page-2fh-register-map, command-data-block, versatile-diagnostics-monitoring, applications-and-data-paths, cmis-5-4]
 sources: [oif-cmis-05-4, oif-cmis-05-3]
 ---
 
@@ -14,7 +14,7 @@ The CMIS management memory map is a byte-organized address space exposed to the 
 
 ## Addressing Model
 
-- **Lower Memory**: bytes 00h-7Fh, always directly addressable. See [[low-memory-register-map]] for the detailed CMIS 5.4 byte map.
+- **Lower Memory**: bytes 00h-7Fh, always directly addressable. See [low-memory-register-map](low-memory-register-map.md) for the detailed CMIS 5.4 byte map.
 - **Upper Memory**: bytes 80h-FFh, dynamically mapped to selected pages and banks.
 - **Page**: a 128-byte upper-memory view selected by page address.
 - **Bank**: an additional selector used for lane groups, CDB instances, VDM groups, and larger data spaces.
@@ -27,21 +27,22 @@ All CMIS devices support Lower Memory and Page 00h. Paged memory modules additio
 
 | Page Range | Purpose |
 |---|---|
-| 00h | Administrative information |
-| 01h | Advertising |
-| 02h | Threshold information |
-| 05h | [[cmis-form-factor-management]] registers |
+| 00h | [Administrative information](upper-page-00h-register-map.md) |
+| 01h | [Advertising](upper-page-01h-register-map.md) |
+| 02h | [Threshold information](upper-page-02h-register-map.md) |
+| 04h | [Tunable laser capability advertising](upper-page-04h-register-map.md) |
+| 05h | [cmis-form-factor-management](cmis-form-factor-management.md) registers |
 | 0Ch | CMIS 5.4 supported pages and named features |
 | 0Dh | CMIS 5.4 firmware management |
-| 10h-1Fh | Lane, data path, network path, diagnostics, extensions |
-| 18h-19h | [[cmis-versatile-control-set]] parameter space |
-| 1Ah-1Bh | [[elsfp-cmis]] advertisements, flags, controls, and monitors |
-| 20h-2Fh | [[versatile-diagnostics-monitoring]] |
-| 30h-4Fh | [[coherent-cmis]] registers |
+| 10h-1Fh | Lane, data path, network path, diagnostics, extensions; see [upper-page-10h-register-map](upper-page-10h-register-map.md), [upper-page-11h-register-map](upper-page-11h-register-map.md), [upper-page-12h-register-map](upper-page-12h-register-map.md), [upper-page-13h-register-map](upper-page-13h-register-map.md), and [upper-page-14h-register-map](upper-page-14h-register-map.md) |
+| 18h-19h | [cmis-versatile-control-set](cmis-versatile-control-set.md) parameter space |
+| 1Ah-1Bh | [elsfp-cmis](elsfp-cmis.md) advertisements, flags, controls, and monitors |
+| 20h-2Fh | [versatile-diagnostics-monitoring](versatile-diagnostics-monitoring.md), including [Page 2Fh VDM advertisement and dynamic control](upper-page-2fh-register-map.md) |
+| 30h-4Fh | [coherent-cmis](coherent-cmis.md) registers |
 | 60h-62h | CMIS 5.4 lane/Data Path management, monitoring, and media-lane Tx power thresholds |
 | 6Dh | CMIS 5.4 media lane switching |
-| 70h | Draft [[autonomous-path-startup]] control and monitoring page |
-| 9Fh | [[command-data-block]] local command/reply page |
+| 70h | Draft [autonomous-path-startup](autonomous-path-startup.md) control and monitoring page |
+| 9Fh | [command-data-block](command-data-block.md) local command/reply page |
 | A0h-AFh | CDB extended payload pages |
 | B0h-FFh | Vendor-specific custom pages |
 

@@ -21,7 +21,8 @@ This repository is an Obsidian vault for CMIS wiki notes.
 
 ## Editing Rules
 
-- Preserve Obsidian wikilinks such as `[[cmis-5-4]]` and `[[sources/oif-cmis-05-4]]`.
+- Preserve GitHub-navigable relative Markdown links such as `[cmis-5-4](concepts/cmis-5-4.md)` and `[oif-cmis-05-4](sources/oif-cmis-05-4.md)`.
+- When editing notes in subdirectories, make internal link targets relative to the current file.
 - Add frontmatter to new notes.
 - Prefer concise concept pages with clear links to source pages.
 - Do not promote draft or vendor-specific behavior into base CMIS notes without marking the status clearly.

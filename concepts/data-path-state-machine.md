@@ -26,7 +26,7 @@ The Data Path State Machine (DPSM) reports and controls the initialization statu
 
 ## Control Inputs
 
-The host controls Data Path initialization and deinitialization primarily through DPDeinit bits and through [[control-sets]] Apply triggers. Per-lane output controls such as OutputDisableTx and OutputSquelchForceTx can affect whether a Data Path is activated.
+The host controls Data Path initialization and deinitialization primarily through DPDeinit bits and through [control-sets](control-sets.md) Apply triggers. Per-lane output controls such as OutputDisableTx and OutputSquelchForceTx can affect whether a Data Path is activated.
 
 ## Status Model
 
@@ -38,13 +38,13 @@ Parallel Data Paths are required to operate independently from the host viewpoin
 
 ## APSU Draft Interaction
 
-For IEEE 802.3dj [[autonomous-path-startup]] applications, DPSM remains a CMIS configuration state machine. APSU is protocol-specific and runs orthogonally:
+For IEEE 802.3dj [autonomous-path-startup](autonomous-path-startup.md) applications, DPSM remains a CMIS configuration state machine. APSU is protocol-specific and runs orthogonally:
 
 - APSU cannot start in DPDeactivated or DPInit.
 - Host-interface APSU can begin at DPInitialized.
 - Media-interface APSU can begin at DPTxTurnOn.
 - DPActivated means the Data Path is configured; live protocol data still depends on APSU completion.
 
-Use [[queries/how-do-apsu-and-cmis-state-machines-interact]] for the host-facing summary.
+Use [how-do-apsu-and-cmis-state-machines-interact](../queries/how-do-apsu-and-cmis-state-machines-interact.md) for the host-facing summary.
 
 Source anchors: CMIS 5.4 section 6.3.3; OIF 2026.093.08 draft DPSM relationship tables.

@@ -19,14 +19,14 @@ This draft contribution specifies how CMIS can facilitate IEEE 802.3dj Autonomou
 
 ## Scope
 
-The draft focuses on CMIS awareness of APSU, the relationship between APSU and [[data-path-state-machine]] / [[network-path-applications]], multiple ILT instances, timers, access to Annex 178B variables, and APSU monitoring or troubleshooting through CMIS.
+The draft focuses on CMIS awareness of APSU, the relationship between APSU and [data-path-state-machine](../concepts/data-path-state-machine.md) / [network-path-applications](../concepts/network-path-applications.md), multiple ILT instances, timers, access to Annex 178B variables, and APSU monitoring or troubleshooting through CMIS.
 
 ## Key Draft Decisions
 
 - Changes are limited to data paths or interfaces with APSU support.
 - Non-APSU applications must remain backward compatible.
 - APSU and non-APSU applications may coexist in one module.
-- The [[module-state-machine]] is unchanged.
+- The [module-state-machine](../concepts/module-state-machine.md) is unchanged.
 - APSU intersects DPSM and NPSM transitions but remains protocol-specific and orthogonal to CMIS configuration state.
 - Draft Page 70h is dedicated to APSU control and monitoring and is only valid for APSU applications.
 
@@ -42,10 +42,10 @@ The draft focuses on CMIS awareness of APSU, the relationship between APSU and [
 
 ## Wiki Entry Points
 
-- [[autonomous-path-startup]]
-- [[data-path-state-machine]]
-- [[network-path-applications]]
-- [[management-memory-map]]
-- [[sources/ieee-p802-3dj-d2-3]]
+- [autonomous-path-startup](../concepts/autonomous-path-startup.md)
+- [data-path-state-machine](../concepts/data-path-state-machine.md)
+- [network-path-applications](../concepts/network-path-applications.md)
+- [management-memory-map](../concepts/management-memory-map.md)
+- [ieee-p802-3dj-d2-3](ieee-p802-3dj-d2-3.md)
 
 Source anchors: working scope, introduction, DPSM relationship table, and Page 70h overview, OIF 2026.093.08.

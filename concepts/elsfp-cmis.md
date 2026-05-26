@@ -18,7 +18,7 @@ Treat ELSFP as a standalone companion implementation agreement for a resource mo
 
 ## Resource Module Model
 
-ELSFP uses the CMIS resource module concept. It implements the [[module-state-machine]] and CMIS management access, but it does not need Data Path or Network Path state machines because it does not carry a normal CMIS transmission application.
+ELSFP uses the CMIS resource module concept. It implements the [module-state-machine](module-state-machine.md) and CMIS management access, but it does not need Data Path or Network Path state machines because it does not carry a normal CMIS transmission application.
 
 ## Memory Map Touchpoints
 
@@ -33,7 +33,7 @@ The host discovers the module as an ELSFP resource module, reads ELSFP advertise
 
 ## Related Pages
 
-- [[sources/oif-elsfp-cmis-01-0]]
-- [[management-memory-map]]
-- [[module-state-machine]]
-- [[cmis-supplements]]
+- [oif-elsfp-cmis-01-0](../sources/oif-elsfp-cmis-01-0.md)
+- [management-memory-map](management-memory-map.md)
+- [module-state-machine](module-state-machine.md)
+- [cmis-supplements](cmis-supplements.md)

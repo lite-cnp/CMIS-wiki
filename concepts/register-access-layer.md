@@ -28,6 +28,6 @@ Single-byte accesses are coherent. Size-matched READs of scalar multi-byte read-
 
 ## Design Implication
 
-RAL is intentionally small. Higher-level synchronization is provided by specific mechanisms such as [[control-sets]], [[command-data-block]], flags, status fields, and handshakes.
+RAL is intentionally small. Higher-level synchronization is provided by specific mechanisms such as [control-sets](control-sets.md), [command-data-block](command-data-block.md), flags, status fields, and handshakes.
 
 Source anchors: sections 5.2.3-5.2.5, PDF pages 53-54.

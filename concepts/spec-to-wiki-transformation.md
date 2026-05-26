@@ -14,17 +14,17 @@ This concept describes a structured methodology for converting a technical speci
 
 ## Core Principle
 
-Decompose the specification into source, entity, concept, query, comparison, and synthesis pages with stable frontmatter and Obsidian wikilinks.
+Decompose the specification into source, entity, concept, query, comparison, and synthesis pages with stable frontmatter and GitHub-navigable relative Markdown links.
 
 ## Current Application
 
 For OIF-CMIS-05.3, the transformation focuses on the actual OIF Common Management Interface Specification domain:
 
-- [[sources/oif-cmis-05-3]] as the authoritative source page.
-- [[cmis-management-stack]] and [[management-memory-map]] as architectural anchors.
-- [[applications-and-data-paths]], [[control-sets]], [[module-state-machine]], and [[data-path-state-machine]] as core feature pages.
-- [[command-data-block]] and [[versatile-diagnostics-monitoring]] as advanced feature pages.
-- [[cmis-5-3-implementer-map]] as the main synthesis page.
+- [oif-cmis-05-3](../sources/oif-cmis-05-3.md) as the authoritative source page.
+- [cmis-management-stack](cmis-management-stack.md) and [management-memory-map](management-memory-map.md) as architectural anchors.
+- [applications-and-data-paths](applications-and-data-paths.md), [control-sets](control-sets.md), [module-state-machine](module-state-machine.md), and [data-path-state-machine](data-path-state-machine.md) as core feature pages.
+- [command-data-block](command-data-block.md) and [versatile-diagnostics-monitoring](versatile-diagnostics-monitoring.md) as advanced feature pages.
+- [cmis-5-3-implementer-map](../synthesis/cmis-5-3-implementer-map.md) as the main synthesis page.
 
 ## Caution
 

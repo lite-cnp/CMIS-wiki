@@ -18,7 +18,7 @@ Some module form factors expose legacy or form-factor-specific low-speed signals
 
 ## Page Allocation
 
-CMIS-FF uses Page 05h for form-factor-specific registers. The base [[management-memory-map]] advertises whether the CMIS-FF supplement is supported.
+CMIS-FF uses Page 05h for form-factor-specific registers. The base [management-memory-map](management-memory-map.md) advertises whether the CMIS-FF supplement is supported.
 
 ## Host Rule
 
@@ -26,7 +26,7 @@ Use CMIS generic names and state-machine behavior as the primary model. Use CMIS
 
 ## Related Pages
 
-- [[sources/oif-cmis-ff-01-0]]
-- [[management-interface]]
-- [[management-memory-map]]
-- [[cmis-supplements]]
+- [oif-cmis-ff-01-0](../sources/oif-cmis-ff-01-0.md)
+- [management-interface](management-interface.md)
+- [management-memory-map](management-memory-map.md)
+- [cmis-supplements](cmis-supplements.md)

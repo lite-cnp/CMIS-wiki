@@ -19,7 +19,7 @@ OIF-CMIS-VCS-01.1 defines CMIS Versatile Control Sets. It generalizes CMIS signa
 
 ## Scope
 
-The supplement extends [[control-sets]] without breaking base CMIS compatibility. A host that does not understand VCS can continue to use the base CMIS behavior. A VCS-aware host can discover additional SI properties and use the versatile parameter space when the module advertises support.
+The supplement extends [control-sets](../concepts/control-sets.md) without breaking base CMIS compatibility. A host that does not understand VCS can continue to use the base CMIS behavior. A VCS-aware host can discover additional SI properties and use the versatile parameter space when the module advertises support.
 
 ## Revision 1.1 Highlights
 
@@ -31,9 +31,9 @@ The supplement extends [[control-sets]] without breaking base CMIS compatibility
 
 ## Wiki Entry Points
 
-- [[cmis-versatile-control-set]]
-- [[cmis-supplements]]
-- [[control-sets]]
-- [[management-memory-map]]
+- [cmis-versatile-control-set](../concepts/cmis-versatile-control-set.md)
+- [cmis-supplements](../concepts/cmis-supplements.md)
+- [control-sets](../concepts/control-sets.md)
+- [management-memory-map](../concepts/management-memory-map.md)
 
 Source anchors: abstract and revision history, OIF-CMIS-VCS-01.1.

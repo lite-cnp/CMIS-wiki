@@ -12,7 +12,7 @@ sources: [oif-cmis-05-3]
 
 This page is the working entry point for implementing or reviewing CMIS 5.3 behavior.
 
-For current CMIS work in this vault, use [[cmis-5-4-implementer-map]]. This page is retained for the original 5.3 wiki baseline.
+For current CMIS work in this vault, use [cmis-5-4-implementer-map](cmis-5-4-implementer-map.md). This page is retained for the original 5.3 wiki baseline.
 
 ## Mental Model
 
@@ -20,19 +20,19 @@ CMIS is a small register access core with a large advertised capability space ar
 
 ## Read First
 
-1. [[sources/oif-cmis-05-3]] for the authoritative source and chapter map.
-2. [[cmis-management-stack]] for the protocol layering.
-3. [[management-memory-map]] for addressing, pages, banks, access types, flags, and masks.
-4. [[module-state-machine]] for module power/manageability lifecycle.
-5. [[applications-and-data-paths]] and [[control-sets]] for provisioning transmission functions.
-6. [[data-path-state-machine]] for Data Path initialization and activation.
+1. [oif-cmis-05-3](../sources/oif-cmis-05-3.md) for the authoritative source and chapter map.
+2. [cmis-management-stack](../concepts/cmis-management-stack.md) for the protocol layering.
+3. [management-memory-map](../concepts/management-memory-map.md) for addressing, pages, banks, access types, flags, and masks.
+4. [module-state-machine](../concepts/module-state-machine.md) for module power/manageability lifecycle.
+5. [applications-and-data-paths](../concepts/applications-and-data-paths.md) and [control-sets](../concepts/control-sets.md) for provisioning transmission functions.
+6. [data-path-state-machine](../concepts/data-path-state-machine.md) for Data Path initialization and activation.
 
 ## Optional Feature Branches
 
-- Use [[command-data-block]] when command/reply interaction is advertised.
-- Use [[versatile-diagnostics-monitoring]] for extensible monitors and statistics.
-- Use [[network-path-applications]] for client encapsulation and multiplexing modules.
-- Use [[management-communication-interface]] details when implementing I2CMCI or SPIMCI transaction behavior.
+- Use [command-data-block](../concepts/command-data-block.md) when command/reply interaction is advertised.
+- Use [versatile-diagnostics-monitoring](../concepts/versatile-diagnostics-monitoring.md) for extensible monitors and statistics.
+- Use [network-path-applications](../concepts/network-path-applications.md) for client encapsulation and multiplexing modules.
+- Use [management-communication-interface](../concepts/management-communication-interface.md) details when implementing I2CMCI or SPIMCI transaction behavior.
 
 ## Implementation Heuristics
 

@@ -15,7 +15,7 @@ The I3C-based Management Communication Interface, or I3CMCI, is a draft CMIS MCI
 
 ## Intent
 
-I3CMCI aims to keep CMIS [[register-access-layer]] semantics while providing a faster and lower-latency management transport than I2CMCI. It also preserves a migration path from legacy I2C operation.
+I3CMCI aims to keep CMIS [register-access-layer](register-access-layer.md) semantics while providing a faster and lower-latency management transport than I2CMCI. It also preserves a migration path from legacy I2C operation.
 
 ## Draft Role Model
 

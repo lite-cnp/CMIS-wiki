@@ -12,7 +12,7 @@ sources: [oif-cmis-05-3]
 
 ## Short Answer
 
-A host should bring up a CMIS module in two layers: first establish module manageability through the [[module-state-machine]], then configure and initialize desired [[applications-and-data-paths]] through [[control-sets]] and the [[data-path-state-machine]].
+A host should bring up a CMIS module in two layers: first establish module manageability through the [module-state-machine](../concepts/module-state-machine.md), then configure and initialize desired [applications-and-data-paths](../concepts/applications-and-data-paths.md) through [control-sets](../concepts/control-sets.md) and the [data-path-state-machine](../concepts/data-path-state-machine.md).
 
 ## Typical Flow
 

@@ -24,11 +24,11 @@ Autonomous Path Startup, or APSU, is the IEEE 802.3dj mechanism for coordinated 
 
 CMIS configures modules, applications, and data paths. APSU is protocol-specific behavior that starts after the relevant interface configuration is ready. The OIF APSU draft treats APSU as orthogonal to CMIS state machines:
 
-- The [[module-state-machine]] is unchanged.
+- The [module-state-machine](module-state-machine.md) is unchanged.
 - Host-interface APSU can begin at DPInitialized.
 - Media-interface APSU can begin at DPTxTurnOn.
 - DPActivated means CMIS configuration is complete; live Ethernet DATA still depends on APSU completion.
-- The same relationship applies to [[network-path-applications]] where NPSM is involved.
+- The same relationship applies to [network-path-applications](network-path-applications.md) where NPSM is involved.
 
 ## Draft CMIS Register Model
 

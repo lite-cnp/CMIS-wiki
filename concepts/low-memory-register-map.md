@@ -18,11 +18,11 @@ CMIS 5.4 keeps the core lower-memory shape inherited from CMIS 5.3, but it shoul
 
 - `00h:0-127` is Lower Memory and is directly addressable.
 - `00h:128-255` is Upper Memory, whose content is selected by `BankSelect` at `00h:126` and `PageSelect` at `00h:127`.
-- Byte accesses are performed through the [[register-access-layer]] READ, WRITE, and TEST primitives.
+- Byte accesses are performed through the [register-access-layer](register-access-layer.md) READ, WRITE, and TEST primitives.
 - Multi-byte scalar monitor values are encoded in CMIS data formats, not native C host endianness.
 - Static or flat-memory modules may report only a subset of dynamic behavior, but still expose the lower-memory identification and core status model.
 
-Source anchors: [[sources/oif-cmis-05-4]], sections 8.1-8.2 and Tables 8-4 through 8-26.
+Source anchors: [oif-cmis-05-4](../sources/oif-cmis-05-4.md), sections 8.1-8.2 and Tables 8-4 through 8-26.
 
 ## Lower Memory Overview
 
@@ -155,18 +155,26 @@ For arbitrary page-address changes or bank changes, the host should write both b
 
 ## C Struct Definition
 
-This struct is a register-view aid modeled after generated CMIS C headers, with explicit raw-byte aliases for bitfield bytes. It is useful for driver review and documentation, but production code should still treat bitfield layout as compiler-defined and should convert multi-byte numeric values from the CMIS wire format explicitly.
+This struct is a register-view aid modeled after generated CMIS C headers, with explicit raw-byte aliases for bitfield bytes. It is written for little-endian ARM targets using GCC or Clang conventions: bitfields are listed from CMIS bit 0 upward within each byte, and multi-byte CMIS values are represented as explicit big-endian byte structs rather than native `uint16_t` or `uint32_t` scalars.
 
 ```c
 #ifndef CMIS_5_4_LOW_MEMORY_H
 #define CMIS_5_4_LOW_MEMORY_H
 
 #include <stdint.h>
+#include <stddef.h>
 
 #if defined(__GNUC__) || defined(__clang__)
 #define CMIS_PACKED __attribute__((packed))
+#define CMIS_UNUSED_FN __attribute__((unused))
 #else
 #define CMIS_PACKED
+#define CMIS_UNUSED_FN
+#endif
+
+#if defined(__BYTE_ORDER__) && defined(__ORDER_LITTLE_ENDIAN__) && \
+    (__BYTE_ORDER__ != __ORDER_LITTLE_ENDIAN__)
+#error "This CMIS register overlay is intended for little-endian ARM targets."
 #endif
 
 typedef enum {
@@ -181,259 +189,344 @@ typedef enum {
 } cmis_module_state_t;
 
 typedef struct CMIS_PACKED {
-    uint8_t page11h : 1;
-    uint8_t page12h : 1;
-    uint8_t page14h : 1;
-    uint8_t page2ch : 1;
-    uint8_t reserved : 4;
+    uint8_t Msb;
+    uint8_t Lsb;
+} cmis_be16_t;
+
+typedef struct CMIS_PACKED {
+    uint8_t Byte3;
+    uint8_t Byte2;
+    uint8_t Byte1;
+    uint8_t Byte0;
+} cmis_be32_t;
+
+static inline uint16_t CMIS_UNUSED_FN CmisBe16ToU16(cmis_be16_t Value)
+{
+    return ((uint16_t)Value.Msb << 8) | Value.Lsb;
+}
+
+static inline int16_t CMIS_UNUSED_FN CmisBe16ToS16(cmis_be16_t Value)
+{
+    return (int16_t)CmisBe16ToU16(Value);
+}
+
+static inline cmis_be32_t CMIS_UNUSED_FN CmisU32ToBe32(uint32_t Value)
+{
+    cmis_be32_t Encoded = {
+        (uint8_t)(Value >> 24),
+        (uint8_t)(Value >> 16),
+        (uint8_t)(Value >> 8),
+        (uint8_t)Value
+    };
+    return Encoded;
+}
+
+static inline uint32_t CMIS_UNUSED_FN CmisBe32ToU32(cmis_be32_t Value)
+{
+    return ((uint32_t)Value.Byte3 << 24) |
+           ((uint32_t)Value.Byte2 << 16) |
+           ((uint32_t)Value.Byte1 << 8) |
+           Value.Byte0;
+}
+
+static inline int CMIS_UNUSED_FN CmisLowMemoryBitfieldSelfTest(void)
+{
+    union {
+        struct {
+            uint8_t Bit0 : 1;
+            uint8_t Bits1To3 : 3;
+            uint8_t Bits4To7 : 4;
+        };
+        uint8_t Raw;
+    } Probe = {0};
+
+    Probe.Bit0 = 1;
+    if (Probe.Raw != 0x01u) {
+        return 0;
+    }
+
+    Probe.Raw = 0x0eu;
+    if (Probe.Bits1To3 != 0x07u) {
+        return 0;
+    }
+
+    Probe.Raw = 0xf0u;
+    return Probe.Bits4To7 == 0x0fu;
+}
+
+typedef struct CMIS_PACKED {
+    uint8_t Page11h : 1;
+    uint8_t Page12h : 1;
+    uint8_t Page14h : 1;
+    uint8_t Page2Ch : 1;
+    uint8_t Reserved : 4;
 } cmis_flags_summary_t;
 
 typedef struct CMIS_PACKED {
-    uint8_t host_interface_id;
-    uint8_t media_interface_id;
-    uint8_t media_lane_count : 4;
-    uint8_t host_lane_count : 4;
-    uint8_t host_lane_assignment_options;
+    uint8_t HostInterfaceID;
+    uint8_t MediaInterfaceID;
+    uint8_t MediaLaneCount : 4;
+    uint8_t HostLaneCount : 4;
+    uint8_t HostLaneAssignmentOptions;
 } cmis_lower_app_descriptor_t;
 
 typedef struct CMIS_PACKED {
-    uint8_t sff8024_identifier;       /* 00h:0 */
-    uint8_t cmis_revision;            /* 00h:1, e.g. 54h for CMIS 5.4 */
+    uint8_t SFF8024Identifier;        /* 00h:0 */
+    uint8_t CmisRevision;             /* 00h:1, e.g. 54h for CMIS 5.4 */
 
     union {
         struct {
-            uint8_t auto_commissioning : 2;  /* 00h:2.1-0 */
-            uint8_t mci_max_speed : 4;       /* 00h:2.5-2 */
-            uint8_t stepped_config_only : 1; /* 00h:2.6 */
-            uint8_t memory_model : 1;        /* 00h:2.7 */
+            uint8_t AutoCommissioning : 2;  /* 00h:2.1-0 */
+            uint8_t MciMaxSpeed : 4;        /* 00h:2.5-2 */
+            uint8_t SteppedConfigOnly : 1;  /* 00h:2.6 */
+            uint8_t MemoryModel : 1;        /* 00h:2.7 */
         };
-        uint8_t raw;
-    } management_characteristics;     /* 00h:2 */
+        uint8_t Raw;
+    } ManagementCharacteristics;      /* 00h:2 */
 
     union {
         struct {
-            uint8_t interrupt_deasserted : 1; /* 00h:3.0 */
-            uint8_t module_state : 3;         /* 00h:3.3-1 */
-            uint8_t reserved : 4;             /* 00h:3.7-4 */
+            uint8_t InterruptDeasserted : 1; /* 00h:3.0 */
+            uint8_t ModuleState : 3;         /* 00h:3.3-1 */
+            uint8_t Reserved : 4;            /* 00h:3.7-4 */
         };
-        uint8_t raw;
-    } global_status;                  /* 00h:3 */
+        uint8_t Raw;
+    } GlobalStatus;                   /* 00h:3 */
 
-    cmis_flags_summary_t flags_summary_bank[4]; /* 00h:4-7 */
+    cmis_flags_summary_t FlagsSummaryBank[4]; /* 00h:4-7 */
 
     union {
         struct {
-            uint8_t module_state_changed : 1;       /* 00h:8.0 */
-            uint8_t module_firmware_error : 1;      /* 00h:8.1 */
-            uint8_t data_path_firmware_error : 1;   /* 00h:8.2 */
-            uint8_t abnormal_fw_indication : 1;     /* 00h:8.3 */
-            uint8_t reserved : 2;                   /* 00h:8.5-4 */
-            uint8_t cdb_cmd_complete_1 : 1;         /* 00h:8.6 */
-            uint8_t cdb_cmd_complete_2 : 1;         /* 00h:8.7 */
+            uint8_t ModuleStateChangedFlag : 1;       /* 00h:8.0 */
+            uint8_t ModuleFirmwareErrorFlag : 1;      /* 00h:8.1 */
+            uint8_t DataPathFirmwareErrorFlag : 1;    /* 00h:8.2 */
+            uint8_t AbnormalFwIndicationFlag : 1;     /* 00h:8.3 */
+            uint8_t Reserved : 2;                     /* 00h:8.5-4 */
+            uint8_t CdbCmdCompleteFlag1 : 1;          /* 00h:8.6 */
+            uint8_t CdbCmdCompleteFlag2 : 1;          /* 00h:8.7 */
         };
-        uint8_t raw;
-    } module_flags;                   /* 00h:8 */
+        uint8_t Raw;
+    } ModuleFlags;                    /* 00h:8 */
 
     union {
         struct {
-            uint8_t temp_high_alarm : 1;
-            uint8_t temp_low_alarm : 1;
-            uint8_t temp_high_warning : 1;
-            uint8_t temp_low_warning : 1;
-            uint8_t vcc_high_alarm : 1;
-            uint8_t vcc_low_alarm : 1;
-            uint8_t vcc_high_warning : 1;
-            uint8_t vcc_low_warning : 1;
+            uint8_t TempMonHighAlarmFlag : 1;
+            uint8_t TempMonLowAlarmFlag : 1;
+            uint8_t TempMonHighWarningFlag : 1;
+            uint8_t TempMonLowWarningFlag : 1;
+            uint8_t VccMonHighAlarmFlag : 1;
+            uint8_t VccMonLowAlarmFlag : 1;
+            uint8_t VccMonHighWarningFlag : 1;
+            uint8_t VccMonLowWarningFlag : 1;
         };
-        uint8_t raw;
-    } temp_vcc_flags;                 /* 00h:9 */
+        uint8_t Raw;
+    } TempVccFlags;                   /* 00h:9 */
 
     union {
         struct {
-            uint8_t aux1_high_alarm : 1;
-            uint8_t aux1_low_alarm : 1;
-            uint8_t aux1_high_warning : 1;
-            uint8_t aux1_low_warning : 1;
-            uint8_t aux2_high_alarm : 1;
-            uint8_t aux2_low_alarm : 1;
-            uint8_t aux2_high_warning : 1;
-            uint8_t aux2_low_warning : 1;
+            uint8_t Aux1MonHighAlarmFlag : 1;
+            uint8_t Aux1MonLowAlarmFlag : 1;
+            uint8_t Aux1MonHighWarningFlag : 1;
+            uint8_t Aux1MonLowWarningFlag : 1;
+            uint8_t Aux2MonHighAlarmFlag : 1;
+            uint8_t Aux2MonLowAlarmFlag : 1;
+            uint8_t Aux2MonHighWarningFlag : 1;
+            uint8_t Aux2MonLowWarningFlag : 1;
         };
-        uint8_t raw;
-    } aux1_aux2_flags;                /* 00h:10 */
+        uint8_t Raw;
+    } Aux1Aux2Flags;                  /* 00h:10 */
 
     union {
         struct {
-            uint8_t aux3_high_alarm : 1;
-            uint8_t aux3_low_alarm : 1;
-            uint8_t aux3_high_warning : 1;
-            uint8_t aux3_low_warning : 1;
-            uint8_t custom_high_alarm : 1;
-            uint8_t custom_low_alarm : 1;
-            uint8_t custom_high_warning : 1;
-            uint8_t custom_low_warning : 1;
+            uint8_t Aux3MonHighAlarmFlag : 1;
+            uint8_t Aux3MonLowAlarmFlag : 1;
+            uint8_t Aux3MonHighWarningFlag : 1;
+            uint8_t Aux3MonLowWarningFlag : 1;
+            uint8_t CustomMonHighAlarmFlag : 1;
+            uint8_t CustomMonLowAlarmFlag : 1;
+            uint8_t CustomMonHighWarningFlag : 1;
+            uint8_t CustomMonLowWarningFlag : 1;
         };
-        uint8_t raw;
-    } aux3_custom_flags;              /* 00h:11 */
+        uint8_t Raw;
+    } Aux3CustomFlags;                /* 00h:11 */
 
-    uint8_t reserved_12;              /* 00h:12 */
-    uint8_t custom_module_flags;      /* 00h:13 */
+    uint8_t Reserved12;               /* 00h:12 */
+    uint8_t CustomModuleFlags;        /* 00h:13 */
 
-    uint16_t temp_mon_value;          /* 00h:14-15, CMIS big-endian S16 */
-    uint16_t vcc_mon_voltage;         /* 00h:16-17, CMIS big-endian U16 */
-    uint16_t aux1_mon_value;          /* 00h:18-19, CMIS big-endian S16 */
-    uint16_t aux2_mon_value;          /* 00h:20-21, CMIS big-endian S16 */
-    uint16_t aux3_mon_value;          /* 00h:22-23, CMIS big-endian S16 */
-    uint16_t custom_mon_value;        /* 00h:24-25, CMIS big-endian S16/U16 */
+    cmis_be16_t TempMonValue;         /* 00h:14-15, CMIS big-endian S16 */
+    cmis_be16_t VccMonVoltage;        /* 00h:16-17, CMIS big-endian U16 */
+    cmis_be16_t Aux1MonValue;         /* 00h:18-19, CMIS big-endian S16 */
+    cmis_be16_t Aux2MonValue;         /* 00h:20-21, CMIS big-endian S16 */
+    cmis_be16_t Aux3MonValue;         /* 00h:22-23, CMIS big-endian S16 */
+    cmis_be16_t CustomMonValue;       /* 00h:24-25, CMIS big-endian S16/U16 */
 
     union {
         struct {
-            uint8_t custom : 3;               /* 00h:26.2-0 */
-            uint8_t software_reset : 1;       /* 00h:26.3, WO/SC */
-            uint8_t low_pwr_request_sw : 1;   /* 00h:26.4 */
-            uint8_t squelch_method_select : 1;/* 00h:26.5 */
-            uint8_t low_pwr_allow_request_hw : 1; /* 00h:26.6 */
-            uint8_t bank_broadcast_enable : 1;/* 00h:26.7 */
+            uint8_t Custom : 3;               /* 00h:26.2-0 */
+            uint8_t SoftwareReset : 1;        /* 00h:26.3, WO/SC */
+            uint8_t LowPwrRequestSW : 1;      /* 00h:26.4 */
+            uint8_t SquelchMethodSelect : 1;  /* 00h:26.5 */
+            uint8_t LowPwrAllowRequestHW : 1; /* 00h:26.6 */
+            uint8_t BankBroadcastEnable : 1;  /* 00h:26.7 */
         };
-        uint8_t raw;
-    } module_controls;                /* 00h:26 */
+        uint8_t Raw;
+    } ModuleControls;                 /* 00h:26 */
 
     union {
         struct {
-            uint8_t mci_speed_configuration : 4; /* 00h:27.3-0 */
-            uint8_t reserved : 4;               /* 00h:27.7-4 */
+            uint8_t MciSpeedConfiguration : 4; /* 00h:27.3-0 */
+            uint8_t Reserved : 4;              /* 00h:27.7-4 */
         };
-        uint8_t raw;
-    } mci_speed_control;              /* 00h:27 */
+        uint8_t Raw;
+    } MciSpeedControl;                /* 00h:27 */
 
-    uint8_t reserved_28;              /* 00h:28 */
-    uint8_t custom_29_30[2];          /* 00h:29-30 */
+    uint8_t Reserved28;               /* 00h:28 */
+    uint8_t Custom29To30[2];          /* 00h:29-30 */
 
     union {
         struct {
-            uint8_t module_state_changed : 1;       /* 00h:31.0 */
-            uint8_t module_firmware_error : 1;      /* 00h:31.1 */
-            uint8_t data_path_firmware_error : 1;   /* 00h:31.2 */
-            uint8_t abnormal_fw_indication : 1;     /* 00h:31.3 */
-            uint8_t reserved : 2;                   /* 00h:31.5-4 */
-            uint8_t cdb_cmd_complete_1 : 1;         /* 00h:31.6 */
-            uint8_t cdb_cmd_complete_2 : 1;         /* 00h:31.7 */
+            uint8_t ModuleStateChangedMask : 1;       /* 00h:31.0 */
+            uint8_t ModuleFirmwareErrorMask : 1;      /* 00h:31.1 */
+            uint8_t DataPathFirmwareErrorMask : 1;    /* 00h:31.2 */
+            uint8_t AbnormalFwIndicationMask : 1;     /* 00h:31.3 */
+            uint8_t Reserved : 2;                     /* 00h:31.5-4 */
+            uint8_t CdbCmdCompleteMask1 : 1;          /* 00h:31.6 */
+            uint8_t CdbCmdCompleteMask2 : 1;          /* 00h:31.7 */
         };
-        uint8_t raw;
-    } module_masks;                   /* 00h:31 */
+        uint8_t Raw;
+    } ModuleMasks;                    /* 00h:31 */
 
     union {
         struct {
-            uint8_t temp_high_alarm : 1;
-            uint8_t temp_low_alarm : 1;
-            uint8_t temp_high_warning : 1;
-            uint8_t temp_low_warning : 1;
-            uint8_t vcc_high_alarm : 1;
-            uint8_t vcc_low_alarm : 1;
-            uint8_t vcc_high_warning : 1;
-            uint8_t vcc_low_warning : 1;
+            uint8_t TempMonHighAlarmMask : 1;
+            uint8_t TempMonLowAlarmMask : 1;
+            uint8_t TempMonHighWarningMask : 1;
+            uint8_t TempMonLowWarningMask : 1;
+            uint8_t VccMonHighAlarmMask : 1;
+            uint8_t VccMonLowAlarmMask : 1;
+            uint8_t VccMonHighWarningMask : 1;
+            uint8_t VccMonLowWarningMask : 1;
         };
-        uint8_t raw;
-    } temp_vcc_masks;                 /* 00h:32 */
+        uint8_t Raw;
+    } TempVccMasks;                   /* 00h:32 */
 
     union {
         struct {
-            uint8_t aux1_high_alarm : 1;
-            uint8_t aux1_low_alarm : 1;
-            uint8_t aux1_high_warning : 1;
-            uint8_t aux1_low_warning : 1;
-            uint8_t aux2_high_alarm : 1;
-            uint8_t aux2_low_alarm : 1;
-            uint8_t aux2_high_warning : 1;
-            uint8_t aux2_low_warning : 1;
+            uint8_t Aux1MonHighAlarmMask : 1;
+            uint8_t Aux1MonLowAlarmMask : 1;
+            uint8_t Aux1MonHighWarningMask : 1;
+            uint8_t Aux1MonLowWarningMask : 1;
+            uint8_t Aux2MonHighAlarmMask : 1;
+            uint8_t Aux2MonLowAlarmMask : 1;
+            uint8_t Aux2MonHighWarningMask : 1;
+            uint8_t Aux2MonLowWarningMask : 1;
         };
-        uint8_t raw;
-    } aux1_aux2_masks;                /* 00h:33 */
+        uint8_t Raw;
+    } Aux1Aux2Masks;                  /* 00h:33 */
 
     union {
         struct {
-            uint8_t aux3_high_alarm : 1;
-            uint8_t aux3_low_alarm : 1;
-            uint8_t aux3_high_warning : 1;
-            uint8_t aux3_low_warning : 1;
-            uint8_t custom_high_alarm : 1;
-            uint8_t custom_low_alarm : 1;
-            uint8_t custom_high_warning : 1;
-            uint8_t custom_low_warning : 1;
+            uint8_t Aux3MonHighAlarmMask : 1;
+            uint8_t Aux3MonLowAlarmMask : 1;
+            uint8_t Aux3MonHighWarningMask : 1;
+            uint8_t Aux3MonLowWarningMask : 1;
+            uint8_t CustomMonHighAlarmMask : 1;
+            uint8_t CustomMonLowAlarmMask : 1;
+            uint8_t CustomMonHighWarningMask : 1;
+            uint8_t CustomMonLowWarningMask : 1;
         };
-        uint8_t raw;
-    } aux3_custom_masks;              /* 00h:34 */
+        uint8_t Raw;
+    } Aux3CustomMasks;                /* 00h:34 */
 
-    uint8_t reserved_35;              /* 00h:35 */
-    uint8_t custom_module_masks;      /* 00h:36 */
+    uint8_t Reserved35;               /* 00h:35 */
+    uint8_t CustomModuleMasks;        /* 00h:36 */
 
-    uint8_t cdb_status_1;             /* 00h:37 */
-    uint8_t cdb_status_2;             /* 00h:38 */
-    uint8_t active_fw_major;          /* 00h:39 */
-    uint8_t active_fw_minor;          /* 00h:40 */
-    uint8_t module_fault_cause;       /* 00h:41 */
+    uint8_t CdbStatus1;               /* 00h:37 */
+    uint8_t CdbStatus2;               /* 00h:38 */
+    uint8_t ModuleActiveFirmwareMajorRevision; /* 00h:39 */
+    uint8_t ModuleActiveFirmwareMinorRevision; /* 00h:40 */
+    uint8_t ModuleFaultCause;         /* 00h:41 */
 
     union {
         struct {
-            uint8_t password_cmd_result : 4; /* 00h:42.3-0 */
-            uint8_t reserved : 4;            /* 00h:42.7-4 */
+            uint8_t PasswordCmdResult : 4; /* 00h:42.3-0 */
+            uint8_t Reserved : 4;          /* 00h:42.7-4 */
         };
-        uint8_t raw;
-    } misc_status;                    /* 00h:42 */
+        uint8_t Raw;
+    } MiscStatus;                     /* 00h:42 */
 
-    uint8_t reserved_43_55[13];       /* 00h:43-55 */
+    uint8_t Reserved43To55[13];       /* 00h:43-55 */
 
-    uint8_t cmis_sm_support;          /* 00h:56 */
-    uint8_t module_function_type;     /* 00h:57 */
-    uint8_t reserved_58_59[2];        /* 00h:58-59 */
+    uint8_t CmisSmSupport;            /* 00h:56 */
+    uint8_t ModuleFunctionType;       /* 00h:57 */
+    uint8_t Reserved58To59[2];        /* 00h:58-59 */
 
     union {
         struct {
-            uint8_t sff8024_module_subtype : 4; /* 00h:60.3-0 */
-            uint8_t reserved : 4;               /* 00h:60.7-4 */
+            uint8_t SFF8024ModuleSubtype : 4; /* 00h:60.3-0 */
+            uint8_t Reserved : 4;             /* 00h:60.7-4 */
         };
-        uint8_t raw;
-    } module_subtype;                 /* 00h:60 */
+        uint8_t Raw;
+    } ModuleSubtype;                  /* 00h:60 */
 
     union {
         struct {
-            uint8_t sff8024_fiber_face_type : 2; /* 00h:61.1-0 */
-            uint8_t reserved : 2;                /* 00h:61.3-2 */
-            uint8_t sff8024_heatsink_type : 4;   /* 00h:61.7-4 */
+            uint8_t SFF8024FiberFaceType : 2; /* 00h:61.1-0 */
+            uint8_t Reserved : 2;             /* 00h:61.3-2 */
+            uint8_t SFF8024HeatsinkType : 4;  /* 00h:61.7-4 */
         };
-        uint8_t raw;
-    } connector_thermal_type;         /* 00h:61 */
+        uint8_t Raw;
+    } ConnectorThermalType;           /* 00h:61 */
 
     union {
         struct {
-            uint8_t cdb_fw_cmds_unsupported : 1;   /* 00h:62.0 */
-            uint8_t cdb_cmds_unsupported : 1;      /* 00h:62.1 */
-            uint8_t cdb_fw_query_unsupported : 1;  /* 00h:62.2 */
-            uint8_t cdb_query_unsupported : 1;     /* 00h:62.3 */
-            uint8_t reserved : 3;                  /* 00h:62.6-4 */
-            uint8_t validity_indication : 1;       /* 00h:62.7 */
+            uint8_t CdbFwCmdsUnsupported : 1;  /* 00h:62.0 */
+            uint8_t CdbCmdsUnsupported : 1;    /* 00h:62.1 */
+            uint8_t CdbFwQueryUnsupported : 1; /* 00h:62.2 */
+            uint8_t CdbQueryUnsupported : 1;   /* 00h:62.3 */
+            uint8_t Reserved : 3;              /* 00h:62.6-4 */
+            uint8_t ValidityIndication : 1;    /* 00h:62.7 */
         };
-        uint8_t raw;
-    } low_power_restrictions;         /* 00h:62 */
+        uint8_t Raw;
+    } LowPowerRestrictions;           /* 00h:62 */
 
-    uint8_t reserved_63;              /* 00h:63 */
-    uint8_t custom_64_84[21];         /* 00h:64-84 */
+    uint8_t Reserved63;               /* 00h:63 */
+    uint8_t Custom64To84[21];         /* 00h:64-84 */
 
-    uint8_t media_type;               /* 00h:85 */
-    cmis_lower_app_descriptor_t app[8];/* 00h:86-117 */
+    uint8_t MediaType;                /* 00h:85 */
+    cmis_lower_app_descriptor_t App[8];/* 00h:86-117 */
 
-    uint8_t password_change_entry[4]; /* 00h:118-121, write U32 big-endian */
-    uint8_t password_entry[4];        /* 00h:122-125, write U32 big-endian */
-    uint8_t bank_select;              /* 00h:126 */
-    uint8_t page_select;              /* 00h:127 */
+    cmis_be32_t PasswordChangeEntryArea; /* 00h:118-121, write U32 big-endian */
+    cmis_be32_t PasswordEntryArea;       /* 00h:122-125, write U32 big-endian */
+    uint8_t BankSelect;                 /* 00h:126 */
+    uint8_t PageSelect;                 /* 00h:127 */
 } cmis_5_4_low_memory_t;
 
-#if __STDC_VERSION__ >= 202311L
-static_assert(sizeof(cmis_5_4_low_memory_t) == 128,
-              "cmis_5_4_low_memory_t must be 128 bytes");
-#elif __STDC_VERSION__ >= 201112L
+#if __STDC_VERSION__ >= 201112L
+_Static_assert(sizeof(cmis_be16_t) == 2, "cmis_be16_t must be 2 bytes");
+_Static_assert(sizeof(cmis_be32_t) == 4, "cmis_be32_t must be 4 bytes");
 _Static_assert(sizeof(cmis_5_4_low_memory_t) == 128,
                "cmis_5_4_low_memory_t must be 128 bytes");
+_Static_assert(offsetof(cmis_5_4_low_memory_t, TempMonValue) == 14,
+               "TempMonValue must be at 00h:14");
+_Static_assert(offsetof(cmis_5_4_low_memory_t, ModuleControls) == 26,
+               "ModuleControls must be at 00h:26");
+_Static_assert(offsetof(cmis_5_4_low_memory_t, CdbStatus1) == 37,
+               "CdbStatus1 must be at 00h:37");
+_Static_assert(offsetof(cmis_5_4_low_memory_t, MiscStatus) == 42,
+               "MiscStatus must be at 00h:42");
+_Static_assert(offsetof(cmis_5_4_low_memory_t, CmisSmSupport) == 56,
+               "CmisSmSupport must be at 00h:56");
+_Static_assert(offsetof(cmis_5_4_low_memory_t, MediaType) == 85,
+               "MediaType must be at 00h:85");
+_Static_assert(offsetof(cmis_5_4_low_memory_t, App) == 86,
+               "App must be at 00h:86");
+_Static_assert(offsetof(cmis_5_4_low_memory_t, PasswordChangeEntryArea) == 118,
+               "PasswordChangeEntryArea must be at 00h:118");
+_Static_assert(offsetof(cmis_5_4_low_memory_t, BankSelect) == 126,
+               "BankSelect must be at 00h:126");
+_Static_assert(offsetof(cmis_5_4_low_memory_t, PageSelect) == 127,
+               "PageSelect must be at 00h:127");
 #endif
 
 #endif /* CMIS_5_4_LOW_MEMORY_H */
@@ -441,10 +534,10 @@ _Static_assert(sizeof(cmis_5_4_low_memory_t) == 128,
 
 ## Implementation Notes
 
-- Prefer byte offsets and masks in portable driver code; use the struct as documentation or for controlled compiler environments.
-- Do not read multi-byte fields as native-endian integers without conversion. CMIS defines byte order and data formats at the register level.
+- Prefer byte offsets and masks in portable driver code; use the struct as documentation or for controlled little-endian ARM GCC/Clang environments.
+- Run `CmisLowMemoryBitfieldSelfTest()` during platform bring-up if the compiler or ABI changes.
+- Do not replace `cmis_be16_t` or `cmis_be32_t` fields with native integers on little-endian ARM. Use the helper functions to convert CMIS big-endian register values.
 - Treat RO/COR flags carefully: reading the underlying flag can clear it, while summary bits point to where the clear-on-read operation must happen.
 - Do not assume CDB support just because the CDB status registers exist; use the Page 01h CDB advertisements before issuing CDB commands.
 - Do not assume password support. Password entry and result support are advertised separately on Page 01h, and password protection is for custom facilities unless explicitly standardized.
 - When changing a banked Upper Memory page, write `BankSelect` and `PageSelect` together unless only the page index changes within the current bank.
-

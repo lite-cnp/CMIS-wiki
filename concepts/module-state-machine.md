@@ -31,11 +31,11 @@ LowPwrS is derived from software and hardware low-power requests. It controls mo
 
 ## Host Implications
 
-The host can perform meaningful discovery and setup in ModuleLowPwr, then move the module toward ModuleReady when the system can support the advertised power. Data Paths remain separately governed by the [[data-path-state-machine]].
+The host can perform meaningful discovery and setup in ModuleLowPwr, then move the module toward ModuleReady when the system can support the advertised power. Data Paths remain separately governed by the [data-path-state-machine](data-path-state-machine.md).
 
 ## Extension Notes
 
-- [[elsfp-cmis]] resource modules implement MSM without needing DPSM or NPSM behavior.
-- The draft [[autonomous-path-startup]] integration leaves MSM unchanged.
+- [elsfp-cmis](elsfp-cmis.md) resource modules implement MSM without needing DPSM or NPSM behavior.
+- The draft [autonomous-path-startup](autonomous-path-startup.md) integration leaves MSM unchanged.
 
 Source anchors: CMIS 5.4 section 6.3.2; OIF-ELSFP-CMIS-01.0 resource module definition.

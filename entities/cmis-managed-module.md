@@ -10,7 +10,7 @@ sources: [oif-cmis-05-4, oif-cmis-05-3]
 
 # CMIS Managed Module
 
-A CMIS managed module is the target managed by a [[cmis-host]]. It exposes a standard management memory map and one or more management communication interfaces so the host can discover, configure, monitor, and operate the module.
+A CMIS managed module is the target managed by a [cmis-host](cmis-host.md). It exposes a standard management memory map and one or more management communication interfaces so the host can discover, configure, monitor, and operate the module.
 
 ## Main Types
 
@@ -27,8 +27,8 @@ A CMIS managed module is the target managed by a [[cmis-host]]. It exposes a sta
 
 ## Key Behaviors
 
-CMIS modules advertise capabilities through the [[management-memory-map]], transition through the [[module-state-machine]], and expose optional advanced features such as [[versatile-diagnostics-monitoring]], [[command-data-block]], and [[network-path-applications]].
+CMIS modules advertise capabilities through the [management-memory-map](../concepts/management-memory-map.md), transition through the [module-state-machine](../concepts/module-state-machine.md), and expose optional advanced features such as [versatile-diagnostics-monitoring](../concepts/versatile-diagnostics-monitoring.md), [command-data-block](../concepts/command-data-block.md), and [network-path-applications](../concepts/network-path-applications.md).
 
-[[elsfp-cmis]] is the main resource-module profile currently represented in this wiki.
+[elsfp-cmis](../concepts/elsfp-cmis.md) is the main resource-module profile currently represented in this wiki.
 
 Source anchors: CMIS 5.4 sections 1.1 and 4.1.

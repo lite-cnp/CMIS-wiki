@@ -19,7 +19,7 @@ OIF-C-CMIS-01.4 is the Coherent CMIS implementation agreement. It specifies CMIS
 
 ## Scope
 
-C-CMIS extends the base [[management-memory-map]], [[versatile-diagnostics-monitoring]], and [[command-data-block]] model for coherent transmission capabilities. It includes coherent-specific pages, terminology mapping to CMIS and 400ZR concepts, coherent capabilities advertisement, and C-CMIS CDB commands.
+C-CMIS extends the base [management-memory-map](../concepts/management-memory-map.md), [versatile-diagnostics-monitoring](../concepts/versatile-diagnostics-monitoring.md), and [command-data-block](../concepts/command-data-block.md) model for coherent transmission capabilities. It includes coherent-specific pages, terminology mapping to CMIS and 400ZR concepts, coherent capabilities advertisement, and C-CMIS CDB commands.
 
 ## Main Areas
 
@@ -31,10 +31,10 @@ C-CMIS extends the base [[management-memory-map]], [[versatile-diagnostics-monit
 
 ## Wiki Entry Points
 
-- [[coherent-cmis]]
-- [[cmis-supplements]]
-- [[management-memory-map]]
-- [[command-data-block]]
-- [[versatile-diagnostics-monitoring]]
+- [coherent-cmis](../concepts/coherent-cmis.md)
+- [cmis-supplements](../concepts/cmis-supplements.md)
+- [management-memory-map](../concepts/management-memory-map.md)
+- [command-data-block](../concepts/command-data-block.md)
+- [versatile-diagnostics-monitoring](../concepts/versatile-diagnostics-monitoring.md)
 
 Source anchors: abstract and table of contents, OIF-C-CMIS-01.4.

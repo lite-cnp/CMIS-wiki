@@ -16,8 +16,8 @@ Vendor-specific CMIS customization documents can define behavior that is useful 
 
 Use the following hierarchy when classifying behavior:
 
-1. Base CMIS behavior from [[sources/oif-cmis-05-4]].
-2. OIF supplement behavior from [[cmis-supplements]].
+1. Base CMIS behavior from [oif-cmis-05-4](../sources/oif-cmis-05-4.md).
+2. OIF supplement behavior from [cmis-supplements](cmis-supplements.md).
 3. Draft OIF/IEEE behavior, clearly marked as draft.
 4. Vendor-specific behavior, used only in the vendor-defined context.
 
@@ -27,4 +27,4 @@ Vendor behavior should be treated as custom unless it is advertised through stan
 
 ## Current Source Stub
 
-[[sources/google-gmis-imdd-transceiver-customizations]] is present in the raw source set, but the extracted text is not clean enough for detailed wiki extraction.
+[google-gmis-imdd-transceiver-customizations](../sources/google-gmis-imdd-transceiver-customizations.md) is present in the raw source set, but the extracted text is not clean enough for detailed wiki extraction.

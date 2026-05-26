@@ -27,6 +27,6 @@ Basic advertisement covers up to 15 Applications. CMIS 5.3 added Normalized Appl
 
 ## Related Mechanisms
 
-Application selection and lane assignment are written into [[control-sets]]. The module realizes those settings through the [[data-path-state-machine]].
+Application selection and lane assignment are written into [control-sets](control-sets.md). The module realizes those settings through the [data-path-state-machine](data-path-state-machine.md).
 
 Source anchors: sections 6.2.1-6.2.2, PDF pages 56-61.

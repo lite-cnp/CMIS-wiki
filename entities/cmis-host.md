@@ -14,18 +14,18 @@ A CMIS host is the managing side of the interface. It initiates management commu
 
 ## Responsibilities
 
-- Discover whether the attached [[cmis-managed-module]] is CMIS-compliant.
+- Discover whether the attached [cmis-managed-module](cmis-managed-module.md) is CMIS-compliant.
 - Read static and dynamic advertisements before using optional functionality.
-- Use the [[register-access-layer]] READ, WRITE, and TEST primitives correctly.
-- Configure [[applications-and-data-paths]] through [[control-sets]].
-- Handle [[module-state-machine]] and [[data-path-state-machine]] transitions.
+- Use the [register-access-layer](../concepts/register-access-layer.md) READ, WRITE, and TEST primitives correctly.
+- Configure [applications-and-data-paths](../concepts/applications-and-data-paths.md) through [control-sets](../concepts/control-sets.md).
+- Handle [module-state-machine](../concepts/module-state-machine.md) and [data-path-state-machine](../concepts/data-path-state-machine.md) transitions.
 - Poll or respond to flags and interrupts.
-- Use [[command-data-block]] only when it is advertised.
-- Respect timing, access hold-off, and synchronization requirements from the [[cmis-timing-model]].
+- Use [command-data-block](../concepts/command-data-block.md) only when it is advertised.
+- Respect timing, access hold-off, and synchronization requirements from the [cmis-timing-model](../concepts/cmis-timing-model.md).
 
 ## Implementation Notes
 
-The host is always the MCI initiator/controller side, while the module is always the MCI target side. This matters for [[management-communication-interface]] variants such as I2CMCI, SPIMCI, and draft I3CMCI.
+The host is always the MCI initiator/controller side, while the module is always the MCI target side. This matters for [management-communication-interface](../concepts/management-communication-interface.md) variants such as I2CMCI, SPIMCI, and draft I3CMCI.
 
 Hosts should treat optional, draft, and custom extensions conservatively: use standard CMIS management first, then enable optional features only after advertisements show support and the relevant supplement or draft is in scope.
 

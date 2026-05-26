@@ -17,13 +17,13 @@ The earlier starter version of this page incorrectly conflated OIF CMIS with OAS
 
 ## Role
 
-- Publishes [[sources/oif-cmis-05-4]] and prior base CMIS Implementation Agreements.
+- Publishes [oif-cmis-05-4](../sources/oif-cmis-05-4.md) and prior base CMIS Implementation Agreements.
 - Maintains the CMIS base specification and related OIF supplements.
 - Coordinates with industry standards and form-factor organizations relevant to optical internetworking.
 
 ## See Also
 
-- [[sources/oif-cmis-05-4]]
-- [[sources/oif-cmis-05-3]]
-- [[cmis-supplements]]
-- [[cmis-5-4-implementer-map]]
+- [oif-cmis-05-4](../sources/oif-cmis-05-4.md)
+- [oif-cmis-05-3](../sources/oif-cmis-05-3.md)
+- [cmis-supplements](../concepts/cmis-supplements.md)
+- [cmis-5-4-implementer-map](../synthesis/cmis-5-4-implementer-map.md)

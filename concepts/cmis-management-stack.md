@@ -10,18 +10,18 @@ sources: [oif-cmis-05-4, oif-cmis-05-3]
 
 # CMIS Management Stack
 
-CMIS is easiest to understand as a layered management stack between a [[cmis-host]] and a [[cmis-managed-module]].
+CMIS is easiest to understand as a layered management stack between a [cmis-host](../entities/cmis-host.md) and a [cmis-managed-module](../entities/cmis-managed-module.md).
 
 ## Layers
 
 | Layer | Role | Wiki Page |
 |---|---|---|
-| Management application layer | Defines meaning and behavioral effects of management operations | [[applications-and-data-paths]], [[control-sets]], [[module-state-machine]] |
-| Optional message layer | Provides host-command/module-reply messaging | [[command-data-block]] |
-| Register Access Layer | Provides READ, WRITE, and TEST over a 256-byte window | [[register-access-layer]] |
-| Data transfer layer | Carries access primitives over a concrete bus/protocol | [[management-communication-interface]] |
-| Management Signaling Layer | Provides discrete low-speed management signals | [[management-interface]] |
-| Physical interconnection layer | Provided by form factor hardware specifications | [[cmis-supplements]] |
+| Management application layer | Defines meaning and behavioral effects of management operations | [applications-and-data-paths](applications-and-data-paths.md), [control-sets](control-sets.md), [module-state-machine](module-state-machine.md) |
+| Optional message layer | Provides host-command/module-reply messaging | [command-data-block](command-data-block.md) |
+| Register Access Layer | Provides READ, WRITE, and TEST over a 256-byte window | [register-access-layer](register-access-layer.md) |
+| Data transfer layer | Carries access primitives over a concrete bus/protocol | [management-communication-interface](management-communication-interface.md) |
+| Management Signaling Layer | Provides discrete low-speed management signals | [management-interface](management-interface.md) |
+| Physical interconnection layer | Provided by form factor hardware specifications | [cmis-supplements](cmis-supplements.md) |
 
 ## Design Point
 

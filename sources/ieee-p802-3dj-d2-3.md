@@ -26,8 +26,8 @@ IEEE P802.3dj D2.3 is a draft amendment for 200 Gb/s, 400 Gb/s, 800 Gb/s, and 1.
 
 ## Wiki Entry Points
 
-- [[autonomous-path-startup]]
-- [[sources/oif2026-093-08-802-3dj-apsu-draft]]
-- [[sources/ieee-802-3-2022]]
+- [autonomous-path-startup](../concepts/autonomous-path-startup.md)
+- [oif2026-093-08-802-3dj-apsu-draft](oif2026-093-08-802-3dj-apsu-draft.md)
+- [ieee-802-3-2022](ieee-802-3-2022.md)
 
 Source anchors: clauses 116.2.9, 169.2.10, 174.2.12, 178.8.9, 179.8.9, 180.5.12, 181.5.12, 182.5.12, 183.5.12, and Annex 178B.

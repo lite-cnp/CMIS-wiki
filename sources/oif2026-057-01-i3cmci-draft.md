@@ -37,8 +37,8 @@ The extracted draft text contains unresolved editorial notes and some requiremen
 
 ## Wiki Entry Points
 
-- [[i3c-based-management-communication-interface]]
-- [[management-communication-interface]]
-- [[register-access-layer]]
+- [i3c-based-management-communication-interface](../concepts/i3c-based-management-communication-interface.md)
+- [management-communication-interface](../concepts/management-communication-interface.md)
+- [register-access-layer](../concepts/register-access-layer.md)
 
 Source anchor: Appendix B.4 draft text, OIF 2026.057.01.

@@ -15,4 +15,4 @@ This note is retained only for historical traceability. The original content sug
 
 That content is **not applicable** to OIF-CMIS-05.3.
 
-Use [[sources/oif-cmis-05-3]] and [[cmis-5-3-implementer-map]] instead.
+Use [oif-cmis-05-3](oif-cmis-05-3.md) and [cmis-5-3-implementer-map](../synthesis/cmis-5-3-implementer-map.md) instead.

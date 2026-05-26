@@ -33,6 +33,6 @@ CMIS 5.3 requires all host lanes encapsulated into a network signal to use the s
 
 ## APSU Draft Interaction
 
-The [[autonomous-path-startup]] draft says the DPSM/APSU relationship applies similarly to NPSM states. For Network Path Applications, the host should treat NPSM as configuration state and read APSU status separately when the application requires IEEE 802.3dj APSU.
+The [autonomous-path-startup](autonomous-path-startup.md) draft says the DPSM/APSU relationship applies similarly to NPSM states. For Network Path Applications, the host should treat NPSM as configuration state and read APSU status separately when the application requires IEEE 802.3dj APSU.
 
 Source anchors: CMIS 5.4 section 7.6; OIF 2026.093.08 NPSM draft section.

@@ -17,7 +17,7 @@ CMIS 5.3 is presented as backwards compatible with CMIS 5.2: existing CMIS 5.2-c
 | Area | 5.3 Change |
 |---|---|
 | CPO and ELSFP | Adds project-based support hooks and resource module concepts |
-| MCI | Adds [[management-communication-interface#Variants|SPIMCI]] |
+| MCI | Adds [SPIMCI](../concepts/management-communication-interface.md#variants) |
 | Applications | Adds Normalized Application Descriptors for up to 240 Applications |
 | Configuration | Allows partial support advertisement for intervention-free reconfiguration |
 | VDM | Adds optional power-saving mode and new FEC symbol error weight observables |

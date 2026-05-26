@@ -15,17 +15,17 @@ source_note: Raw source file is not included in this wiki-only repository.
 
 # OIF-CMIS-05.4
 
-OIF-CMIS-05.4 is Revision 5.4 of the [[oasis-oif|OIF]] Common Management Interface Specification. It is now the current base-source page for this vault's CMIS wiki.
+OIF-CMIS-05.4 is Revision 5.4 of the [OIF](../entities/oasis-oif.md) Common Management Interface Specification. It is now the current base-source page for this vault's CMIS wiki.
 
 ## Relationship to 5.3
 
 Revision 5.4 states that CMIS 5.3 compliant host and module implementations are also CMIS 5.4 compliant, with possible exceptions for unmodified Network Path implementations that did not take the CMIS 5.x errata corrections.
 
-Use [[cmis-5-3-to-5-4]] for the short delta map.
+Use [cmis-5-3-to-5-4](../comparisons/cmis-5-3-to-5-4.md) for the short delta map.
 
 ## Major 5.4 Themes
 
-- Network Path errata integration and cleanup of [[network-path-applications]] terminology and register descriptions.
+- Network Path errata integration and cleanup of [network-path-applications](../concepts/network-path-applications.md) terminology and register descriptions.
 - Expanded application and lane scalability, including support for up to 255 Normalized Application Descriptor pages and up to 256 lanes.
 - New named feature and option profile advertising, including a map of supported pages and features.
 - Firmware Load Management consolidation and additional CDB firmware commands.
@@ -50,18 +50,18 @@ Revision 5.4 adds these notable page assignments:
 
 CMIS 5.4 explicitly describes the CMIS supplement family:
 
-- [[cmis-versatile-control-set]] from OIF-CMIS-VCS-01.1.
-- [[coherent-cmis]] from OIF-C-CMIS-01.4.
-- [[cmis-form-factor-management]] from OIF-CMIS-FF-01.0.
+- [cmis-versatile-control-set](../concepts/cmis-versatile-control-set.md) from OIF-CMIS-VCS-01.1.
+- [coherent-cmis](../concepts/coherent-cmis.md) from OIF-C-CMIS-01.4.
+- [cmis-form-factor-management](../concepts/cmis-form-factor-management.md) from OIF-CMIS-FF-01.0.
 - CMIS-LT for host-to-module electrical link training.
-- [[elsfp-cmis]] from OIF-CMIS-ELSFP-01.0.
+- [elsfp-cmis](../concepts/elsfp-cmis.md) from OIF-CMIS-ELSFP-01.0.
 
 ## Wiki Entry Points
 
-- [[cmis-5-4]]
-- [[cmis-document-family-map]]
-- [[cmis-5-4-implementer-map]]
-- [[management-memory-map]]
-- [[cmis-supplements]]
+- [cmis-5-4](../concepts/cmis-5-4.md)
+- [cmis-document-family-map](../synthesis/cmis-document-family-map.md)
+- [cmis-5-4-implementer-map](../synthesis/cmis-5-4-implementer-map.md)
+- [management-memory-map](../concepts/management-memory-map.md)
+- [cmis-supplements](../concepts/cmis-supplements.md)
 
 Source anchors: revision history pages 11-12, section 1.1.2, section 1.2, section 1.3, Table 8-1, and referenced supplement list.

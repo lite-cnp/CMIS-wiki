@@ -32,9 +32,9 @@ CMIS-FF maps form-factor hardware controls and status signals into the CMIS mana
 
 ## Wiki Entry Points
 
-- [[cmis-form-factor-management]]
-- [[management-interface]]
-- [[management-memory-map]]
-- [[cmis-supplements]]
+- [cmis-form-factor-management](../concepts/cmis-form-factor-management.md)
+- [management-interface](../concepts/management-interface.md)
+- [management-memory-map](../concepts/management-memory-map.md)
+- [cmis-supplements](../concepts/cmis-supplements.md)
 
 Source anchors: abstract and table of contents, OIF-CMIS-FF-01.0.

@@ -14,32 +14,32 @@ This page classifies the raw CMIS-related documents in the vault so base CMIS, o
 
 ## Base Specifications
 
-- [[sources/oif-cmis-05-4]] - current base CMIS revision in this vault.
-- [[sources/oif-cmis-05-3]] - previous base revision used for the first wiki pass.
+- [oif-cmis-05-4](../sources/oif-cmis-05-4.md) - current base CMIS revision in this vault.
+- [oif-cmis-05-3](../sources/oif-cmis-05-3.md) - previous base revision used for the first wiki pass.
 
 ## OIF Supplements
 
-- [[sources/oif-cmis-vcs-01-1]] - [[cmis-versatile-control-set]].
-- [[sources/oif-cmis-ff-01-0]] - [[cmis-form-factor-management]].
-- [[sources/oif-c-cmis-01-4]] - [[coherent-cmis]].
+- [oif-cmis-vcs-01-1](../sources/oif-cmis-vcs-01-1.md) - [cmis-versatile-control-set](../concepts/cmis-versatile-control-set.md).
+- [oif-cmis-ff-01-0](../sources/oif-cmis-ff-01-0.md) - [cmis-form-factor-management](../concepts/cmis-form-factor-management.md).
+- [oif-c-cmis-01-4](../sources/oif-c-cmis-01-4.md) - [coherent-cmis](../concepts/coherent-cmis.md).
 
 ## Standalone Companion IA
 
-- [[sources/oif-elsfp-cmis-01-0]] - [[elsfp-cmis]] for External Laser Small Form Factor Pluggable resource modules.
+- [oif-elsfp-cmis-01-0](../sources/oif-elsfp-cmis-01-0.md) - [elsfp-cmis](../concepts/elsfp-cmis.md) for External Laser Small Form Factor Pluggable resource modules.
 
 ## Draft Extensions
 
-- [[sources/oif2026-057-01-i3cmci-draft]] - [[i3c-based-management-communication-interface]] draft.
-- [[sources/oif2026-093-08-802-3dj-apsu-draft]] - [[autonomous-path-startup]] CMIS integration draft.
+- [oif2026-057-01-i3cmci-draft](../sources/oif2026-057-01-i3cmci-draft.md) - [i3c-based-management-communication-interface](../concepts/i3c-based-management-communication-interface.md) draft.
+- [oif2026-093-08-802-3dj-apsu-draft](../sources/oif2026-093-08-802-3dj-apsu-draft.md) - [autonomous-path-startup](../concepts/autonomous-path-startup.md) CMIS integration draft.
 
 ## IEEE References
 
-- [[sources/ieee-802-3-2022]] - base IEEE Ethernet source.
-- [[sources/ieee-p802-3dj-d2-3]] - IEEE draft source for APSU, RTS, and ILT.
+- [ieee-802-3-2022](../sources/ieee-802-3-2022.md) - base IEEE Ethernet source.
+- [ieee-p802-3dj-d2-3](../sources/ieee-p802-3dj-d2-3.md) - IEEE draft source for APSU, RTS, and ILT.
 
 ## Vendor-Specific Notes
 
-- [[sources/google-gmis-imdd-transceiver-customizations]] - vendor-specific GMIS/IMDD source stub.
+- [google-gmis-imdd-transceiver-customizations](../sources/google-gmis-imdd-transceiver-customizations.md) - vendor-specific GMIS/IMDD source stub.
 
 ## Classification Rule
 

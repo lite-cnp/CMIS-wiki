@@ -10,7 +10,7 @@ sources: [oif-cmis-vcs-01-1, oif-cmis-05-4]
 
 # CMIS Versatile Control Set
 
-CMIS Versatile Control Set, or CMIS-VCS, is an optional supplement that generalizes the fixed signal-integrity fields in base CMIS [[control-sets]].
+CMIS Versatile Control Set, or CMIS-VCS, is an optional supplement that generalizes the fixed signal-integrity fields in base CMIS [control-sets](control-sets.md).
 
 ## Problem It Solves
 
@@ -29,7 +29,7 @@ CMIS 5.4 reserves VCS parameter space on Pages 18h and 19h. CDB command ranges a
 
 ## Related Pages
 
-- [[sources/oif-cmis-vcs-01-1]]
-- [[control-sets]]
-- [[management-memory-map]]
-- [[cmis-supplements]]
+- [oif-cmis-vcs-01-1](../sources/oif-cmis-vcs-01-1.md)
+- [control-sets](control-sets.md)
+- [management-memory-map](management-memory-map.md)
+- [cmis-supplements](cmis-supplements.md)

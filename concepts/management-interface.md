@@ -10,7 +10,7 @@ sources: [oif-cmis-05-4, oif-cmis-05-3]
 
 # Management Interface
 
-The CMIS management interface is the set of mechanisms a [[cmis-host]] uses to manage a [[cmis-managed-module]]. It combines discrete management signals with register access over a management communication link.
+The CMIS management interface is the set of mechanisms a [cmis-host](../entities/cmis-host.md) uses to manage a [cmis-managed-module](../entities/cmis-managed-module.md). It combines discrete management signals with register access over a management communication link.
 
 ## Horizontal Parts
 
@@ -19,11 +19,11 @@ The CMIS management interface is the set of mechanisms a [[cmis-host]] uses to m
 
 ## Vertical Transport
 
-The [[management-communication-interface]] implements RAL primitives across the physical interconnect. CMIS defines I2CMCI and SPIMCI variants, while [[i3c-based-management-communication-interface]] is draft/future-direction material.
+The [management-communication-interface](management-communication-interface.md) implements RAL primitives across the physical interconnect. CMIS defines I2CMCI and SPIMCI variants, while [i3c-based-management-communication-interface](i3c-based-management-communication-interface.md) is draft/future-direction material.
 
 ## Form-Factor Signals
 
-[[cmis-form-factor-management]] maps form-factor-specific hardware signals into the generic CMIS management model when a module advertises CMIS-FF support.
+[cmis-form-factor-management](cmis-form-factor-management.md) maps form-factor-specific hardware signals into the generic CMIS management model when a module advertises CMIS-FF support.
 
 ## Why It Matters
 
