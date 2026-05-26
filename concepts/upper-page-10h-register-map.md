@@ -40,12 +40,9 @@ Writes to this page can trigger configuration actions. Host software should stag
 
 ## C Register View
 
-The overlay is intentionally byte grouped because most Page 10h fields are one-byte lane arrays or control bitmaps. Decode bit semantics with Table 8-78 through Table 8-91.
+This self-contained C view is embedded directly in the page so it is visible in Obsidian. It expands lane control into lane bitmap bitfields, staged-control-set structs, two-bit and nibble lane maps, and a named lane-mask block.
 
 ```c
-#ifndef CMIS_5_4_PAGE_10H_H
-#define CMIS_5_4_PAGE_10H_H
-
 #include <stddef.h>
 #include <stdint.h>
 
@@ -55,24 +52,128 @@ The overlay is intentionally byte grouped because most Page 10h fields are one-b
 #define CMIS_PACKED
 #endif
 
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t Lane1 : 1;
+        uint8_t Lane2 : 1;
+        uint8_t Lane3 : 1;
+        uint8_t Lane4 : 1;
+        uint8_t Lane5 : 1;
+        uint8_t Lane6 : 1;
+        uint8_t Lane7 : 1;
+        uint8_t Lane8 : 1;
+    };
+    uint8_t Raw;
+} cmis_lane8_bitmap_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t Lane1 : 2;
+        uint8_t Lane2 : 2;
+        uint8_t Lane3 : 2;
+        uint8_t Lane4 : 2;
+    };
+    uint8_t Raw;
+} cmis_lane4_2bit_t;
+
 typedef struct CMIS_PACKED {
-    uint8_t DataPathControl;              /* 10h:128 */
-    uint8_t LaneSpecificControlFields[14];/* 10h:129-142 */
-    uint8_t StagedControlSet0[35];        /* 10h:143-177 */
-    uint8_t StagedControlSet1[35];        /* 10h:178-212 */
-    uint8_t LaneSpecificMasks[20];        /* 10h:213-232 */
-    uint8_t Reserved233_239[7];           /* 10h:233-239 */
-    uint8_t Custom240_255[16];            /* 10h:240-255 */
+    cmis_lane4_2bit_t Lane1To4;
+    cmis_lane4_2bit_t Lane5To8;
+} cmis_lane8_2bit_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t OddLane : 4;
+        uint8_t EvenLane : 4;
+    };
+    uint8_t Raw;
+} cmis_lane_pair_nibble_t;
+
+typedef struct CMIS_PACKED {
+    cmis_lane_pair_nibble_t Lane1To2;
+    cmis_lane_pair_nibble_t Lane3To4;
+    cmis_lane_pair_nibble_t Lane5To6;
+    cmis_lane_pair_nibble_t Lane7To8;
+} cmis_lane8_nibble_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t ExplicitControl : 1;
+        uint8_t DataPathID : 3;
+        uint8_t AppSelCode : 4;
+    };
+    uint8_t Raw;
+} cmis_dp_config_lane_t;
+
+typedef struct CMIS_PACKED {
+    cmis_lane8_bitmap_t ApplyDPInitLane;                  /* 10h:143 or 178 */
+    cmis_lane8_bitmap_t ApplyImmediateLane;               /* 10h:144 or 179 */
+    cmis_dp_config_lane_t DataPathConfig[8];              /* 10h:145-152 or 180-187 */
+    cmis_lane8_bitmap_t AdaptiveInputEqEnableTx;          /* 10h:153 or 188 */
+    cmis_lane8_2bit_t AdaptiveInputEqRecallTx;            /* 10h:154-155 or 189-190 */
+    cmis_lane8_nibble_t HostControlledInputEqTargetTx;    /* 10h:156-159 or 191-194 */
+    cmis_lane8_bitmap_t CDREnableTx;                      /* 10h:160 or 195 */
+    cmis_lane8_bitmap_t CDRBypassRx;                      /* 10h:161 or 196 */
+    cmis_lane8_nibble_t OutputEqPreCursorTargetRx;        /* 10h:162-165 or 197-200 */
+    cmis_lane8_nibble_t OutputEqPostCursorTargetRx;       /* 10h:166-169 or 201-204 */
+    cmis_lane8_nibble_t OutputAmplitudeTargetRx;          /* 10h:170-173 or 205-208 */
+    cmis_lane8_bitmap_t OutputDisableTx;                  /* 10h:174 or 209 */
+    cmis_lane8_bitmap_t OutputDisableRx;                  /* 10h:175 or 210 */
+    cmis_lane8_bitmap_t ApplyImmediateTx;                 /* 10h:176 or 211 */
+    cmis_lane8_bitmap_t ApplyImmediateRx;                 /* 10h:177 or 212 */
+} cmis_page_10h_staged_control_set_t;
+
+typedef struct CMIS_PACKED {
+    cmis_lane8_bitmap_t DPStateChangedMask;               /* 10h:213 */
+    cmis_lane8_bitmap_t FailureMaskTx;                    /* 10h:214 */
+    cmis_lane8_bitmap_t LOSMaskTx;                        /* 10h:215 */
+    cmis_lane8_bitmap_t CDRLOLMaskTx;                     /* 10h:216 */
+    cmis_lane8_bitmap_t AdaptiveInputEqFailMaskTx;        /* 10h:217 */
+    cmis_lane8_bitmap_t OpticalPowerHighAlarmMaskTx;      /* 10h:218 */
+    cmis_lane8_bitmap_t OpticalPowerLowAlarmMaskTx;       /* 10h:219 */
+    cmis_lane8_bitmap_t OpticalPowerHighWarningMaskTx;    /* 10h:220 */
+    cmis_lane8_bitmap_t OpticalPowerLowWarningMaskTx;     /* 10h:221 */
+    cmis_lane8_bitmap_t LaserBiasHighAlarmMaskTx;         /* 10h:222 */
+    cmis_lane8_bitmap_t LaserBiasLowAlarmMaskTx;          /* 10h:223 */
+    cmis_lane8_bitmap_t LaserBiasHighWarningMaskTx;       /* 10h:224 */
+    cmis_lane8_bitmap_t LaserBiasLowWarningMaskTx;        /* 10h:225 */
+    cmis_lane8_bitmap_t LOSMaskRx;                        /* 10h:226 */
+    cmis_lane8_bitmap_t CDRLOLMaskRx;                     /* 10h:227 */
+    cmis_lane8_bitmap_t OpticalPowerHighAlarmMaskRx;      /* 10h:228 */
+    cmis_lane8_bitmap_t OpticalPowerLowAlarmMaskRx;       /* 10h:229 */
+    cmis_lane8_bitmap_t OpticalPowerHighWarningMaskRx;    /* 10h:230 */
+    cmis_lane8_bitmap_t OpticalPowerLowWarningMaskRx;     /* 10h:231 */
+    cmis_lane8_bitmap_t OutputStatusChangedMaskRx;        /* 10h:232 */
+} cmis_page_10h_lane_masks_t;
+
+typedef struct CMIS_PACKED {
+    cmis_lane8_bitmap_t DPDeinitLane;                     /* 10h:128 */
+    cmis_lane8_bitmap_t InputPolarityFlipTx;              /* 10h:129 */
+    cmis_lane8_bitmap_t OutputDisableTx;                  /* 10h:130 */
+    cmis_lane8_bitmap_t AutoSquelchDisableTx;             /* 10h:131 */
+    cmis_lane8_bitmap_t OutputSquelchForceTx;             /* 10h:132 */
+    uint8_t Reserved133;                                  /* 10h:133 */
+    cmis_lane8_bitmap_t AdaptiveInputEqFreezeTx;          /* 10h:134 */
+    cmis_lane8_2bit_t AdaptiveInputEqStoreTx;             /* 10h:135-136 */
+    cmis_lane8_bitmap_t OutputPolarityFlipRx;             /* 10h:137 */
+    cmis_lane8_bitmap_t OutputDisableRx;                  /* 10h:138 */
+    cmis_lane8_bitmap_t AutoSquelchDisableRx;             /* 10h:139 */
+    uint8_t Reserved140To142[3];                          /* 10h:140-142 */
+    cmis_page_10h_staged_control_set_t StagedControlSet0; /* 10h:143-177 */
+    cmis_page_10h_staged_control_set_t StagedControlSet1; /* 10h:178-212 */
+    cmis_page_10h_lane_masks_t LaneSpecificMasks;         /* 10h:213-232 */
+    uint8_t Reserved233To239[7];                          /* 10h:233-239 */
+    uint8_t Custom240To255[16];                           /* 10h:240-255 */
 } cmis_5_4_page_10h_t;
 
-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
-_Static_assert(sizeof(cmis_5_4_page_10h_t) == 128u, "CMIS Page 10h overlay must be 128 bytes");
+_Static_assert(sizeof(cmis_lane8_bitmap_t) == 1u, "lane bitmap must be 1 byte");
+_Static_assert(sizeof(cmis_lane8_2bit_t) == 2u, "2-bit lane map must be 2 bytes");
+_Static_assert(sizeof(cmis_lane8_nibble_t) == 4u, "nibble lane map must be 4 bytes");
+_Static_assert(sizeof(cmis_page_10h_staged_control_set_t) == 35u, "Page 10h staged set must be 35 bytes");
+_Static_assert(sizeof(cmis_page_10h_lane_masks_t) == 20u, "Page 10h masks must be 20 bytes");
+_Static_assert(sizeof(cmis_5_4_page_10h_t) == 128u, "Page 10h must be 128 bytes");
 _Static_assert(offsetof(cmis_5_4_page_10h_t, StagedControlSet0) == 15u, "10h:143 offset mismatch");
-_Static_assert(offsetof(cmis_5_4_page_10h_t, StagedControlSet1) == 50u, "10h:178 offset mismatch");
-_Static_assert(offsetof(cmis_5_4_page_10h_t, LaneSpecificMasks) == 85u, "10h:213 offset mismatch");
-#endif
-
-#endif /* CMIS_5_4_PAGE_10H_H */
 ```
 
 ## Source Anchors

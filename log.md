@@ -1,5 +1,22 @@
 # Research Log
 
+## 2026-05-26 query | CMIS upper-page embedded C views
+
+- Replaced header-only C Register View snippets on the CMIS 5.4 upper-page register-map pages with self-contained embedded C views so the structs, bitfields, enums, and static assertions are visible directly in Obsidian.
+- Applied the inline C view pattern to Pages 00h, 01h, 02h, 04h, 10h, 11h, 12h, 13h, 14h, and 2Fh; Page 0Dh was already generated in that format.
+
+## 2026-05-26 query | CMIS Page 0Dh register map
+
+- Added [upper-page-0dh-register-map](concepts/upper-page-0dh-register-map.md), a CMIS 5.4 firmware-management page covering Page 0Dh capabilities, load status, and firmware load version descriptors.
+- Extended [cmis-5-4-upper-page-registers.h](code/cmis-5-4-upper-page-registers.h) with Page 0Dh bitfield/register views, firmware load descriptor structs, and common firmware status code enums.
+- Embedded the Page 0Dh C register view directly in the Markdown page so the struct and bitfields are visible in Obsidian.
+- Updated [management-memory-map](concepts/management-memory-map.md) and `wiki/index.md` to link Page 0Dh directly.
+
+## 2026-05-26 query | CMIS upper-page C bitfields
+
+- Added [cmis-5-4-upper-page-registers.h](code/cmis-5-4-upper-page-registers.h), a detailed little-endian ARM-oriented C header with named bitfields, enums, byte-order wrappers, and static offset/size assertions for Pages 00h, 01h, 02h, 04h, 10h, 11h, 12h, 13h, 14h, and 2Fh.
+- Updated the upper-page register-map pages with detailed bitfield/register definitions instead of only abstract byte-array overlays.
+
 ## 2026-05-26 query | GitHub-navigable wiki links
 
 - Converted internal wiki cross-references from Obsidian wikilinks to GitHub-navigable relative Markdown links.

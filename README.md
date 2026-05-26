@@ -103,6 +103,7 @@ Commit the wiki-only vault contents:
 - Root guidance: `README.md`, `AGENTS.md`
 - Repo hygiene: `.gitignore`
 - Wiki directories: `concepts/`, `sources/`, `synthesis/`, `queries/`, `comparisons/`, `entities/`
+- Code artifacts under `code/` when they are part of the wiki documentation
 
 Do not commit raw source artifacts unless you intentionally have redistribution rights:
 

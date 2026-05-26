@@ -2,9 +2,9 @@
 type: concept
 title: Command Data Block
 created: 2026-05-25
-updated: 2026-05-25
+updated: 2026-05-26
 tags: [cmis, cdb, messaging]
-related: [register-access-layer, management-memory-map, versatile-diagnostics-monitoring, cmis-timing-model, coherent-cmis]
+related: [register-access-layer, management-memory-map, upper-page-0dh-register-map, versatile-diagnostics-monitoring, cmis-timing-model, coherent-cmis]
 sources: [oif-cmis-05-4, oif-cmis-05-3, oif-c-cmis-01-4]
 ---
 
@@ -37,6 +37,6 @@ CMIS defines CDB groups for module commands, capabilities inquiry, firmware mana
 
 ## CMIS 5.4 Notes
 
-CMIS 5.4 adds Get/Set Module Time commands, an EPL variant of Get Application Attributes, firmware management additions, and new interface attributes. It also reserves command ID space for supplements such as [coherent-cmis](coherent-cmis.md) and [cmis-versatile-control-set](cmis-versatile-control-set.md).
+CMIS 5.4 adds Get/Set Module Time commands, an EPL variant of Get Application Attributes, firmware management additions, and new interface attributes. [upper-page-0dh-register-map](upper-page-0dh-register-map.md) provides a register-readable summary of firmware load capabilities/status, while CDB firmware commands remain the operational path for firmware query, transfer, run, commit, and tag retrieval flows. CMIS 5.4 also reserves command ID space for supplements such as [coherent-cmis](coherent-cmis.md) and [cmis-versatile-control-set](cmis-versatile-control-set.md).
 
 Source anchors: CMIS 5.4 revision history, section 7.2, sections 8.23-8.24, and chapter 9.

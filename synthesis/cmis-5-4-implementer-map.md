@@ -2,9 +2,9 @@
 type: synthesis
 title: CMIS 5.4 Implementer Map
 created: 2026-05-25
-updated: 2026-05-25
+updated: 2026-05-26
 tags: [cmis, implementation, synthesis, cmis-5-4]
-related: [sources/oif-cmis-05-4, cmis-5-4, management-memory-map, applications-and-data-paths, cmis-supplements]
+related: [sources/oif-cmis-05-4, cmis-5-4, management-memory-map, upper-page-0dh-register-map, applications-and-data-paths, cmis-supplements]
 sources: [oif-cmis-05-4]
 ---
 
@@ -23,7 +23,7 @@ This page is the current working entry point for implementing or reviewing CMIS 
 ## New 5.4 Areas to Check
 
 - Supported page and named feature advertisement on Page 0Ch.
-- Firmware management additions on Page 0Dh and related [command-data-block](../concepts/command-data-block.md) commands.
+- Firmware management additions on [Page 0Dh](../concepts/upper-page-0dh-register-map.md) and related [command-data-block](../concepts/command-data-block.md) commands.
 - Lane/Data Path management and monitoring on Pages 60h and 61h.
 - Media lane thresholds on Page 62h.
 - Media lane switching on Page 6Dh.

@@ -25,6 +25,7 @@
 - [upper-page-01h-register-map](concepts/upper-page-01h-register-map.md) - CMIS 5.4 Page 01h advertising register map.
 - [upper-page-02h-register-map](concepts/upper-page-02h-register-map.md) - CMIS 5.4 Page 02h supervision threshold register map.
 - [upper-page-04h-register-map](concepts/upper-page-04h-register-map.md) - CMIS 5.4 Page 04h tunable laser capability register map.
+- [upper-page-0dh-register-map](concepts/upper-page-0dh-register-map.md) - CMIS 5.4 Page 0Dh firmware management register map.
 - [upper-page-10h-register-map](concepts/upper-page-10h-register-map.md) - CMIS 5.4 banked Page 10h lane and data-path control register map.
 - [upper-page-11h-register-map](concepts/upper-page-11h-register-map.md) - CMIS 5.4 banked Page 11h lane and data-path status register map.
 - [upper-page-12h-register-map](concepts/upper-page-12h-register-map.md) - CMIS 5.4 banked Page 12h tunable laser control and status register map.
@@ -63,6 +64,10 @@
 - [ieee-p802-3dj-d2-3](sources/ieee-p802-3dj-d2-3.md) - IEEE 802.3dj draft source for APSU.
 - [google-gmis-imdd-transceiver-customizations](sources/google-gmis-imdd-transceiver-customizations.md) - vendor-specific GMIS source stub.
 - [thinkwe-need-to-answer-the-user-they-said-yes-to-m-2026-05-21-073851](sources/thinkwe-need-to-answer-the-user-they-said-yes-to-m-2026-05-21-073851.md) - Legacy starter guide for turning a specification into a wiki.
+
+## Code Artifacts
+
+- [cmis-5-4-upper-page-registers.h](code/cmis-5-4-upper-page-registers.h) - Detailed little-endian ARM-oriented C register views for the CMIS 5.4 upper pages documented in this wiki.
 
 ## Queries
 

@@ -40,12 +40,9 @@ Page 11h is primarily read-only status and monitor data. Several flag fields hav
 
 ## C Register View
 
-The overlay uses raw byte groups for live status areas. This avoids accidental native-endian interpretation on little-endian ARM while preserving exact register offsets.
+This self-contained C view is embedded directly in the page so it is visible in Obsidian. It expands status bytes into DP-state nibbles, lane-status bitmaps, flag bitmaps, monitor big-endian wrappers, configuration-status nibbles, active-control-set fields, and media-lane mapping nibbles.
 
 ```c
-#ifndef CMIS_5_4_PAGE_11H_H
-#define CMIS_5_4_PAGE_11H_H
-
 #include <stddef.h>
 #include <stdint.h>
 
@@ -55,25 +52,156 @@ The overlay uses raw byte groups for live status areas. This avoids accidental n
 #define CMIS_PACKED
 #endif
 
+
 typedef struct CMIS_PACKED {
-    uint8_t DataPathStates[4];                           /* 11h:128-131 */
-    uint8_t LaneOutputStatus[2];                         /* 11h:132-133 */
-    uint8_t LaneSpecificFlags[20];                       /* 11h:134-153 */
-    uint8_t LaneSpecificMonitors[48];                    /* 11h:154-201 */
-    uint8_t ConfigurationStatus[4];                      /* 11h:202-205 */
-    uint8_t ActiveControlSet[29];                        /* 11h:206-234 */
-    uint8_t DataPathConditions[5];                       /* 11h:235-239 */
-    uint8_t MediaLaneToMediaWavelengthAndFiberMapping[16]; /* 11h:240-255 */
+    uint8_t Msb;
+    uint8_t Lsb;
+} cmis_be16_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t Lane1 : 1;
+        uint8_t Lane2 : 1;
+        uint8_t Lane3 : 1;
+        uint8_t Lane4 : 1;
+        uint8_t Lane5 : 1;
+        uint8_t Lane6 : 1;
+        uint8_t Lane7 : 1;
+        uint8_t Lane8 : 1;
+    };
+    uint8_t Raw;
+} cmis_lane8_bitmap_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t Lane1 : 2;
+        uint8_t Lane2 : 2;
+        uint8_t Lane3 : 2;
+        uint8_t Lane4 : 2;
+    };
+    uint8_t Raw;
+} cmis_lane4_2bit_t;
+
+typedef struct CMIS_PACKED {
+    cmis_lane4_2bit_t Lane1To4;
+    cmis_lane4_2bit_t Lane5To8;
+} cmis_lane8_2bit_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t OddLane : 4;
+        uint8_t EvenLane : 4;
+    };
+    uint8_t Raw;
+} cmis_lane_pair_nibble_t;
+
+typedef struct CMIS_PACKED {
+    cmis_lane_pair_nibble_t Lane1To2;
+    cmis_lane_pair_nibble_t Lane3To4;
+    cmis_lane_pair_nibble_t Lane5To6;
+    cmis_lane_pair_nibble_t Lane7To8;
+} cmis_lane8_nibble_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t ExplicitControl : 1;
+        uint8_t DataPathID : 3;
+        uint8_t AppSelCode : 4;
+    };
+    uint8_t Raw;
+} cmis_dp_config_lane_t;
+
+typedef enum {
+    CmisDpStateReserved = 0x0,
+    CmisDpStateDeactivatedOrUnusedLane = 0x1,
+    CmisDpStateInit = 0x2,
+    CmisDpStateDeinit = 0x3,
+    CmisDpStateActivated = 0x4,
+    CmisDpStateTxTurnOn = 0x5,
+    CmisDpStateTxTurnOff = 0x6,
+    CmisDpStateInitialized = 0x7
+} cmis_dp_state_t;
+
+typedef enum {
+    CmisConfigUndefined = 0x0,
+    CmisConfigSuccess = 0x1,
+    CmisConfigRejected = 0x2,
+    CmisConfigRejectedInvalidAppSel = 0x3,
+    CmisConfigRejectedInvalidDataPath = 0x4,
+    CmisConfigRejectedInvalidSI = 0x5,
+    CmisConfigRejectedLanesInUse = 0x6,
+    CmisConfigRejectedPartialDataPath = 0x7,
+    CmisConfigRejectedNoEmulation = 0x8,
+    CmisConfigInProgress = 0xC
+} cmis_config_status_t;
+
+typedef struct CMIS_PACKED {
+    cmis_lane8_bitmap_t DPStateChangedFlag;               /* 11h:134 */
+    cmis_lane8_bitmap_t FailureFlagTx;                    /* 11h:135 */
+    cmis_lane8_bitmap_t LOSFlagTx;                        /* 11h:136 */
+    cmis_lane8_bitmap_t CDRLOLFlagTx;                     /* 11h:137 */
+    cmis_lane8_bitmap_t AdaptiveInputEqFailFlagTx;        /* 11h:138 */
+    cmis_lane8_bitmap_t OpticalPowerHighAlarmFlagTx;      /* 11h:139 */
+    cmis_lane8_bitmap_t OpticalPowerLowAlarmFlagTx;       /* 11h:140 */
+    cmis_lane8_bitmap_t OpticalPowerHighWarningFlagTx;    /* 11h:141 */
+    cmis_lane8_bitmap_t OpticalPowerLowWarningFlagTx;     /* 11h:142 */
+    cmis_lane8_bitmap_t LaserBiasHighAlarmFlagTx;         /* 11h:143 */
+    cmis_lane8_bitmap_t LaserBiasLowAlarmFlagTx;          /* 11h:144 */
+    cmis_lane8_bitmap_t LaserBiasHighWarningFlagTx;       /* 11h:145 */
+    cmis_lane8_bitmap_t LaserBiasLowWarningFlagTx;        /* 11h:146 */
+    cmis_lane8_bitmap_t LOSFlagRx;                        /* 11h:147 */
+    cmis_lane8_bitmap_t CDRLOLFlagRx;                     /* 11h:148 */
+    cmis_lane8_bitmap_t OpticalPowerHighAlarmFlagRx;      /* 11h:149 */
+    cmis_lane8_bitmap_t OpticalPowerLowAlarmFlagRx;       /* 11h:150 */
+    cmis_lane8_bitmap_t OpticalPowerHighWarningFlagRx;    /* 11h:151 */
+    cmis_lane8_bitmap_t OpticalPowerLowWarningFlagRx;     /* 11h:152 */
+    cmis_lane8_bitmap_t OutputStatusChangedFlagRx;        /* 11h:153 */
+} cmis_page_11h_lane_flags_t;
+
+typedef struct CMIS_PACKED {
+    cmis_dp_config_lane_t DPConfigLane[8];                /* 11h:206-213 */
+    cmis_lane8_bitmap_t AdaptiveInputEqEnableTx;          /* 11h:214 */
+    cmis_lane8_2bit_t AdaptiveInputEqRecalledTx;          /* 11h:215-216 */
+    cmis_lane8_nibble_t HostControlledInputEqTargetTx;    /* 11h:217-220 */
+    cmis_lane8_bitmap_t CDREnableTx;                      /* 11h:221 */
+    cmis_lane8_bitmap_t CDREnableRx;                      /* 11h:222 */
+    cmis_lane8_nibble_t OutputEqPreCursorTargetRx;        /* 11h:223-226 */
+    cmis_lane8_nibble_t OutputEqPostCursorTargetRx;       /* 11h:227-230 */
+    cmis_lane8_nibble_t OutputAmplitudeTargetRx;          /* 11h:231-234 */
+} cmis_page_11h_active_control_set_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t MediaLaneToFiberMapping : 4;
+        uint8_t MediaLaneToWavelengthMapping : 4;
+    };
+    uint8_t Raw;
+} cmis_page_11h_media_lane_mapping_t;
+
+typedef struct CMIS_PACKED {
+    cmis_lane8_nibble_t DPStateHostLane;                  /* 11h:128-131 */
+    cmis_lane8_bitmap_t OutputStatusRx;                   /* 11h:132 */
+    cmis_lane8_bitmap_t OutputStatusTx;                   /* 11h:133 */
+    cmis_page_11h_lane_flags_t LaneSpecificFlags;         /* 11h:134-153 */
+    cmis_be16_t OpticalPowerTx[8];                        /* 11h:154-169 */
+    cmis_be16_t LaserBiasTx[8];                           /* 11h:170-185 */
+    cmis_be16_t OpticalPowerRx[8];                        /* 11h:186-201 */
+    cmis_lane8_nibble_t ConfigStatusLane;                 /* 11h:202-205 */
+    cmis_page_11h_active_control_set_t ActiveControlSet;  /* 11h:206-234 */
+    cmis_lane8_bitmap_t DPInitPendingLane;                /* 11h:235 */
+    uint8_t Reserved236To239[4];                          /* 11h:236-239 */
+    cmis_page_11h_media_lane_mapping_t MediaLaneMappingTx[8]; /* 11h:240-247 */
+    cmis_page_11h_media_lane_mapping_t MediaLaneMappingRx[8]; /* 11h:248-255 */
 } cmis_5_4_page_11h_t;
 
-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
-_Static_assert(sizeof(cmis_5_4_page_11h_t) == 128u, "CMIS Page 11h overlay must be 128 bytes");
-_Static_assert(offsetof(cmis_5_4_page_11h_t, LaneSpecificFlags) == 6u, "11h:134 offset mismatch");
-_Static_assert(offsetof(cmis_5_4_page_11h_t, ConfigurationStatus) == 74u, "11h:202 offset mismatch");
-_Static_assert(offsetof(cmis_5_4_page_11h_t, MediaLaneToMediaWavelengthAndFiberMapping) == 112u, "11h:240 offset mismatch");
-#endif
-
-#endif /* CMIS_5_4_PAGE_11H_H */
+_Static_assert(sizeof(cmis_be16_t) == 2u, "cmis_be16_t must be 2 bytes");
+_Static_assert(sizeof(cmis_lane8_bitmap_t) == 1u, "lane bitmap must be 1 byte");
+_Static_assert(sizeof(cmis_lane8_2bit_t) == 2u, "2-bit lane map must be 2 bytes");
+_Static_assert(sizeof(cmis_lane8_nibble_t) == 4u, "nibble lane map must be 4 bytes");
+_Static_assert(sizeof(cmis_page_11h_lane_flags_t) == 20u, "Page 11h flags must be 20 bytes");
+_Static_assert(sizeof(cmis_page_11h_active_control_set_t) == 29u, "Page 11h active control set must be 29 bytes");
+_Static_assert(sizeof(cmis_5_4_page_11h_t) == 128u, "Page 11h must be 128 bytes");
+_Static_assert(offsetof(cmis_5_4_page_11h_t, ActiveControlSet) == 78u, "11h:206 offset mismatch");
 ```
 
 ## Source Anchors

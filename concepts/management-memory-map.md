@@ -4,7 +4,7 @@ title: Management Memory Map
 created: 2026-05-25
 updated: 2026-05-26
 tags: [cmis, memory-map, pages, banks]
-related: [register-access-layer, low-memory-register-map, upper-page-00h-register-map, upper-page-01h-register-map, upper-page-02h-register-map, upper-page-04h-register-map, upper-page-10h-register-map, upper-page-11h-register-map, upper-page-12h-register-map, upper-page-13h-register-map, upper-page-14h-register-map, upper-page-2fh-register-map, command-data-block, versatile-diagnostics-monitoring, applications-and-data-paths, cmis-5-4]
+related: [register-access-layer, low-memory-register-map, upper-page-00h-register-map, upper-page-01h-register-map, upper-page-02h-register-map, upper-page-04h-register-map, upper-page-0dh-register-map, upper-page-10h-register-map, upper-page-11h-register-map, upper-page-12h-register-map, upper-page-13h-register-map, upper-page-14h-register-map, upper-page-2fh-register-map, command-data-block, versatile-diagnostics-monitoring, applications-and-data-paths, cmis-5-4]
 sources: [oif-cmis-05-4, oif-cmis-05-3]
 ---
 
@@ -33,7 +33,7 @@ All CMIS devices support Lower Memory and Page 00h. Paged memory modules additio
 | 04h | [Tunable laser capability advertising](upper-page-04h-register-map.md) |
 | 05h | [cmis-form-factor-management](cmis-form-factor-management.md) registers |
 | 0Ch | CMIS 5.4 supported pages and named features |
-| 0Dh | CMIS 5.4 firmware management |
+| 0Dh | [CMIS 5.4 firmware management](upper-page-0dh-register-map.md) |
 | 10h-1Fh | Lane, data path, network path, diagnostics, extensions; see [upper-page-10h-register-map](upper-page-10h-register-map.md), [upper-page-11h-register-map](upper-page-11h-register-map.md), [upper-page-12h-register-map](upper-page-12h-register-map.md), [upper-page-13h-register-map](upper-page-13h-register-map.md), and [upper-page-14h-register-map](upper-page-14h-register-map.md) |
 | 18h-19h | [cmis-versatile-control-set](cmis-versatile-control-set.md) parameter space |
 | 1Ah-1Bh | [elsfp-cmis](elsfp-cmis.md) advertisements, flags, controls, and monitors |

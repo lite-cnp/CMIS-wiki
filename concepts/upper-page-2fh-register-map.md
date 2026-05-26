@@ -39,12 +39,9 @@ Freezing or unfreezing in one supported bank is defined to occur across all supp
 
 ## C Register View
 
-The struct exposes Page 2Fh as a byte-accurate overlay. Use the masks below for control/status bits instead of relying on compiler bitfield layout.
+This self-contained C view is embedded directly in the page so it is visible in Obsidian. It exposes VDM group support, fine interval length, dynamic controls, and dynamic status as named fields including MonitoringDutyCycle, FreezeRequest, FreezeDone, and UnfreezeDone.
 
 ```c
-#ifndef CMIS_5_4_PAGE_2FH_H
-#define CMIS_5_4_PAGE_2FH_H
-
 #include <stddef.h>
 #include <stdint.h>
 
@@ -54,45 +51,60 @@ The struct exposes Page 2Fh as a byte-accurate overlay. Use the masks below for 
 #define CMIS_PACKED
 #endif
 
+
 typedef struct CMIS_PACKED {
     uint8_t Msb;
     uint8_t Lsb;
 } cmis_be16_t;
 
-static inline uint16_t CmisBe16ToU16(cmis_be16_t value)
-{
-    return (uint16_t)(((uint16_t)value.Msb << 8) | value.Lsb);
-}
+typedef enum {
+    CmisVdmGroup1Supported = 0,
+    CmisVdmGroups1To2Supported = 1,
+    CmisVdmGroups1To3Supported = 2,
+    CmisVdmGroups1To4Supported = 3
+} cmis_vdm_support_t;
 
-enum {
-    CmisPage2FhVDMSupportMask = 0x03u,
-    CmisPage2FhPowerSavingSupportMask = 0x04u,
-    CmisPage2FhDutyCycleSupportMask = 0x08u,
-    CmisPage2FhFreezeRequestMask = 0x80u,
-    CmisPage2FhPowerSavingModeMask = 0x40u,
-    CmisPage2FhMonitoringDutyCycleMask = 0x3Cu,
-    CmisPage2FhFreezeDoneMask = 0x80u,
-    CmisPage2FhUnfreezeDoneMask = 0x40u
-};
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t VDMSupport : 2;
+        uint8_t PowerSavingSupport : 1;
+        uint8_t DutyCycleSupport : 1;
+        uint8_t Reserved : 4;
+    };
+    uint8_t Raw;
+} cmis_page_2fh_vdm_advertisement_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t Reserved0To1 : 2;
+        uint8_t MonitoringDutyCycle : 4;
+        uint8_t PowerSavingMode : 1;
+        uint8_t FreezeRequest : 1;
+    };
+    uint8_t Raw;
+} cmis_page_2fh_dynamic_controls_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t Reserved0To5 : 6;
+        uint8_t UnfreezeDone : 1;
+        uint8_t FreezeDone : 1;
+    };
+    uint8_t Raw;
+} cmis_page_2fh_dynamic_status_t;
 
 typedef struct CMIS_PACKED {
-    uint8_t VDMAdvertisement;        /* 2Fh:128 */
-    cmis_be16_t FineIntervalLength;  /* 2Fh:129-130 */
-    uint8_t Reserved131_143[13];     /* 2Fh:131-143 */
-    uint8_t DynamicControls;         /* 2Fh:144 */
-    uint8_t DynamicStatus;           /* 2Fh:145 */
-    uint8_t Reserved146_255[110];    /* 2Fh:146-255 */
+    cmis_page_2fh_vdm_advertisement_t VDMAdvertisement;  /* 2Fh:128 */
+    cmis_be16_t FineIntervalLength;                      /* 2Fh:129-130 */
+    uint8_t Reserved131To143[13];                        /* 2Fh:131-143 */
+    cmis_page_2fh_dynamic_controls_t DynamicControls;    /* 2Fh:144 */
+    cmis_page_2fh_dynamic_status_t DynamicStatus;        /* 2Fh:145 */
+    uint8_t Reserved146To255[110];                       /* 2Fh:146-255 */
 } cmis_5_4_page_2fh_t;
 
-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
-_Static_assert(sizeof(cmis_be16_t) == 2u, "CMIS BE16 wrapper must be 2 bytes");
-_Static_assert(sizeof(cmis_5_4_page_2fh_t) == 128u, "CMIS Page 2Fh overlay must be 128 bytes");
-_Static_assert(offsetof(cmis_5_4_page_2fh_t, FineIntervalLength) == 1u, "2Fh:129 offset mismatch");
+_Static_assert(sizeof(cmis_be16_t) == 2u, "cmis_be16_t must be 2 bytes");
+_Static_assert(sizeof(cmis_5_4_page_2fh_t) == 128u, "Page 2Fh must be 128 bytes");
 _Static_assert(offsetof(cmis_5_4_page_2fh_t, DynamicControls) == 16u, "2Fh:144 offset mismatch");
-_Static_assert(offsetof(cmis_5_4_page_2fh_t, DynamicStatus) == 17u, "2Fh:145 offset mismatch");
-#endif
-
-#endif /* CMIS_5_4_PAGE_2FH_H */
 ```
 
 ## Source Anchors

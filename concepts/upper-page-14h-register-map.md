@@ -39,12 +39,9 @@ Pages 13h and 14h are optional and advertised together by Page 01h. Page 14h may
 
 ## C Register View
 
-The selected diagnostics payload is intentionally left as raw bytes because its endianness and layout depend on `DiagnosticsSelector`.
+This self-contained C view is embedded directly in the page so it is visible in Obsidian. It exposes DiagnosticsSelector enum values and named diagnostics-flag bitmaps; the selected diagnostics payload remains raw bytes because its layout depends on DiagnosticsSelector.
 
 ```c
-#ifndef CMIS_5_4_PAGE_14H_H
-#define CMIS_5_4_PAGE_14H_H
-
 #include <stddef.h>
 #include <stdint.h>
 
@@ -54,23 +51,66 @@ The selected diagnostics payload is intentionally left as raw bytes because its 
 #define CMIS_PACKED
 #endif
 
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t Lane1 : 1;
+        uint8_t Lane2 : 1;
+        uint8_t Lane3 : 1;
+        uint8_t Lane4 : 1;
+        uint8_t Lane5 : 1;
+        uint8_t Lane6 : 1;
+        uint8_t Lane7 : 1;
+        uint8_t Lane8 : 1;
+    };
+    uint8_t Raw;
+} cmis_lane8_bitmap_t;
+
+typedef enum {
+    CmisDiagnosticsSelectorNone = 0x00,
+    CmisDiagnosticsSelectorRealTimeBER = 0x01,
+    CmisDiagnosticsSelectorHostLane1To4Counters = 0x02,
+    CmisDiagnosticsSelectorHostLane5To8Counters = 0x03,
+    CmisDiagnosticsSelectorMediaLane1To4Counters = 0x04,
+    CmisDiagnosticsSelectorMediaLane5To8Counters = 0x05,
+    CmisDiagnosticsSelectorSNR = 0x06,
+    CmisDiagnosticsSelectorGatedBER = 0x11,
+    CmisDiagnosticsSelectorGatedHostLane1To4Counters = 0x12,
+    CmisDiagnosticsSelectorGatedHostLane5To8Counters = 0x13,
+    CmisDiagnosticsSelectorGatedMediaLane1To4Counters = 0x14,
+    CmisDiagnosticsSelectorGatedMediaLane5To8Counters = 0x15
+} cmis_diagnostics_selector_t;
+
 typedef struct CMIS_PACKED {
-    uint8_t DiagnosticsSelector;  /* 14h:128 */
-    uint8_t Reserved129;          /* 14h:129 */
-    uint8_t Custom130_131[2];     /* 14h:130-131 */
-    uint8_t DiagnosticsFlags[8];  /* 14h:132-139 */
-    uint8_t Reserved140_149[10];  /* 14h:140-149 */
-    uint8_t Reserved150_191[42];  /* 14h:150-191 */
-    uint8_t DiagnosticsData[64];  /* 14h:192-255 */
+    union {
+        struct {
+            uint8_t Reserved : 7;
+            uint8_t LossOfReferenceClockFlag : 1;
+        };
+        uint8_t Raw;
+    } LossOfReferenceClock;                              /* 14h:132 */
+    uint8_t Reserved133;                                 /* 14h:133 */
+    cmis_lane8_bitmap_t PatternCheckGatingCompleteFlagHostLane; /* 14h:134 */
+    cmis_lane8_bitmap_t PatternCheckGatingCompleteFlagMediaLane; /* 14h:135 */
+    cmis_lane8_bitmap_t PatternGeneratorLOLFlagHostLane; /* 14h:136 */
+    cmis_lane8_bitmap_t PatternGeneratorLOLFlagMediaLane; /* 14h:137 */
+    cmis_lane8_bitmap_t PatternCheckerLOLFlagHostLane;   /* 14h:138 */
+    cmis_lane8_bitmap_t PatternCheckerLOLFlagMediaLane;  /* 14h:139 */
+} cmis_page_14h_diagnostics_flags_t;
+
+typedef struct CMIS_PACKED {
+    uint8_t DiagnosticsSelector;                         /* 14h:128 */
+    uint8_t Reserved129;                                 /* 14h:129 */
+    uint8_t Custom130To131[2];                           /* 14h:130-131 */
+    cmis_page_14h_diagnostics_flags_t DiagnosticsFlags;  /* 14h:132-139 */
+    uint8_t Reserved140To191[52];                        /* 14h:140-191 */
+    uint8_t DiagnosticsData[64];                         /* 14h:192-255 */
 } cmis_5_4_page_14h_t;
 
-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
-_Static_assert(sizeof(cmis_5_4_page_14h_t) == 128u, "CMIS Page 14h overlay must be 128 bytes");
-_Static_assert(offsetof(cmis_5_4_page_14h_t, DiagnosticsFlags) == 4u, "14h:132 offset mismatch");
+_Static_assert(sizeof(cmis_lane8_bitmap_t) == 1u, "lane bitmap must be 1 byte");
+_Static_assert(sizeof(cmis_page_14h_diagnostics_flags_t) == 8u, "Page 14h diagnostics flags must be 8 bytes");
+_Static_assert(sizeof(cmis_5_4_page_14h_t) == 128u, "Page 14h must be 128 bytes");
 _Static_assert(offsetof(cmis_5_4_page_14h_t, DiagnosticsData) == 64u, "14h:192 offset mismatch");
-#endif
-
-#endif /* CMIS_5_4_PAGE_14H_H */
 ```
 
 ## Source Anchors

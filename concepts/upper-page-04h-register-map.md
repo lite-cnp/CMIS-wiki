@@ -38,12 +38,9 @@ Page 04h is an advertisement page. Runtime tuning control and status live on [up
 
 ## C Register View
 
-The channel range and tuning fields use explicit big-endian wrappers. The struct is a layout overlay; business logic should decode the named fields according to Table 8-68.
+This self-contained C view is embedded directly in the page so it is visible in Obsidian. It exposes wavelength-grid support bytes as named bitfield unions and keeps channel range, fine-tuning, and output-power fields as explicit big-endian byte wrappers.
 
 ```c
-#ifndef CMIS_5_4_PAGE_04H_H
-#define CMIS_5_4_PAGE_04H_H
-
 #include <stddef.h>
 #include <stdint.h>
 
@@ -53,38 +50,73 @@ The channel range and tuning fields use explicit big-endian wrappers. The struct
 #define CMIS_PACKED
 #endif
 
+
 typedef struct CMIS_PACKED {
     uint8_t Msb;
     uint8_t Lsb;
 } cmis_be16_t;
 
-static inline uint16_t CmisBe16ToU16(cmis_be16_t value)
-{
-    return (uint16_t)(((uint16_t)value.Msb << 8) | value.Lsb);
-}
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t GridSupported3p125GHz : 1;
+        uint8_t GridSupported6p25GHz : 1;
+        uint8_t GridSupported12p5GHz : 1;
+        uint8_t GridSupported25GHz : 1;
+        uint8_t GridSupported50GHz : 1;
+        uint8_t GridSupported100GHz : 1;
+        uint8_t GridSupported33GHz : 1;
+        uint8_t GridSupported75GHz : 1;
+    };
+    uint8_t Raw;
+} cmis_page_04h_grid_support_128_t;
 
-static inline int16_t CmisBe16ToS16(cmis_be16_t value)
-{
-    return (int16_t)CmisBe16ToU16(value);
-}
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t Reserved0To5 : 6;
+        uint8_t GridSupported150GHz : 1;
+        uint8_t FineTuningSupported : 1;
+    };
+    uint8_t Raw;
+} cmis_page_04h_grid_support_129_t;
 
 typedef struct CMIS_PACKED {
-    uint8_t WavelengthGrids[2];             /* 04h:128-129 */
-    cmis_be16_t ChannelNumberRanges[30];    /* 04h:130-189 */
-    cmis_be16_t FineTuningSupport[4];       /* 04h:190-197 */
-    cmis_be16_t ProgrammableOutputPower[2]; /* 04h:198-201 */
-    uint8_t Reserved202_254[53];            /* 04h:202-254 */
-    uint8_t PageChecksum;                   /* 04h:255 */
+    cmis_page_04h_grid_support_128_t WavelengthGrids128;  /* 04h:128 */
+    cmis_page_04h_grid_support_129_t WavelengthGrids129;  /* 04h:129 */
+    cmis_be16_t GridLowChannel3p125GHz;                   /* 04h:130-131 */
+    cmis_be16_t GridHighChannel3p125GHz;                  /* 04h:132-133 */
+    cmis_be16_t GridLowChannel6p25GHz;                    /* 04h:134-135 */
+    cmis_be16_t GridHighChannel6p25GHz;                   /* 04h:136-137 */
+    cmis_be16_t GridLowChannel12p5GHz;                    /* 04h:138-139 */
+    cmis_be16_t GridHighChannel12p5GHz;                   /* 04h:140-141 */
+    cmis_be16_t GridLowChannel25GHz;                      /* 04h:142-143 */
+    cmis_be16_t GridHighChannel25GHz;                     /* 04h:144-145 */
+    cmis_be16_t GridLowChannel50GHz;                      /* 04h:146-147 */
+    cmis_be16_t GridHighChannel50GHz;                     /* 04h:148-149 */
+    cmis_be16_t GridLowChannel100GHz;                     /* 04h:150-151 */
+    cmis_be16_t GridHighChannel100GHz;                    /* 04h:152-153 */
+    cmis_be16_t GridLowChannel33GHz;                      /* 04h:154-155 */
+    cmis_be16_t GridHighChannel33GHz;                     /* 04h:156-157 */
+    cmis_be16_t GridLowChannel75GHz;                      /* 04h:158-159 */
+    cmis_be16_t GridHighChannel75GHz;                     /* 04h:160-161 */
+    cmis_be16_t GridLowChannel150GHz;                     /* 04h:162-163 */
+    cmis_be16_t GridHighChannel150GHz;                    /* 04h:164-165 */
+    cmis_be16_t GridLowChannel300GHz;                     /* 04h:166-167 */
+    cmis_be16_t GridHighChannel300GHz;                    /* 04h:168-169 */
+    uint8_t Reserved170To189[20];                         /* 04h:170-189 */
+    cmis_be16_t FineTuningResolution;                     /* 04h:190-191 */
+    cmis_be16_t FineTuningLowOffset;                      /* 04h:192-193 */
+    cmis_be16_t FineTuningHighOffset;                     /* 04h:194-195 */
+    uint8_t FineTuningAndPowerSupport196;                 /* 04h:196 */
+    uint8_t Reserved197;                                  /* 04h:197 */
+    cmis_be16_t ProgOutputPowerMin;                       /* 04h:198-199 */
+    cmis_be16_t ProgOutputPowerMax;                       /* 04h:200-201 */
+    uint8_t Reserved202To254[53];                         /* 04h:202-254 */
+    uint8_t PageChecksum;                                 /* 04h:255 */
 } cmis_5_4_page_04h_t;
 
-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
-_Static_assert(sizeof(cmis_be16_t) == 2u, "CMIS BE16 wrapper must be 2 bytes");
-_Static_assert(sizeof(cmis_5_4_page_04h_t) == 128u, "CMIS Page 04h overlay must be 128 bytes");
-_Static_assert(offsetof(cmis_5_4_page_04h_t, ChannelNumberRanges) == 2u, "04h:130 offset mismatch");
+_Static_assert(sizeof(cmis_be16_t) == 2u, "cmis_be16_t must be 2 bytes");
+_Static_assert(sizeof(cmis_5_4_page_04h_t) == 128u, "Page 04h must be 128 bytes");
 _Static_assert(offsetof(cmis_5_4_page_04h_t, PageChecksum) == 127u, "04h:255 offset mismatch");
-#endif
-
-#endif /* CMIS_5_4_PAGE_04H_H */
 ```
 
 ## Source Anchors

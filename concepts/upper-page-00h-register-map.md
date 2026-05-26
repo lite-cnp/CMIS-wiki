@@ -47,12 +47,9 @@ Most fields on this page are read-only advertisements. The page checksum at `00h
 
 ## C Register View
 
-The struct is byte-address accurate for a little-endian ARM target because it does not reinterpret CMIS multi-byte data as native integers. Decode bit fields with masks or explicit helper functions in driver code.
+This self-contained C view is embedded directly in the page so it is visible in Obsidian. It exposes administrative-information fields, power-class and length encodings, media-lane support bits, and the Page 00h checksum boundary while keeping CMIS multi-byte values as explicit byte wrappers or byte arrays.
 
 ```c
-#ifndef CMIS_5_4_PAGE_00H_H
-#define CMIS_5_4_PAGE_00H_H
-
 #include <stddef.h>
 #include <stdint.h>
 
@@ -61,6 +58,44 @@ The struct is byte-address accurate for a little-endian ARM target because it do
 #else
 #define CMIS_PACKED
 #endif
+
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t Lane1 : 1;
+        uint8_t Lane2 : 1;
+        uint8_t Lane3 : 1;
+        uint8_t Lane4 : 1;
+        uint8_t Lane5 : 1;
+        uint8_t Lane6 : 1;
+        uint8_t Lane7 : 1;
+        uint8_t Lane8 : 1;
+    };
+    uint8_t Raw;
+} cmis_lane8_bitmap_t;
+
+typedef enum {
+    CmisModulePowerClass1 = 0,
+    CmisModulePowerClass2 = 1,
+    CmisModulePowerClass3 = 2,
+    CmisModulePowerClass4 = 3,
+    CmisModulePowerClass5 = 4,
+    CmisModulePowerClass6 = 5,
+    CmisModulePowerClass7 = 6,
+    CmisModulePowerClass8 = 7
+} cmis_module_power_class_t;
+
+typedef enum {
+    CmisLengthMultiplier0p1m = 0,
+    CmisLengthMultiplier1m = 1,
+    CmisLengthMultiplier10m = 2,
+    CmisLengthMultiplier100m = 3
+} cmis_length_multiplier_t;
+
+typedef enum {
+    CmisMciFlowControlStaticBytes = 0,
+    CmisMciFlowControlSpeedDependentDuration = 1
+} cmis_mci_flow_control_duration_encoding_t;
 
 typedef struct CMIS_PACKED {
     uint8_t SFF8024IdentifierCopy;          /* 00h:128 */
@@ -71,28 +106,53 @@ typedef struct CMIS_PACKED {
     uint8_t VendorSN[16];                   /* 00h:166-181 */
     uint8_t DateCode[8];                    /* 00h:182-189 */
     uint8_t CLEICode[10];                   /* 00h:190-199 */
-    uint8_t ModulePowerCharacteristics[2];  /* 00h:200-201 */
-    uint8_t CableAssemblyLinkLength;        /* 00h:202 */
+    union {
+        struct {
+            uint8_t Reserved : 5;
+            uint8_t ModulePowerClass : 3;   /* 00h:200.7-5 */
+        };
+        uint8_t Raw;
+    } ModulePowerClass;                     /* 00h:200 */
+    uint8_t MaxPower;                       /* 00h:201 */
+    union {
+        struct {
+            uint8_t BaseLength : 6;          /* 00h:202.5-0 */
+            uint8_t LengthMultiplier : 2;    /* 00h:202.7-6 */
+        };
+        uint8_t Raw;
+    } CableAssemblyLinkLength;              /* 00h:202 */
     uint8_t ConnectorType;                  /* 00h:203 */
-    uint8_t CopperCableAttenuation[6];      /* 00h:204-209 */
-    uint8_t MediaLaneInformation;           /* 00h:210 */
-    uint8_t CableAssemblyInformation;       /* 00h:211 */
+    uint8_t AttenuationAt5GHz;              /* 00h:204 */
+    uint8_t AttenuationAt7GHz;              /* 00h:205 */
+    uint8_t AttenuationAt12p9GHz;           /* 00h:206 */
+    uint8_t AttenuationAt25p8GHz;           /* 00h:207 */
+    uint8_t AttenuationAt53p1GHz;           /* 00h:208 */
+    uint8_t Reserved209;                    /* 00h:209 */
+    cmis_lane8_bitmap_t MediaLaneUnsupported; /* 00h:210 */
+    union {
+        struct {
+            uint8_t FarEndConfiguration : 5; /* 00h:211.4-0 */
+            uint8_t Reserved : 3;
+        };
+        uint8_t Raw;
+    } CableAssemblyInformation;             /* 00h:211 */
     uint8_t MediaInterfaceTechnology;       /* 00h:212 */
-    uint8_t MCIRelatedAdvertisement[2];     /* 00h:213-214 */
-    uint8_t Reserved215_220[6];             /* 00h:215-220 */
+    union {
+        struct {
+            uint8_t MciFlowControlDuration : 7;         /* 00h:213.6-0 */
+            uint8_t MciFlowControlDurationEncoding : 1; /* 00h:213.7 */
+        };
+        uint8_t Raw;
+    } MCIRelatedAdvertisement;              /* 00h:213 */
+    uint8_t Reserved214To220[7];            /* 00h:214-220 */
     uint8_t Custom221;                      /* 00h:221 */
     uint8_t PageChecksum;                   /* 00h:222 */
-    uint8_t Custom223_255[33];              /* 00h:223-255 */
+    uint8_t CustomInfoNV[33];               /* 00h:223-255 */
 } cmis_5_4_page_00h_t;
 
-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
-_Static_assert(sizeof(cmis_5_4_page_00h_t) == 128u, "CMIS Page 00h overlay must be 128 bytes");
-_Static_assert(offsetof(cmis_5_4_page_00h_t, SFF8024IdentifierCopy) == 0u, "00h:128 offset mismatch");
+_Static_assert(sizeof(cmis_lane8_bitmap_t) == 1u, "lane bitmap must be 1 byte");
+_Static_assert(sizeof(cmis_5_4_page_00h_t) == 128u, "Page 00h must be 128 bytes");
 _Static_assert(offsetof(cmis_5_4_page_00h_t, PageChecksum) == 94u, "00h:222 offset mismatch");
-_Static_assert(offsetof(cmis_5_4_page_00h_t, Custom223_255) == 95u, "00h:223 offset mismatch");
-#endif
-
-#endif /* CMIS_5_4_PAGE_00H_H */
 ```
 
 ## Source Anchors

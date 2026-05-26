@@ -2,9 +2,9 @@
 type: source
 title: OIF-CMIS-05.4
 created: 2026-05-25
-updated: 2026-05-25
+updated: 2026-05-26
 tags: [cmis, oif, specification, source]
-related: [cmis-5-4, cmis-supplements, management-memory-map, command-data-block]
+related: [cmis-5-4, cmis-supplements, management-memory-map, upper-page-0dh-register-map, command-data-block]
 authors: [OIF Physical and Link Layer Working Group]
 year: 2026
 url: "https://www.oiforum.com/"
@@ -40,7 +40,7 @@ Revision 5.4 adds these notable page assignments:
 | Page | Purpose |
 |---|---|
 | 0Ch | Module management, supported pages, and named features |
-| 0Dh | Firmware management |
+| 0Dh | [Firmware management](../concepts/upper-page-0dh-register-map.md) |
 | 60h | Lane/Data Path management for fixed polarity inversion and reset acquisition counts |
 | 61h | Lane/Data Path monitoring for Tx/Rx acquisition counters |
 | 62h | Media lane warning and alarm thresholds for Tx output power |

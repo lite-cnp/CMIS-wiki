@@ -42,12 +42,9 @@ Byte arrays with one byte per lane use the lowest byte address for lane 1 in the
 
 ## C Register View
 
-The multi-byte lane arrays use explicit big-endian wrappers so the overlay is safe on little-endian ARM.
+This self-contained C view is embedded directly in the page so it is visible in Obsidian. It adds per-lane grid/status/flag/mask bitfield unions and explicit big-endian wrappers for channel offsets, fine-tuning offsets, laser frequencies, and target output power.
 
 ```c
-#ifndef CMIS_5_4_PAGE_12H_H
-#define CMIS_5_4_PAGE_12H_H
-
 #include <stddef.h>
 #include <stdint.h>
 
@@ -56,6 +53,7 @@ The multi-byte lane arrays use explicit big-endian wrappers so the overlay is sa
 #else
 #define CMIS_PACKED
 #endif
+
 
 typedef struct CMIS_PACKED {
     uint8_t Msb;
@@ -69,47 +67,70 @@ typedef struct CMIS_PACKED {
     uint8_t Byte0;
 } cmis_be32_t;
 
-static inline uint16_t CmisBe16ToU16(cmis_be16_t value)
-{
-    return (uint16_t)(((uint16_t)value.Msb << 8) | value.Lsb);
-}
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t Lane1 : 1;
+        uint8_t Lane2 : 1;
+        uint8_t Lane3 : 1;
+        uint8_t Lane4 : 1;
+        uint8_t Lane5 : 1;
+        uint8_t Lane6 : 1;
+        uint8_t Lane7 : 1;
+        uint8_t Lane8 : 1;
+    };
+    uint8_t Raw;
+} cmis_lane8_bitmap_t;
 
-static inline int16_t CmisBe16ToS16(cmis_be16_t value)
-{
-    return (int16_t)CmisBe16ToU16(value);
-}
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t FineTuningEnableTx : 1;
+        uint8_t Reserved : 3;
+        uint8_t GridSpacingTx : 4;
+    };
+    uint8_t Raw;
+} cmis_page_12h_grid_spacing_t;
 
-static inline uint32_t CmisBe32ToU32(cmis_be32_t value)
-{
-    return ((uint32_t)value.Byte3 << 24) |
-           ((uint32_t)value.Byte2 << 16) |
-           ((uint32_t)value.Byte1 << 8) |
-           (uint32_t)value.Byte0;
-}
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t WavelengthUnlockStatusTx : 1;
+        uint8_t TuningInProgressTx : 1;
+        uint8_t Reserved : 6;
+    };
+    uint8_t Raw;
+} cmis_page_12h_status_indicator_t;
+
+typedef union CMIS_PACKED {
+    struct {
+        uint8_t TuningComplete : 1;
+        uint8_t WavelengthUnlocked : 1;
+        uint8_t InvalidChannelNumber : 1;
+        uint8_t TuningNotAccepted : 1;
+        uint8_t FineTuningOutOfRange : 1;
+        uint8_t TargetOutputPowerOutOfRange : 1;
+        uint8_t Reserved : 2;
+    };
+    uint8_t Raw;
+} cmis_page_12h_flag_or_mask_t;
 
 typedef struct CMIS_PACKED {
-    uint8_t GridSpacings[8];             /* 12h:128-135 */
-    cmis_be16_t ChannelOffsetNumbers[8]; /* 12h:136-151 */
-    cmis_be16_t FineTuningOffsets[8];    /* 12h:152-167 */
-    cmis_be32_t LaserFrequencies[8];     /* 12h:168-199 */
-    cmis_be16_t TargetOutputPower[8];    /* 12h:200-215 */
-    uint8_t Reserved216_221[6];          /* 12h:216-221 */
-    uint8_t StatusIndicators[8];         /* 12h:222-229 */
-    uint8_t FlagSummary;                 /* 12h:230 */
-    uint8_t Flags[8];                    /* 12h:231-238 */
-    uint8_t Masks[8];                    /* 12h:239-246 */
-    uint8_t Reserved247_255[9];          /* 12h:247-255 */
+    cmis_page_12h_grid_spacing_t GridSpacings[8];         /* 12h:128-135 */
+    cmis_be16_t ChannelOffsetNumbers[8];                  /* 12h:136-151 */
+    cmis_be16_t FineTuningOffsets[8];                     /* 12h:152-167 */
+    cmis_be32_t LaserFrequencies[8];                      /* 12h:168-199 */
+    cmis_be16_t TargetOutputPower[8];                     /* 12h:200-215 */
+    uint8_t Reserved216To221[6];                          /* 12h:216-221 */
+    cmis_page_12h_status_indicator_t StatusIndicators[8]; /* 12h:222-229 */
+    cmis_lane8_bitmap_t FlagSummary;                      /* 12h:230 */
+    cmis_page_12h_flag_or_mask_t Flags[8];                /* 12h:231-238 */
+    cmis_page_12h_flag_or_mask_t Masks[8];                /* 12h:239-246 */
+    uint8_t Reserved247To255[9];                          /* 12h:247-255 */
 } cmis_5_4_page_12h_t;
 
-#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
-_Static_assert(sizeof(cmis_be16_t) == 2u, "CMIS BE16 wrapper must be 2 bytes");
-_Static_assert(sizeof(cmis_be32_t) == 4u, "CMIS BE32 wrapper must be 4 bytes");
-_Static_assert(sizeof(cmis_5_4_page_12h_t) == 128u, "CMIS Page 12h overlay must be 128 bytes");
-_Static_assert(offsetof(cmis_5_4_page_12h_t, LaserFrequencies) == 40u, "12h:168 offset mismatch");
+_Static_assert(sizeof(cmis_be16_t) == 2u, "cmis_be16_t must be 2 bytes");
+_Static_assert(sizeof(cmis_be32_t) == 4u, "cmis_be32_t must be 4 bytes");
+_Static_assert(sizeof(cmis_lane8_bitmap_t) == 1u, "lane bitmap must be 1 byte");
+_Static_assert(sizeof(cmis_5_4_page_12h_t) == 128u, "Page 12h must be 128 bytes");
 _Static_assert(offsetof(cmis_5_4_page_12h_t, FlagSummary) == 102u, "12h:230 offset mismatch");
-#endif
-
-#endif /* CMIS_5_4_PAGE_12H_H */
 ```
 
 ## Source Anchors
