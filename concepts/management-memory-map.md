@@ -4,7 +4,7 @@ title: Management Memory Map
 created: 2026-05-25
 updated: 2026-05-25
 tags: [cmis, memory-map, pages, banks]
-related: [register-access-layer, command-data-block, versatile-diagnostics-monitoring, applications-and-data-paths, cmis-5-4]
+related: [register-access-layer, low-memory-register-map, command-data-block, versatile-diagnostics-monitoring, applications-and-data-paths, cmis-5-4]
 sources: [oif-cmis-05-4, oif-cmis-05-3]
 ---
 
@@ -14,7 +14,7 @@ The CMIS management memory map is a byte-organized address space exposed to the 
 
 ## Addressing Model
 
-- **Lower Memory**: bytes 00h-7Fh, always directly addressable.
+- **Lower Memory**: bytes 00h-7Fh, always directly addressable. See [[low-memory-register-map]] for the detailed CMIS 5.4 byte map.
 - **Upper Memory**: bytes 80h-FFh, dynamically mapped to selected pages and banks.
 - **Page**: a 128-byte upper-memory view selected by page address.
 - **Bank**: an additional selector used for lane groups, CDB instances, VDM groups, and larger data spaces.

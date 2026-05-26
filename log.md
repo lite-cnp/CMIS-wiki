@@ -1,5 +1,10 @@
 # Research Log
 
+## 2026-05-26 query | CMIS 5.4 lower memory register map
+
+- Added [[low-memory-register-map]] with a detailed CMIS 5.4 Lower Memory overview, implementation notes, and an embedded packed C register-view struct modeled after generated CMIS C headers.
+- Updated `wiki/index.md` and [[management-memory-map]] to include the new lower-memory concept page.
+
 ## 2026-05-25 ingest | CMIS 5.4 and document family update
 
 - Added [[sources/oif-cmis-05-4]] as the current base CMIS source page.

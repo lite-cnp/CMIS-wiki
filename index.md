@@ -20,6 +20,7 @@
 - [[register-access-layer]] - READ, WRITE, TEST, access hold-off, and coherency rules.
 - [[management-communication-interface]] - I2CMCI, SPIMCI, and draft I3CMCI context.
 - [[management-memory-map]] - CMIS pages, banks, lower/upper memory, flags, masks, and access types.
+- [[low-memory-register-map]] - Detailed CMIS 5.4 Lower Memory byte map with an embedded C register-view struct.
 - [[applications-and-data-paths]] - Application advertisement, lane assignment, and Data Path instances.
 - [[control-sets]] - Active and staged configuration sets plus Apply triggers.
 - [[module-state-machine]] - Module power/manageability lifecycle.
