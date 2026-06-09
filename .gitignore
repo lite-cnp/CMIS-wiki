@@ -8,6 +8,9 @@
 # Generated/extracted source artifacts not linked from the wiki
 media/
 
+# Local git worktrees
+.worktrees/
+
 # OS/editor noise
 .DS_Store
 Thumbs.db
