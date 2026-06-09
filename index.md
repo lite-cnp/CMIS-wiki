@@ -95,3 +95,4 @@
 - [cmis-5-3-implementer-map](synthesis/cmis-5-3-implementer-map.md) - Implementation-oriented reading map for the generated wiki.
 - [apsu-ilt-customer-note-plan](synthesis/apsu-ilt-customer-note-plan.md) - current APSU/iLT implementation status and customer-note development plan.
 - [apsu-ilt-verification-report](synthesis/apsu-ilt-verification-report.md) - current APSU/iLT verification status, gaps, and validation actions for the 1.6T 2xDR4 FRO module.
+- [apsu-ilt-page70h-verification-plan](synthesis/apsu-ilt-page70h-verification-plan.md) - internal engineering verification plan for next-release CMIS Page 70h APSU/iLT firmware validation.

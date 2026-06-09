@@ -1,5 +1,10 @@
 # Research Log
 
+## 2026-06-09 synthesis | APSU/iLT Page 70h verification plan
+
+- Added [apsu-ilt-page70h-verification-plan](synthesis/apsu-ilt-page70h-verification-plan.md), an internal engineering validation plan for next-release CMIS Page 70h APSU/iLT support.
+- Captured release gates, formal Page 70h pass/fail rules, evidence requirements, detailed test matrix, and mitigation coverage for the current IEEE/OIF/Sian3 verification gaps.
+
 ## 2026-06-09 synthesis | APSU/iLT verification report
 
 - Added [apsu-ilt-verification-report](synthesis/apsu-ilt-verification-report.md), reporting current APSU/iLT implementation status, lab verification evidence, and gaps for the 1.6T 2xDR4 FRO module.
