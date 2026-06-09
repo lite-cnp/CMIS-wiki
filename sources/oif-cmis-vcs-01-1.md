@@ -2,9 +2,9 @@
 type: source
 title: OIF-CMIS-VCS-01.1
 created: 2026-05-25
-updated: 2026-05-25
+updated: 2026-05-26
 tags: [cmis, oif, supplement, vcs, signal-integrity, source]
-related: [cmis-versatile-control-set, control-sets, cmis-supplements]
+related: [cmis-versatile-control-set, upper-page-18h-register-map, upper-page-19h-register-map, control-sets, command-data-block, cmis-supplements]
 authors: [OIF Physical and Link Layer Working Group]
 year: 2025
 url: "https://www.oiforum.com/"
@@ -32,8 +32,10 @@ The supplement extends [control-sets](../concepts/control-sets.md) without break
 ## Wiki Entry Points
 
 - [cmis-versatile-control-set](../concepts/cmis-versatile-control-set.md)
+- [upper-page-18h-register-map](../concepts/upper-page-18h-register-map.md)
+- [upper-page-19h-register-map](../concepts/upper-page-19h-register-map.md)
 - [cmis-supplements](../concepts/cmis-supplements.md)
 - [control-sets](../concepts/control-sets.md)
 - [management-memory-map](../concepts/management-memory-map.md)
 
-Source anchors: abstract and revision history, OIF-CMIS-VCS-01.1.
+Source anchors: abstract and revision history, section 4.4, Table 4-1, section 5, Table 5-1, and section 6 command tables in OIF-CMIS-VCS-01.1.

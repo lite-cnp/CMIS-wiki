@@ -1,5 +1,53 @@
 # Research Log
 
+## 2026-06-09 synthesis | APSU/iLT verification report
+
+- Added [apsu-ilt-verification-report](synthesis/apsu-ilt-verification-report.md), reporting current APSU/iLT implementation status, lab verification evidence, and gaps for the 1.6T 2xDR4 FRO module.
+- Captured status labels across current vendor CDB support, planned CMIS Page 70h alignment, Sian3 lab evidence, implementation gaps, and verification evidence gaps.
+
+## 2026-06-09 ingest | Feng Sian3 link-training screencopies
+
+- Updated [feng-jiang-2026-sian3-link-training-verification-email-thread](sources/feng-jiang-2026-sian3-link-training-verification-email-thread.md) with analysis of `raw/sources/screencopies/`.
+- Reclassified polarity evidence from email-only to email plus screencopy-backed evidence: polarity forcing broke traffic, LT was enabled on DUT/BERT lanes, and polarity readback masks changed.
+- Kept high-loss proof, convergence-time measurement, May 26 temperature-shift raw log/screenshot, third repeatability raw log, Page 70h validation, and interoperability closure as remaining gaps.
+
+## 2026-06-09 ingest | Feng Sian3 link-training raw attachments
+
+- Updated [feng-jiang-2026-sian3-link-training-verification-email-thread](sources/feng-jiang-2026-sian3-link-training-verification-email-thread.md) with analysis of `raw/sources/link_training.7z`, `raw/sources/link_training_temperation.7z`, `raw/sources/logs_20260522104400.txt`, and `raw/sources/test-setup-apsu-ilt.png`.
+- Captured numeric BER, LT status, repeated tap readback, and 0/45/70 C temperature-corner evidence from the loaded logs.
+- Reclassified remaining gaps: quantified physical high-loss setting, convergence-time measurement, May 26 temperature-shift raw log/screenshot, polarity-recovery raw log/screenshot, third repeatability raw log, endpoint labeling for duplicate tap records, Page 70h validation, and interoperability closure.
+
+## 2026-06-09 ingest | Current APSU/iLT customer-note plan
+
+- Added [lumentum-2026-8023dj-apsu-ilt-support-plan](sources/lumentum-2026-8023dj-apsu-ilt-support-plan.md), summarizing the current APSU/iLT implementation status from `raw/sources/8023dj_apsu_ilt_cmis_slides.pptx` and the matching PDF customer-note export.
+- Added [lumentum-2026-dpsm-apsu-ilt-state-machine](sources/lumentum-2026-dpsm-apsu-ilt-state-machine.md), extracting the embedded draw.io state-machine model from `raw/sources/dpsm-apsu-ilt-state-machine.drawio.png`.
+- Added [apsu-ilt-customer-note-plan](synthesis/apsu-ilt-customer-note-plan.md), capturing the customer-note position: vendor CDB implemented today, CMIS Page 70h planned after validation closure, and `DPActivated` is not sufficient for live Ethernet DATA readiness.
+- Updated APSU, vendor-specific customization, state-machine query, Sian3 cAPI query, document-family map, and `wiki/index.md` navigation for the current implementation plan.
+
+## 2026-06-09 ingest | Obsolete Sian3 ILT procedure attachment
+
+- Added [broadcom-2025-sian3-ilt-procedure](sources/broadcom-2025-sian3-ilt-procedure.md), summarizing `raw/sources/Sian3_ILT_AN.pdf` as an obsolete Broadcom Sian3 ILT BERT/DUT procedure source.
+- Marked the 2025 ILT procedure as superseded by [broadcom-2026-sian3-apsu-application-notes](sources/broadcom-2026-sian3-apsu-application-notes.md), which has later firmware scope and current APSU terminology.
+- Updated [feng-jiang-2026-sian3-link-training-verification-email-thread](sources/feng-jiang-2026-sian3-link-training-verification-email-thread.md), [how-should-hosts-use-sian3-apsu-capi](queries/how-should-hosts-use-sian3-apsu-capi.md), [autonomous-path-startup](concepts/autonomous-path-startup.md), [vendor-specific-cmis-customizations](concepts/vendor-specific-cmis-customizations.md), [cmis-document-family-map](synthesis/cmis-document-family-map.md), and `wiki/index.md` to classify the attachment correctly.
+
+## 2026-06-09 ingest | Feng Jiang Sian3 link-training verification email thread
+
+- Added [feng-jiang-2026-sian3-link-training-verification-email-thread](sources/feng-jiang-2026-sian3-link-training-verification-email-thread.md), summarizing the Outlook thread `Sian3 DSP Link Training Verification` with body-level evidence for BERT/DUT setup, polarity recovery, SI/tap optimization, repeatability, and temperature behavior.
+- Updated [how-should-hosts-use-sian3-apsu-capi](queries/how-should-hosts-use-sian3-apsu-capi.md), [broadcom-2026-sian3-apsu-application-notes](sources/broadcom-2026-sian3-apsu-application-notes.md), [autonomous-path-startup](concepts/autonomous-path-startup.md), and `wiki/index.md` to link the email-derived verification evidence.
+- Noted that Outlook exposed attachment presence and inline screenshot references, but the available connector tools did not expose attachment file contents.
+
+## 2026-06-09 ingest | Broadcom Sian3 APSU application note
+
+- Added [broadcom-2026-sian3-apsu-application-notes](sources/broadcom-2026-sian3-apsu-application-notes.md), a vendor-specific source page for `raw/sources/Sian3 APSU Application Notes_Customer_Release.pdf`.
+- Added [how-should-hosts-use-sian3-apsu-capi](queries/how-should-hosts-use-sian3-apsu-capi.md), a host bring-up analysis for Sian3 APSU cAPI readiness and diagnostics.
+- Updated [autonomous-path-startup](concepts/autonomous-path-startup.md), [how-do-apsu-and-cmis-state-machines-interact](queries/how-do-apsu-and-cmis-state-machines-interact.md), [vendor-specific-cmis-customizations](concepts/vendor-specific-cmis-customizations.md), [cmis-document-family-map](synthesis/cmis-document-family-map.md), and `wiki/index.md` so the Broadcom source is classified as vendor-specific implementation material.
+
+## 2026-05-26 query | CMIS-VCS register-map pages
+
+- Added [upper-page-18h-register-map](concepts/upper-page-18h-register-map.md), a CMIS-VCS staged Control Set overflow page with an embedded C register-view struct.
+- Added [upper-page-19h-register-map](concepts/upper-page-19h-register-map.md), a CMIS-VCS active Control Set overflow page with an embedded C register-view struct.
+- Updated CMIS-VCS, Control Set, CDB, supplement, memory-map, source, and index navigation so the VCS overflow pages are GitHub-navigable.
+
 ## 2026-05-26 query | CMIS upper-page embedded C views
 
 - Replaced header-only C Register View snippets on the CMIS 5.4 upper-page register-map pages with self-contained embedded C views so the structs, bitfields, enums, and static assertions are visible directly in Obsidian.

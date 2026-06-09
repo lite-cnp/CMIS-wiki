@@ -31,6 +31,8 @@
 - [upper-page-12h-register-map](concepts/upper-page-12h-register-map.md) - CMIS 5.4 banked Page 12h tunable laser control and status register map.
 - [upper-page-13h-register-map](concepts/upper-page-13h-register-map.md) - CMIS 5.4 banked Page 13h diagnostics control register map.
 - [upper-page-14h-register-map](concepts/upper-page-14h-register-map.md) - CMIS 5.4 banked Page 14h diagnostics result register map.
+- [upper-page-18h-register-map](concepts/upper-page-18h-register-map.md) - CMIS-VCS Page 18h staged Control Set overflow register map.
+- [upper-page-19h-register-map](concepts/upper-page-19h-register-map.md) - CMIS-VCS Page 19h active Control Set overflow register map.
 - [upper-page-2fh-register-map](concepts/upper-page-2fh-register-map.md) - CMIS 5.4 banked Page 2Fh VDM advertisement and dynamic control register map.
 - [applications-and-data-paths](concepts/applications-and-data-paths.md) - Application advertisement, lane assignment, and Data Path instances.
 - [control-sets](concepts/control-sets.md) - Active and staged configuration sets plus Apply triggers.
@@ -46,7 +48,7 @@
 - [cmis-form-factor-management](concepts/cmis-form-factor-management.md) - CMIS-FF form-factor hardware management supplement.
 - [elsfp-cmis](concepts/elsfp-cmis.md) - ELSFP external laser resource module companion IA.
 - [i3c-based-management-communication-interface](concepts/i3c-based-management-communication-interface.md) - Draft I3C-based CMIS MCI variant.
-- [autonomous-path-startup](concepts/autonomous-path-startup.md) - Draft IEEE 802.3dj APSU integration context.
+- [autonomous-path-startup](concepts/autonomous-path-startup.md) - Draft IEEE 802.3dj APSU integration context plus vendor implementation notes.
 - [vendor-specific-cmis-customizations](concepts/vendor-specific-cmis-customizations.md) - Boundary for vendor-specific CMIS behavior.
 - [spec-to-wiki-transformation](concepts/spec-to-wiki-transformation.md) - Methodology for decomposing a specification into a structured wiki.
 
@@ -60,6 +62,11 @@
 - [oif-elsfp-cmis-01-0](sources/oif-elsfp-cmis-01-0.md) - ELSFP CMIS source.
 - [oif2026-057-01-i3cmci-draft](sources/oif2026-057-01-i3cmci-draft.md) - I3CMCI draft source.
 - [oif2026-093-08-802-3dj-apsu-draft](sources/oif2026-093-08-802-3dj-apsu-draft.md) - APSU CMIS draft source.
+- [lumentum-2026-8023dj-apsu-ilt-support-plan](sources/lumentum-2026-8023dj-apsu-ilt-support-plan.md) - current APSU/iLT customer-note plan using vendor CDB today and planned CMIS Page 70h alignment later.
+- [lumentum-2026-dpsm-apsu-ilt-state-machine](sources/lumentum-2026-dpsm-apsu-ilt-state-machine.md) - state-machine diagram showing APSU/iLT actions as orthogonal to DPSM.
+- [broadcom-2026-sian3-apsu-application-notes](sources/broadcom-2026-sian3-apsu-application-notes.md) - Broadcom Sian3 APSU/link-training application note and cAPI source.
+- [broadcom-2025-sian3-ilt-procedure](sources/broadcom-2025-sian3-ilt-procedure.md) - obsolete Broadcom Sian3 ILT BERT/DUT procedure source.
+- [feng-jiang-2026-sian3-link-training-verification-email-thread](sources/feng-jiang-2026-sian3-link-training-verification-email-thread.md) - Outlook thread summarizing Sian3 BERT/DUT link-training verification setup, procedures, and results.
 - [ieee-802-3-2022](sources/ieee-802-3-2022.md) - IEEE 802.3 base source stub.
 - [ieee-p802-3dj-d2-3](sources/ieee-p802-3dj-d2-3.md) - IEEE 802.3dj draft source for APSU.
 - [google-gmis-imdd-transceiver-customizations](sources/google-gmis-imdd-transceiver-customizations.md) - vendor-specific GMIS source stub.
@@ -73,6 +80,7 @@
 
 - [how-should-a-host-bring-up-a-cmis-module](queries/how-should-a-host-bring-up-a-cmis-module.md) - Host-oriented CMIS bring-up flow.
 - [how-do-apsu-and-cmis-state-machines-interact](queries/how-do-apsu-and-cmis-state-machines-interact.md) - Draft APSU and CMIS state-machine interaction.
+- [how-should-hosts-use-sian3-apsu-capi](queries/how-should-hosts-use-sian3-apsu-capi.md) - Host use of Broadcom Sian3 APSU cAPI during bring-up.
 - [Legacy starter query](queries/thinkwe-need-to-answer-the-user-they-said-yes-to-m-2026-05-21-073851.md)
 
 ## Comparisons
@@ -85,3 +93,5 @@
 - [cmis-document-family-map](synthesis/cmis-document-family-map.md) - Classification map for CMIS base specs, supplements, drafts, and references.
 - [cmis-5-4-implementer-map](synthesis/cmis-5-4-implementer-map.md) - Implementation-oriented reading map for CMIS 5.4.
 - [cmis-5-3-implementer-map](synthesis/cmis-5-3-implementer-map.md) - Implementation-oriented reading map for the generated wiki.
+- [apsu-ilt-customer-note-plan](synthesis/apsu-ilt-customer-note-plan.md) - current APSU/iLT implementation status and customer-note development plan.
+- [apsu-ilt-verification-report](synthesis/apsu-ilt-verification-report.md) - current APSU/iLT verification status, gaps, and validation actions for the 1.6T 2xDR4 FRO module.

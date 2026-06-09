@@ -4,8 +4,8 @@ title: Command Data Block
 created: 2026-05-25
 updated: 2026-05-26
 tags: [cmis, cdb, messaging]
-related: [register-access-layer, management-memory-map, upper-page-0dh-register-map, versatile-diagnostics-monitoring, cmis-timing-model, coherent-cmis]
-sources: [oif-cmis-05-4, oif-cmis-05-3, oif-c-cmis-01-4]
+related: [register-access-layer, management-memory-map, upper-page-0dh-register-map, cmis-versatile-control-set, upper-page-18h-register-map, upper-page-19h-register-map, versatile-diagnostics-monitoring, cmis-timing-model, coherent-cmis]
+sources: [oif-cmis-05-4, oif-cmis-05-3, oif-c-cmis-01-4, oif-cmis-vcs-01-1]
 ---
 
 # Command Data Block
@@ -34,6 +34,8 @@ The module reports CDB status in CdbStatus registers and signals completion thro
 ## Command Groups
 
 CMIS defines CDB groups for module commands, capabilities inquiry, firmware management, performance monitoring, data recording, diagnostics/debug, security features, OIF-restricted supplements, and custom commands.
+
+CMIS-VCS uses CDB discovery before its overflow pages are meaningful: CMD `0045h` advertises VCS support, CMD `4000h` returns the VCS overview, CMD `4001h` returns read-write VCS descriptors, and CMD `4002h` returns read-only VCS descriptors when supported. Those descriptor streams define how VCS parameters map into [Page 18h](upper-page-18h-register-map.md) and [Page 19h](upper-page-19h-register-map.md).
 
 ## CMIS 5.4 Notes
 

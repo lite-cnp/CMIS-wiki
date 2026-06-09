@@ -2,9 +2,9 @@
 type: concept
 title: Control Sets
 created: 2026-05-25
-updated: 2026-05-25
+updated: 2026-05-26
 tags: [cmis, configuration, control-sets]
-related: [applications-and-data-paths, data-path-state-machine, management-memory-map, cmis-versatile-control-set]
+related: [applications-and-data-paths, data-path-state-machine, management-memory-map, cmis-versatile-control-set, upper-page-18h-register-map, upper-page-19h-register-map]
 sources: [oif-cmis-05-4, oif-cmis-05-3, oif-cmis-vcs-01-1]
 ---
 
@@ -34,6 +34,6 @@ Apply operations are Data Path operations. A host normally triggers all lanes of
 
 ## Versatile Control Sets
 
-[cmis-versatile-control-set](cmis-versatile-control-set.md) extends the Control Set idea for module-specific signal-integrity parameters. A VCS-aware host discovers the parameter list and locations from the supplement-defined parameter space, but still treats configuration as part of the CMIS Control Set flow.
+[cmis-versatile-control-set](cmis-versatile-control-set.md) extends the Control Set idea for module-specific signal-integrity parameters. A VCS-aware host discovers the parameter list and locations from CDB VCS descriptors, then maps those parameters into base Control Set SI space and, when required, overflow Page [18h](upper-page-18h-register-map.md) for staged values and Page [19h](upper-page-19h-register-map.md) for active values.
 
 Source anchors: CMIS 5.4 sections 6.2.3-6.2.4; OIF-CMIS-VCS-01.1 abstract.

@@ -2,9 +2,9 @@
 type: concept
 title: CMIS Supplements
 created: 2026-05-25
-updated: 2026-05-25
+updated: 2026-05-26
 tags: [cmis, supplements, extensions]
-related: [oasis-oif, management-interface, network-path-applications, cmis-document-family-map]
+related: [oasis-oif, management-interface, network-path-applications, cmis-document-family-map, cmis-versatile-control-set, upper-page-18h-register-map, upper-page-19h-register-map]
 sources: [oif-cmis-05-4, oif-cmis-05-3]
 ---
 
@@ -14,7 +14,7 @@ CMIS supplements define extensions or restrictions for important subclasses of C
 
 ## Supplements Mentioned in CMIS 5.4
 
-- [CMIS-VCS](cmis-versatile-control-set.md): Versatile Control Set for signal-integrity parameters.
+- [CMIS-VCS](cmis-versatile-control-set.md): Versatile Control Set for signal-integrity parameters, including overflow Page [18h](upper-page-18h-register-map.md) and Page [19h](upper-page-19h-register-map.md).
 - [C-CMIS](coherent-cmis.md): coherent transmission capabilities.
 - [CMIS-FF](cmis-form-factor-management.md): form-factor-specific management facilities.
 - CMIS-LT: host-to-module electrical link training support.
