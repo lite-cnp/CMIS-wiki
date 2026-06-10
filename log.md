@@ -1,5 +1,11 @@
 # Research Log
 
+## 2026-06-10 synthesis | APSU/iLT verification report edit
+
+- Reworked [apsu-ilt-verification-report](synthesis/apsu-ilt-verification-report.md) into a tighter customer-safe verification report with clearer sections for current interface, standards/vendor baseline, evidence coverage, open gaps, validation actions, and traceability.
+- Incorporated the Sian3 source-code recheck by treating `remote_tf_lock`, remote TP/MC mode status, and the main APSU timers as covered by source while keeping remaining exact IEEE variable exposure gaps explicit.
+- Updated [index](index.md) to describe the report as customer-safe evidence-boundary guidance rather than a general status dump.
+
 ## 2026-06-10 synthesis | Page 70h verification plan hardening
 
 - Added [CONTEXT](CONTEXT.md) as the CMIS APSU/iLT validation glossary used to define formal pass/fail, bounded evidence, status labels, freeze checklist, and raw-evidence traceability terms.
