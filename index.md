@@ -76,11 +76,19 @@
 
 - [cmis-5-4-upper-page-registers.h](code/cmis-5-4-upper-page-registers.h) - Detailed little-endian ARM-oriented C register views for the CMIS 5.4 upper pages documented in this wiki.
 
+## Project Docs
+
+- [CONTEXT](CONTEXT.md) - domain language for CMIS APSU/iLT validation, evidence, and release-decision terms.
+- [ADR 0001 Page 70h and Vendor CDB Coexistence](docs/adr/0001-page70h-and-vendor-cdb-coexistence.md) - decision record for Page 70h/vendor CDB coexistence through ordered CMIS I2C-MCI transactions.
+
 ## Queries
 
 - [how-should-a-host-bring-up-a-cmis-module](queries/how-should-a-host-bring-up-a-cmis-module.md) - Host-oriented CMIS bring-up flow.
 - [how-do-apsu-and-cmis-state-machines-interact](queries/how-do-apsu-and-cmis-state-machines-interact.md) - Draft APSU and CMIS state-machine interaction.
 - [how-should-hosts-use-sian3-apsu-capi](queries/how-should-hosts-use-sian3-apsu-capi.md) - Host use of Broadcom Sian3 APSU cAPI during bring-up.
+- [ieee-apsu-ilt-fields-missing-from-sian3-capi](queries/ieee-apsu-ilt-fields-missing-from-sian3-capi.md) - Gap matrix comparing IEEE Annex 178B APSU/iLT variables against documented Sian3 cAPI fields.
+- [sian3-behavior-conflicts-with-802-3dj-apsu-ilt](queries/sian3-behavior-conflicts-with-802-3dj-apsu-ilt.md) - Conflict audit for Sian3 APSU/iLT behavior against IEEE 802.3dj and OIF Page 70h expectations.
+- [standard-apsu-ilt-procedure-host-vs-media-links](queries/standard-apsu-ilt-procedure-host-vs-media-links.md) - Standard APSU/iLT functional flow and host-side AUI/PMA versus media-side PMD link differences.
 - [Legacy starter query](queries/thinkwe-need-to-answer-the-user-they-said-yes-to-m-2026-05-21-073851.md)
 
 ## Comparisons

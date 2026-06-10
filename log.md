@@ -1,5 +1,29 @@
 # Research Log
 
+## 2026-06-10 synthesis | Page 70h verification plan hardening
+
+- Added [CONTEXT](CONTEXT.md) as the CMIS APSU/iLT validation glossary used to define formal pass/fail, bounded evidence, status labels, freeze checklist, and raw-evidence traceability terms.
+- Updated [apsu-ilt-page70h-verification-plan](synthesis/apsu-ilt-page70h-verification-plan.md) with the pre-execution freeze checklist, reviewer sign-off/change control, Page 70h status-label rules, control-acceptance confirmation, host access profile, mapping manifest, bounded interop/high-loss/temperature claims, and raw evidence retention requirements.
+- Added [ADR 0001 Page 70h and Vendor CDB Coexistence](docs/adr/0001-page70h-and-vendor-cdb-coexistence.md), recording that Page 70h and vendor CDB coexist as ordered CMIS I2C-MCI transactions over one shared effective APSU/iLT state.
+
+## 2026-06-10 query | IEEE APSU/iLT fields missing from Sian3 cAPI
+
+- Added [ieee-apsu-ilt-fields-missing-from-sian3-capi](queries/ieee-apsu-ilt-fields-missing-from-sian3-capi.md), comparing IEEE P802.3dj Annex 178B management variables against the documented Broadcom Sian3 APSU cAPI fields.
+- Identified missing or partial Sian3 cAPI exposure for `mr_restart`, reset variables, training-pattern identifiers/seeds, `remote_tf_lock`, `isl_ready`, `training_failure`, `uses_recovered_clock`, and direct host-set access to initial-condition/coefficient request fields.
+- Confirmed Sian3 cAPI covers the main enablement/status/readiness/recovery/timer path, including `lnktrn_en`, `apsu_en`, `apsu_control_state`, `training_status`, RTS/readiness bits, `polarity_correction`, `recovery_event_count`, and the main Annex 178B timers.
+- Rechecked against `C:/Users/huy82684/projects/1p6_sian3_fw_h5` source via CodeGraph and literal search. Corrected `remote_tf_lock` to covered in `link_training_status_t`, noted source-only coverage for `remote_tp_mode` and `remote_mc_mode`, and separated public cAPI gaps from lite-CDB/debug packet fields such as `mr_restrt`, `identifier_i`, `prbs13_seed_i`, and `prbs31_seed_i`.
+
+## 2026-06-10 query | Standard APSU/iLT procedure and link-side comparison
+
+- Added [standard-apsu-ilt-procedure-host-vs-media-links](queries/standard-apsu-ilt-procedure-host-vs-media-links.md), summarizing IEEE P802.3dj/D2.3 Annex 178B APSU/RTS/ILT functional flow from the local raw draft.
+- Compared host-side AUI/PMA-style links and media-side PMD links: same Annex 178B state-machine model, different interface object, medium, training format, and CMIS entry point.
+- Updated [ieee-p802-3dj-d2-3](sources/ieee-p802-3dj-d2-3.md) to note the local raw PDF and add APSU/iLT link anchors.
+
+## 2026-06-10 query | Sian3 APSU/iLT conflict audit
+
+- Added [sian3-behavior-conflicts-with-802-3dj-apsu-ilt](queries/sian3-behavior-conflicts-with-802-3dj-apsu-ilt.md), concluding that the vault records no direct Sian3-vs-802.3dj APSU/iLT standards conflict.
+- Classified the active risks as Page 70h/interface gaps, unverified path-level conformance, non-Sian3 interoperability gaps, and customer-claim-sensitive Sian3 behaviors such as bundled restart, restart-based FIR optimization, and vendor cAPI-only status.
+
 ## 2026-06-09 synthesis | APSU/iLT Page 70h verification plan
 
 - Added [apsu-ilt-page70h-verification-plan](synthesis/apsu-ilt-page70h-verification-plan.md), an internal engineering validation plan for next-release CMIS Page 70h APSU/iLT support.
