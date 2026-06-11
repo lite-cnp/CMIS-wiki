@@ -1,5 +1,47 @@
 # Research Log
 
+## 2026-06-10 synthesis | Page 70h low-level reuse model
+
+- Added the `Reusable Diagnostic Harness` glossary term to [CONTEXT](CONTEXT.md) to separate setup/diagnostic reuse from the formal Page 70h pass/fail interface.
+- Updated [apsu-ilt-page70h-verification-plan](synthesis/apsu-ilt-page70h-verification-plan.md) with a low-level resource reuse model covering current CMIS host/exerciser access, Sian3 BERT/DUT setup, Python debug wrappers, vendor CDB helpers, traffic/FEC helper calls, and existing degraded-tap/polarity procedure seed material.
+- Added evidence-package requirements for reused harness script/tool revision, function or command list, and evidence role.
+- Added the `Low-Level Verification Primitive` glossary term and a reusable primitive catalog for run metadata, Page 70h mapping, permissions, control acceptance, status polling, FEC recovery, diagnostic Sian3 link-training state, vendor CDB coexistence, precode, fault setup, and evidence packaging.
+- Added the `Primitive Requirement Class` glossary term and primitive activation rules for mandatory core, conditional, and diagnostic-only primitive usage.
+- Added the `Low-Level Test-Case Sheet` glossary term and a sheet template for execution-level row expansion without widening the main matrix.
+- Added the `Mapping-First Execution Order` glossary term and the first concrete low-level sheet, `BR-005`, for freezing and verifying the Page 70h-to-lab lane mapping manifest before lane-specific results are accepted.
+- Added the `Coexistence-First Control Validation` glossary term and the `BR-006` low-level sheet for ordered mixed-session Page 70h/vendor CDB coexistence before nominal APSU enable/disable is accepted.
+- Added the `Invalid-Write Rule Freeze` glossary term and the `BR-007` low-level sheet separating CMIS reserved-field behavior from non-reserved invalid-control behavior before byte-map and control tests execute.
+- Added the `Control Acceptance Timeout Freeze` glossary term and the `BR-008` low-level sheet for freezing timeout values and confirmation methods before command-driven Page 70h tests execute.
+- Added the `Page 70h Byte-Map Foundation` glossary term and paired low-level sheets `P70H-001` and `P70H-002` for implemented byte ranges, access permissions, reserved bytes, reserved bits, and side-effect checks.
+- Added the `Non-Reserved Invalid Control Test` glossary term and the `P70H-003` low-level sheet for unsupported controls, invalid lane masks, unsupported applications, invalid side/lane combinations, and state-dependent invalid writes.
+- Added the `Active Mapping Validation` glossary term and the `P70H-004` low-level sheet for proving the frozen mapping manifest with safe Page 70h behavior plus fixture and traffic/FEC correlation.
+- Added the `Changing-State Coherency Test` glossary term and the `P70H-005` low-level sheet for stable and changing-state multi-byte Page 70h monitor/status coherency validation.
+- Added the `Management-Status Latency Test` glossary term and the `P70H-006` low-level sheet separating Page 70h status publication latency from APSU/iLT control-to-traffic-recovery timing.
+- Added the `Complete Ethernet-Interface Enablement` glossary term and the `APSU-001` low-level sheet for nominal Page 70h APSU/iLT enable/disable across the full enabled lane set.
+- Added the `Data-Ready Evidence Pair` glossary term and the `APSU-002` low-level sheet requiring both Page 70h readiness/status and external traffic/FEC evidence for data-ready APSU state.
+- Added the `Readiness Ordering Test` glossary term and the `APSU-003` low-level sheet for Page 70h RTS, local ready, remote ready, and path-up/readiness status ordering.
+- Added the `Page 70h Exposure Gate` glossary term and the `APSU-004` low-level sheet for training pattern control/readback only when exposed through Page 70h or tied to a customer-facing claim.
+- Added the `Precode Exposure Test` glossary term and the `APSU-005` low-level sheet for Page 70h precode request/readback, with vendor CDB `CMDA082h`/`CMDA083h` limited to correlation or coexistence evidence.
+- Added the `Degraded-Tap Recovery Proof` glossary term and the `APSU-006` low-level sheet reusing Feng's degraded-tap procedure as setup while keeping Page 70h status and traffic/FEC BER improvement as formal evidence.
+- Added the `Bundled Restart Proof` glossary term and the `APSU-007` low-level sheet treating the complete Ethernet interface lane set as the default Sian3 restart domain.
+- Added the `STR-001` low-level sheet for quantified high-loss or bounded lab-observed attenuation validation using current VOA/loss resources without overstating uncalibrated loss evidence.
+- Added the `Convergence-Time Test` glossary term and the `STR-002` low-level sheet for formal control-to-traffic-recovery timing using Page 70h control acceptance as start and external traffic/FEC recovery as stop.
+- Added the `Polarity Recovery Exposure Test` glossary term and the `STR-003` low-level sheet requiring ordered polarity recovery evidence when Page 70h exposes polarity behavior or a customer claim depends on it.
+- Added the `Repeat Degraded-Tap Recovery Set` glossary term and the `STR-004` low-level sheet requiring three Page 70h-triggered degraded-tap recovery runs with labeled endpoints and before/after traffic/FEC evidence.
+- Added the `Stable Release Temperature Validation` glossary term and the `STR-005` low-level sheet requiring measured module case-temperature stabilization, Page 70h status/control evidence, and traffic/FEC evidence at frozen release temperature points.
+- Added the `STR-006` low-level sheet for conditional active temperature-shift validation only when Page 70h exposure or customer/release claims make transition behavior in scope.
+- Added the `Non-LT-Frame Partner Behavior` glossary term and the `STR-007` low-level sheet as conditional implementation-reference coverage gated by Page 70h exposure or customer claim.
+- Added the `Partner Fault Trigger` glossary term and the `STR-008` low-level sheet for partner squelch/signal-loss behavior when it affects Page 70h readiness or recovery.
+- Added the `Recovery Counter Exposure Test` glossary term and the `STR-009` low-level sheet for Page 70h recovery reason/event count first-read and read-clear behavior.
+- Added the `Slicer/Timer Characterization` glossary term and the `STR-010` low-level sheet, diagnostic-only by default unless Page 70h exposure or claim wording promotes it to formal validation.
+- Added the `Bounded Link-Partner Interop Claim` glossary term and the `INT-001` low-level sheet for non-Sian3 partner interoperability, bounded to the tested partner identity/class when broader partner coverage is not available.
+- Added the `Bounded Host-Management Interop Claim` glossary term and the `INT-002` low-level sheet for Page 70h host/exerciser/scripted-profile interoperability, bounded to the covered profile or setup class when a real customer host stack is not tested.
+- Added the `Page 70h To Sian3 Diagnostic Correlation` glossary term and the `INT-003` low-level sheet, keeping Sian3 cAPI, debug CDB, and vendor CDB comparison diagnostic-only and unable to override formal Page 70h results.
+- Added the `Evidence Package Completeness Audit` glossary term and the `INT-004` low-level sheet for Gate 5 artifact completeness, raw evidence traceability, customer-safe excerpt review, and internal-debug evidence separation.
+- Added the `Final Release Decision Summary` glossary term and the `INT-005` low-level sheet for status-label-only release decisions, bounded release notes, intentionally unclaimed items, blocked items, and claim-to-evidence traceability.
+- Aligned the primitive catalog and primitive activation rules with `INT-001` through `INT-005`, including interop mapping, host permission/control/polling, conditional traffic/FEC evidence, diagnostic Sian3 correlation, and release-review evidence packaging.
+- Updated [index](index.md) to describe the Page 70h verification plan as including low-level test-case sheets.
+
 ## 2026-06-10 synthesis | APSU/iLT verification report edit
 
 - Reworked [apsu-ilt-verification-report](synthesis/apsu-ilt-verification-report.md) into a tighter customer-safe verification report with clearer sections for current interface, standards/vendor baseline, evidence coverage, open gaps, validation actions, and traceability.
