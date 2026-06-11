@@ -83,6 +83,9 @@
 
 ## Queries
 
+- [cmis-cdb-command-table-errata](queries/cmis-cdb-command-table-errata.md) - Audit notes for likely CMIS 5.3/5.4 CDB command table mistakes in command IDs, check codes, payload lengths, reply references, and byte ranges.
+- [what-is-cdb-command-0045h-for](queries/what-is-cdb-command-0045h-for.md) - Explains `CMD 0045h` as the base-CMIS supplement-support discovery command, especially for CMIS-VCS.
+- [security-related-cdb-commands](queries/security-related-cdb-commands.md) - Explanation of CMIS security-related CDB command discovery, certificate retrieval, digest signing, signature retrieval, and password-command boundaries.
 - [how-should-a-host-bring-up-a-cmis-module](queries/how-should-a-host-bring-up-a-cmis-module.md) - Host-oriented CMIS bring-up flow.
 - [how-do-apsu-and-cmis-state-machines-interact](queries/how-do-apsu-and-cmis-state-machines-interact.md) - Draft APSU and CMIS state-machine interaction.
 - [how-should-hosts-use-sian3-apsu-capi](queries/how-should-hosts-use-sian3-apsu-capi.md) - Host use of Broadcom Sian3 APSU cAPI during bring-up.

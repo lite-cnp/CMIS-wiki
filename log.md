@@ -1,5 +1,24 @@
 # Research Log
 
+## 2026-06-11 query | What CDB command 0045h is for
+
+- Added [what-is-cdb-command-0045h-for](queries/what-is-cdb-command-0045h-for.md), explaining that `CMD 0045h` discovers externally defined or supplement-defined CDB command sets, with current practical use as the CMIS-VCS support bit before `4000h`/`4001h`/`4002h`.
+- Noted the CMIS 5.3 `0045h` table typo where the `CMDID` row says `0043h`; CMIS 5.4 fixes the row.
+- Updated [index](index.md) with the saved query.
+
+## 2026-06-11 query | CMIS CDB command table errata candidates
+
+- Added [cmis-cdb-command-table-errata](queries/cmis-cdb-command-table-errata.md), a table-consistency audit of CMIS 5.3/5.4 CDB command definitions.
+- Captured likely CDB table mistakes including CMIS 5.4 `0005h` check code, `0006h` command-data range overlap, CMIS 5.3 `0045h` CMDID typo, CMIS 5.4 query-bitmap offset formulas, `0051h` reply layout/length issues, `0100h` reply-header references and Fixed/Factory load range typo, CMIS 5.4 `010Bh`/`010Ch`/`010Dh` length conflicts, and `0290h` command-data range overlap.
+- Updated [index](index.md) with the saved errata query.
+
+## 2026-06-11 query | Security-related CDB commands
+
+- Added [security-related-cdb-commands](queries/security-related-cdb-commands.md), summarizing the CMIS `0400h-04FFh` security CDB command group for IDevID certificate retrieval, challenge digest signing, signature retrieval, advertised capabilities, detailed statuses, and LPL/EPL usage.
+- Noted that `0001h` Enter Password and `0002h` Change Password are security-adjacent CDB password commands, but not part of the `0400h-04FFh` Security Features authentication command group.
+- Added a `CMD 0044h` format audit: CMIS 5.3's `RPLLength = 50` conflicts with the `9Fh:136-187` reply field range and should be treated as `52`; CMIS 5.4 fixes that length but appears to omit the `0400h` base offset in the command-support bitmap byte-index formula.
+- Updated [index](index.md) to include the saved query.
+
 ## 2026-06-10 synthesis | Page 70h low-level reuse model
 
 - Added the `Reusable Diagnostic Harness` glossary term to [CONTEXT](CONTEXT.md) to separate setup/diagnostic reuse from the formal Page 70h pass/fail interface.
