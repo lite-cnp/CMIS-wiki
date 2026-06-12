@@ -41,6 +41,7 @@
 - [network-path-applications](concepts/network-path-applications.md) - Client encapsulation, Host Paths, Network Paths, and NPSM.
 - [versatile-diagnostics-monitoring](concepts/versatile-diagnostics-monitoring.md) - VDM observables, thresholds, samples, flags, masks, and statistics.
 - [multipath-interference-mpi-metrics](concepts/multipath-interference-mpi-metrics.md) - Broadcom vendor MPI metrics used as dust-detection diagnostics and possible CMIS/VDM mapping candidates.
+- [mpi-calibration-module-vendor](concepts/mpi-calibration-module-vendor.md) - module-vendor method for calibrating unitless MPI metrics into dB-like customer values.
 - [command-data-block](concepts/command-data-block.md) - Optional CDB command/reply messaging.
 - [cmis-timing-model](concepts/cmis-timing-model.md) - Management timing requirements and host timing choices.
 - [cmis-supplements](concepts/cmis-supplements.md) - CMIS supplement specifications and compatibility principle.

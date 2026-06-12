@@ -1,5 +1,10 @@
 # Research Log
 
+## 2026-06-12 concept | MPI calibration for module vendors
+
+- Added [mpi-calibration-module-vendor](concepts/mpi-calibration-module-vendor.md), covering lab setup, data collection, model fitting, verification, and production reporting for calibrated `mpi_metrics` and `mpi_metrics_mpicoff`.
+- Updated [multipath-interference-mpi-metrics](concepts/multipath-interference-mpi-metrics.md) and [index](index.md) with the new calibration entry.
+
 ## 2026-06-12 synthesis | MPI customer requirements from email
 
 - Added [mpi-customer-requirements-from-email](synthesis/mpi-customer-requirements-from-email.md), synthesizing MSFT VDM/CDB MPI requirements, Broadcom `mpi_metric` interpretation, MPICAN validation questions, ZFR8 MPI test-setting concerns, and VM8/Gungnir-S validation themes from Outlook evidence.

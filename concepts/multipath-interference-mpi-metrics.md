@@ -50,4 +50,6 @@ The customer-facing requirement history is tracked separately in [mpi-customer-r
 - Both values should be trended with SNR, LTP, BER, FEC, and lane identity.
 - Absolute MPI in dB requires external module-vendor calibration; Broadcom firmware does not provide those absolute dB values.
 
+For a module-vendor calibration procedure, see [mpi-calibration-module-vendor](mpi-calibration-module-vendor.md).
+
 Source: [broadcom-2025-mpi-metrics-feature](../sources/broadcom-2025-mpi-metrics-feature.md).
