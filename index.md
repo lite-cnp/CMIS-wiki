@@ -110,3 +110,4 @@
 - [apsu-ilt-customer-note-plan](synthesis/apsu-ilt-customer-note-plan.md) - current APSU/iLT implementation status and customer-note development plan.
 - [apsu-ilt-verification-report](synthesis/apsu-ilt-verification-report.md) - customer-safe APSU/iLT verification status, evidence boundaries, open gaps, and validation actions for the 1.6T 2xDR4 FRO module.
 - [apsu-ilt-page70h-verification-plan](synthesis/apsu-ilt-page70h-verification-plan.md) - internal engineering verification plan and low-level test-case sheets for next-release CMIS Page 70h APSU/iLT firmware validation.
+- [mpi-customer-requirements-from-email](synthesis/mpi-customer-requirements-from-email.md) - customer-facing MPI requirements from MSFT, Broadcom, Marvell, Google/ZFR8, VM8, and Gungnir-S email evidence.

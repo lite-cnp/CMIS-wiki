@@ -39,6 +39,10 @@ That makes MPI metrics a vendor-diagnostic source until a module maps them into 
 
 If a module exposes these values through [versatile-diagnostics-monitoring](versatile-diagnostics-monitoring.md), the host should rely on the module's VDM descriptor for observable identity, scaling, units, thresholds, and lane grouping. The Broadcom note does not define a standard VDM observable code for either metric.
 
+## Customer Requirement Overlay
+
+The customer-facing requirement history is tracked separately in [mpi-customer-requirements-from-email](../synthesis/mpi-customer-requirements-from-email.md). That synthesis records MSFT's VDM/CDB request, the custom VDM Type ID issue, the need to confirm the production Broadcom API, polling-latency concerns, and validation themes such as BER versus MPI and MPICAN enabled/disabled comparison.
+
 ## Practical Interpretation
 
 - Rising `mpi_metrics_mpicoff` suggests increasing dust/MPI stress before cancellation.

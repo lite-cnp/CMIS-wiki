@@ -1,5 +1,11 @@
 # Research Log
 
+## 2026-06-12 synthesis | MPI customer requirements from email
+
+- Added [mpi-customer-requirements-from-email](synthesis/mpi-customer-requirements-from-email.md), synthesizing MSFT VDM/CDB MPI requirements, Broadcom `mpi_metric` interpretation, MPICAN validation questions, ZFR8 MPI test-setting concerns, and VM8/Gungnir-S validation themes from Outlook evidence.
+- Updated [multipath-interference-mpi-metrics](concepts/multipath-interference-mpi-metrics.md) with a link to the customer-requirements overlay.
+- Updated [index](index.md) with the new synthesis.
+
 ## 2026-06-12 ingest | Broadcom MPI Metrics Feature application note
 
 - Added [broadcom-2025-mpi-metrics-feature](sources/broadcom-2025-mpi-metrics-feature.md), summarizing the password-protected Broadcom `87XXX-85XXX-83XXX-AN100.pdf` application note for MPI metrics and optical dust detection.
