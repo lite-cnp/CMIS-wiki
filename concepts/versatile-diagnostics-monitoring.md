@@ -4,8 +4,8 @@ title: Versatile Diagnostics Monitoring
 created: 2026-05-25
 updated: 2026-05-25
 tags: [cmis, vdm, diagnostics, monitoring]
-related: [management-memory-map, cmis-timing-model, command-data-block, coherent-cmis]
-sources: [oif-cmis-05-4, oif-cmis-05-3]
+related: [management-memory-map, cmis-timing-model, command-data-block, coherent-cmis, multipath-interference-mpi-metrics]
+sources: [oif-cmis-05-4, oif-cmis-05-3, broadcom-2025-mpi-metrics-feature]
 ---
 
 # Versatile Diagnostics Monitoring
@@ -38,5 +38,9 @@ CMIS 5.3 adds VDM power-saving support, adds symbol error weight statistics, and
 ## Important 5.4 Notes
 
 CMIS 5.4 corrects and clarifies some VDM observable definitions, especially tunable laser observables, and refines VDM Freeze timing and handshake behavior. It also retains VDM as a key extension point used by supplements such as [coherent-cmis](coherent-cmis.md).
+
+## Vendor Metric Mapping Boundary
+
+Vendor diagnostics such as [multipath-interference-mpi-metrics](multipath-interference-mpi-metrics.md) may be candidates for CMIS exposure, but they are not base VDM observables unless a module advertises and describes them through a concrete VDM descriptor. Hosts should rely on the advertised descriptor for identity, lane association, units, scaling, and thresholds.
 
 Source anchors: CMIS 5.4 revision history, section 7.1, and VDM page descriptions.

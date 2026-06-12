@@ -40,6 +40,7 @@
 - [data-path-state-machine](concepts/data-path-state-machine.md) - Data Path initialization and activation lifecycle.
 - [network-path-applications](concepts/network-path-applications.md) - Client encapsulation, Host Paths, Network Paths, and NPSM.
 - [versatile-diagnostics-monitoring](concepts/versatile-diagnostics-monitoring.md) - VDM observables, thresholds, samples, flags, masks, and statistics.
+- [multipath-interference-mpi-metrics](concepts/multipath-interference-mpi-metrics.md) - Broadcom vendor MPI metrics used as dust-detection diagnostics and possible CMIS/VDM mapping candidates.
 - [command-data-block](concepts/command-data-block.md) - Optional CDB command/reply messaging.
 - [cmis-timing-model](concepts/cmis-timing-model.md) - Management timing requirements and host timing choices.
 - [cmis-supplements](concepts/cmis-supplements.md) - CMIS supplement specifications and compatibility principle.
@@ -66,6 +67,7 @@
 - [lumentum-2026-dpsm-apsu-ilt-state-machine](sources/lumentum-2026-dpsm-apsu-ilt-state-machine.md) - state-machine diagram showing APSU/iLT actions as orthogonal to DPSM.
 - [broadcom-2026-sian3-apsu-application-notes](sources/broadcom-2026-sian3-apsu-application-notes.md) - Broadcom Sian3 APSU/link-training application note and cAPI source.
 - [broadcom-2025-sian3-ilt-procedure](sources/broadcom-2025-sian3-ilt-procedure.md) - obsolete Broadcom Sian3 ILT BERT/DUT procedure source.
+- [broadcom-2025-mpi-metrics-feature](sources/broadcom-2025-mpi-metrics-feature.md) - Broadcom MPI metrics application note for optical dust-detection diagnostics using unitless cAPI metrics.
 - [feng-jiang-2026-sian3-link-training-verification-email-thread](sources/feng-jiang-2026-sian3-link-training-verification-email-thread.md) - Outlook thread summarizing Sian3 BERT/DUT link-training verification setup, procedures, and results.
 - [ieee-802-3-2022](sources/ieee-802-3-2022.md) - IEEE 802.3 base source stub.
 - [ieee-p802-3dj-d2-3](sources/ieee-p802-3dj-d2-3.md) - IEEE 802.3dj draft source for APSU.
@@ -89,6 +91,7 @@
 - [how-should-a-host-bring-up-a-cmis-module](queries/how-should-a-host-bring-up-a-cmis-module.md) - Host-oriented CMIS bring-up flow.
 - [how-do-apsu-and-cmis-state-machines-interact](queries/how-do-apsu-and-cmis-state-machines-interact.md) - Draft APSU and CMIS state-machine interaction.
 - [how-should-hosts-use-sian3-apsu-capi](queries/how-should-hosts-use-sian3-apsu-capi.md) - Host use of Broadcom Sian3 APSU cAPI during bring-up.
+- [how-should-hosts-use-broadcom-mpi-metrics](queries/how-should-hosts-use-broadcom-mpi-metrics.md) - Host guidance for using Broadcom MPI metrics as vendor dust-detection diagnostics without overclaiming CMIS standardization.
 - [ieee-apsu-ilt-fields-missing-from-sian3-capi](queries/ieee-apsu-ilt-fields-missing-from-sian3-capi.md) - Gap matrix comparing IEEE Annex 178B APSU/iLT variables against documented Sian3 cAPI fields.
 - [sian3-behavior-conflicts-with-802-3dj-apsu-ilt](queries/sian3-behavior-conflicts-with-802-3dj-apsu-ilt.md) - Conflict audit for Sian3 APSU/iLT behavior against IEEE 802.3dj and OIF Page 70h expectations.
 - [standard-apsu-ilt-procedure-host-vs-media-links](queries/standard-apsu-ilt-procedure-host-vs-media-links.md) - Standard APSU/iLT functional flow and host-side AUI/PMA versus media-side PMD link differences.

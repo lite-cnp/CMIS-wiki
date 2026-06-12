@@ -4,8 +4,8 @@ title: Vendor-Specific CMIS Customizations
 created: 2026-05-25
 updated: 2026-06-09
 tags: [cmis, vendor-specific, custom]
-related: [sources/google-gmis-imdd-transceiver-customizations, sources/lumentum-2026-8023dj-apsu-ilt-support-plan, sources/lumentum-2026-dpsm-apsu-ilt-state-machine, sources/broadcom-2026-sian3-apsu-application-notes, sources/broadcom-2025-sian3-ilt-procedure, management-memory-map, cmis-supplements, autonomous-path-startup]
-sources: [google-gmis-imdd-transceiver-customizations, lumentum-2026-8023dj-apsu-ilt-support-plan, lumentum-2026-dpsm-apsu-ilt-state-machine, broadcom-2026-sian3-apsu-application-notes, broadcom-2025-sian3-ilt-procedure, oif-cmis-05-4]
+related: [sources/google-gmis-imdd-transceiver-customizations, sources/lumentum-2026-8023dj-apsu-ilt-support-plan, sources/lumentum-2026-dpsm-apsu-ilt-state-machine, sources/broadcom-2026-sian3-apsu-application-notes, sources/broadcom-2025-sian3-ilt-procedure, sources/broadcom-2025-mpi-metrics-feature, management-memory-map, cmis-supplements, autonomous-path-startup, multipath-interference-mpi-metrics]
+sources: [google-gmis-imdd-transceiver-customizations, lumentum-2026-8023dj-apsu-ilt-support-plan, lumentum-2026-dpsm-apsu-ilt-state-machine, broadcom-2026-sian3-apsu-application-notes, broadcom-2025-sian3-ilt-procedure, broadcom-2025-mpi-metrics-feature, oif-cmis-05-4]
 ---
 
 # Vendor-Specific CMIS Customizations
@@ -36,3 +36,5 @@ Vendor behavior should be treated as custom unless it is advertised through stan
 [broadcom-2026-sian3-apsu-application-notes](../sources/broadcom-2026-sian3-apsu-application-notes.md) is a Broadcom Sian3 customer application note for APSU/link-training behavior. It is useful for implementation and diagnostics, but its cAPI fields are vendor-specific and should not be treated as base CMIS registers.
 
 [broadcom-2025-sian3-ilt-procedure](../sources/broadcom-2025-sian3-ilt-procedure.md) is an older Broadcom Sian3 ILT procedure/log note. It is classified as obsolete because the newer APSU application note uses later firmware scope and provides the current feature/fault/status model.
+
+[broadcom-2025-mpi-metrics-feature](../sources/broadcom-2025-mpi-metrics-feature.md) is a Broadcom MPI metrics application note for optical dust detection. It exposes unitless vendor cAPI metrics and leaves threshold policy and CMIS/VDM mapping to the module vendor and end customer.

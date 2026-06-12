@@ -1,5 +1,12 @@
 # Research Log
 
+## 2026-06-12 ingest | Broadcom MPI Metrics Feature application note
+
+- Added [broadcom-2025-mpi-metrics-feature](sources/broadcom-2025-mpi-metrics-feature.md), summarizing the password-protected Broadcom `87XXX-85XXX-83XXX-AN100.pdf` application note for MPI metrics and optical dust detection.
+- Added [multipath-interference-mpi-metrics](concepts/multipath-interference-mpi-metrics.md), defining `mpi_metrics`, `mpi_metrics_mpicoff`, the MPIC-live-traffic rule, and the boundary between vendor cAPI diagnostics and CMIS/VDM exposure.
+- Added [how-should-hosts-use-broadcom-mpi-metrics](queries/how-should-hosts-use-broadcom-mpi-metrics.md), capturing host guidance for enabling `mpi_include`, reading per-lane values, and avoiding threshold/standardization overclaims.
+- Updated [index](index.md), [cmis-document-family-map](synthesis/cmis-document-family-map.md), [vendor-specific-cmis-customizations](concepts/vendor-specific-cmis-customizations.md), and [versatile-diagnostics-monitoring](concepts/versatile-diagnostics-monitoring.md) with the new source and concept.
+
 ## 2026-06-11 query | What CDB command 0045h is for
 
 - Added [what-is-cdb-command-0045h-for](queries/what-is-cdb-command-0045h-for.md), explaining that `CMD 0045h` discovers externally defined or supplement-defined CDB command sets, with current practical use as the CMIS-VCS support bit before `4000h`/`4001h`/`4002h`.
