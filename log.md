@@ -306,3 +306,35 @@
 ## 2026-05-21 ingest | Legacy starter guide
 
 - Imported the initial spec-to-wiki transformation guide.
+
+# 2026-06-15 roadmap correction | STM32H563-first I3C bring-up
+
+- Updated [cmis-over-i3c-roadmap](synthesis/cmis-over-i3c-roadmap.md) after the Huabin follow-up discussion: Phase 1 and Phase 2 now start on available `STM32H563` EVBs because the ST I3C controller/target packages and examples are more mature, then migrate the validated behavior to `M45x/S`.
+- Updated [huabin-he-2026-i3c-bringup-schedule-planning](sources/huabin-he-2026-i3c-bringup-schedule-planning.md) and [what-is-the-current-i3c-bringup-schedule](queries/what-is-the-current-i3c-bringup-schedule.md) so future schedule answers reflect the STM32-first decision.
+- Updated [index](index.md) to describe the current roadmap as STM32H563-first with later M45x/S migration.
+
+# 2026-06-15 schedule update | I3C bring-up review version
+
+- Expanded [what-is-the-current-i3c-bringup-schedule](queries/what-is-the-current-i3c-bringup-schedule.md) into a reviewable phase schedule with entry conditions, exit gates, phase details, and external links for ST EVBs, STM32CubeH5, MIPI I3C, Introspect, and SC4420.
+- Updated [index](index.md) so the schedule entry describes the STM32H563-first plan and migration gates.
+
+# 2026-06-15 scope clarification | I3CMCI subset vs MIPI I3C feature set
+
+- Added [i3cmci-required-subset-vs-mipi-i3c-feature-set](comparisons/i3cmci-required-subset-vs-mipi-i3c-feature-set.md) to record that the baseline is I3CMCI over conformant MIPI I3C controller/target behavior for the subset I3CMCI uses, not the full MIPI I3C v1.1.1/v1.2 feature set.
+- Updated [cmis-over-i3c-roadmap](synthesis/cmis-over-i3c-roadmap.md), [i3c-based-management-communication-interface](concepts/i3c-based-management-communication-interface.md), [oif2026-057-01-firmware-functional-design-authority-cmis-over-i3c](sources/oif2026-057-01-firmware-functional-design-authority-cmis-over-i3c.md), [what-is-the-current-i3c-bringup-schedule](queries/what-is-the-current-i3c-bringup-schedule.md), and [mipi-i3c-basic-v1-1-1-vs-v1-2](comparisons/mipi-i3c-basic-v1-1-1-vs-v1-2.md) to link the scope boundary.
+
+# 2026-06-15 schedule proposal | 12-week I3C-MCI bring-up
+
+- Added [i3c-bringup-12-week-schedule-proposal](synthesis/i3c-bringup-12-week-schedule-proposal.md), consolidating the STM32-first plan, I3C-MCI subset scope, analyzer path, M45x/S migration, and Week 12 readiness review into a detailed technical schedule.
+- Updated [index](index.md) to surface the 12-week schedule proposal from Start Here and Synthesis.
+
+# 2026-06-15 schedule correction | Add Ethernet-to-I3C fan-out workstream
+
+- Updated [i3c-bringup-12-week-schedule-proposal](synthesis/i3c-bringup-12-week-schedule-proposal.md) to include the STM32H563/573 Ethernet-to-I3C fan-out as a parallel adapter workstream across the 12-week plan.
+- Updated [i3c-host-adapter-decision](synthesis/i3c-host-adapter-decision.md) and [index](index.md) to reflect that production/lab fan-out is tracked in parallel while module-side I3C-MCI proof remains the critical path.
+
+# 2026-06-15 schedule correction | Add controlled DSP debug-bridge posture
+
+- Updated [i3c-bringup-12-week-schedule-proposal](synthesis/i3c-bringup-12-week-schedule-proposal.md) to track transparent bridging to in-module DSP I3C targets as a separate controlled debug-interface workstream, not as normal CMIS management traffic.
+- Clarified that the DSP bridge should be treated like `SWD`: disabled by default, explicitly enabled, access controlled, allowlisted, logged, and lockable or removable for production use.
+- Updated [cmis-over-i3c-roadmap](synthesis/cmis-over-i3c-roadmap.md), [i3cmci-required-subset-vs-mipi-i3c-feature-set](comparisons/i3cmci-required-subset-vs-mipi-i3c-feature-set.md), [what-is-the-current-i3c-bringup-schedule](queries/what-is-the-current-i3c-bringup-schedule.md), and [index](index.md) with the same debug-interface framing.

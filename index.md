@@ -7,6 +7,8 @@
 - [cmis-document-family-map](synthesis/cmis-document-family-map.md) - classification of base specs, supplements, drafts, IEEE references, and vendor-specific notes.
 - [i3c-host-adapter-decision](synthesis/i3c-host-adapter-decision.md) - recommended lab and production adapter path for CMIS-over-I3C.
 - [i3c-analyzer-candidate-inventory](synthesis/i3c-analyzer-candidate-inventory.md) - named I3C analyzer and adapter products plus unresolved internal gear.
+- [i3cmci-required-subset-vs-mipi-i3c-feature-set](comparisons/i3cmci-required-subset-vs-mipi-i3c-feature-set.md) - scope boundary for I3CMCI-required I3C behavior versus broader MIPI I3C features.
+- [i3c-bringup-12-week-schedule-proposal](synthesis/i3c-bringup-12-week-schedule-proposal.md) - proposed 12-week STM32-first I3C-MCI bring-up plan with Ethernet-to-I3C fan-out and SWD-like controlled DSP debug-bridge workstreams.
 
 ## Entities
 
@@ -110,7 +112,7 @@
 - [sian3-behavior-conflicts-with-802-3dj-apsu-ilt](queries/sian3-behavior-conflicts-with-802-3dj-apsu-ilt.md) - Conflict audit for Sian3 APSU/iLT behavior against IEEE 802.3dj and OIF Page 70h expectations.
 - [standard-apsu-ilt-procedure-host-vs-media-links](queries/standard-apsu-ilt-procedure-host-vs-media-links.md) - Standard APSU/iLT functional flow and host-side AUI/PMA versus media-side PMD link differences.
 - [what-implementation-decisions-does-cmis-over-i3c-require](queries/what-implementation-decisions-does-cmis-over-i3c-require.md) - Implementation decisions needed to ship CMIS over I3C beyond the draft transport text.
-- [what-is-the-current-i3c-bringup-schedule](queries/what-is-the-current-i3c-bringup-schedule.md) - Draft 4-phase bring-up schedule and unresolved dependencies.
+- [what-is-the-current-i3c-bringup-schedule](queries/what-is-the-current-i3c-bringup-schedule.md) - STM32H563-first I3C bring-up schedule, migration gates, and unresolved dependencies.
 - [Legacy starter query](queries/thinkwe-need-to-answer-the-user-they-said-yes-to-m-2026-05-21-073851.md)
 
 ## Comparisons
@@ -118,6 +120,7 @@
 - [cmis-5-3-to-5-4](comparisons/cmis-5-3-to-5-4.md) - Summary of CMIS 5.4 changes relative to 5.3.
 - [cmis-5-2-to-5-3](comparisons/cmis-5-2-to-5-3.md) - Summary of CMIS 5.3 changes relative to 5.2.
 - [mipi-i3c-basic-v1-1-1-vs-v1-2](comparisons/mipi-i3c-basic-v1-1-1-vs-v1-2.md) - Public I3C Basic baseline versus the newer recommended public version.
+- [i3cmci-required-subset-vs-mipi-i3c-feature-set](comparisons/i3cmci-required-subset-vs-mipi-i3c-feature-set.md) - features required by I3CMCI versus broader MIPI I3C features that are out of baseline scope.
 - [i3c-host-adapter-candidate-vs-public-baseline](comparisons/i3c-host-adapter-candidate-vs-public-baseline.md) - Internal adapter candidates linked to the public MIPI I3C references that justify them.
 
 ## Synthesis
@@ -128,5 +131,6 @@
 - [apsu-ilt-customer-note-plan](synthesis/apsu-ilt-customer-note-plan.md) - current APSU/iLT implementation status and customer-note development plan.
 - [apsu-ilt-verification-report](synthesis/apsu-ilt-verification-report.md) - customer-safe APSU/iLT verification status, evidence boundaries, open gaps, and validation actions for the 1.6T 2xDR4 FRO module.
 - [apsu-ilt-page70h-verification-plan](synthesis/apsu-ilt-page70h-verification-plan.md) - internal engineering verification plan and low-level test-case sheets for next-release CMIS Page 70h APSU/iLT firmware validation.
-- [cmis-over-i3c-roadmap](synthesis/cmis-over-i3c-roadmap.md) - combined roadmap for draft I3CMCI, firmware architecture, and the provisional bring-up schedule.
+- [cmis-over-i3c-roadmap](synthesis/cmis-over-i3c-roadmap.md) - STM32H563-first roadmap for draft I3CMCI, firmware architecture, analyzer validation, and later M45x/S migration.
+- [i3c-bringup-12-week-schedule-proposal](synthesis/i3c-bringup-12-week-schedule-proposal.md) - proposed 12-week STM32-first I3C-MCI bring-up plan with detailed sub-tasks, fan-out adapter workstream, SWD-like controlled DSP debug-bridge workstream, and review questions.
 - [mpi-customer-requirements-from-email](synthesis/mpi-customer-requirements-from-email.md) - customer-facing MPI requirements from MSFT, Broadcom, Marvell, Google/ZFR8, VM8, and Gungnir-S email evidence.

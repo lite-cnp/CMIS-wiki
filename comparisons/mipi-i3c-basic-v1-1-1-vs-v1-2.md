@@ -36,11 +36,12 @@ This note compares the uploaded public `v1.1.1` baseline with the `v1.2` directi
 - Treat the uploaded `v1.1.1` PDF as the captured local baseline
 - Use the FAQ and companion docs to understand the path to the newer recommendation
 - Avoid treating `v1.1.1` as a frozen long-term target when the vault is aiming at current public guidance
+- For I3CMCI, use the newer MIPI version family as a protocol-family baseline, but only require the subset of controller/target behavior that I3CMCI actually uses; see [i3cmci-required-subset-vs-mipi-i3c-feature-set](i3cmci-required-subset-vs-mipi-i3c-feature-set.md).
 
 ## Related Pages
 
 - [mipi-i3c-basic-v1-1-1](../sources/mipi-i3c-basic-v1-1-1.md)
 - [mipi-i3c-basic-faq-v1-1-1](../sources/mipi-i3c-basic-faq-v1-1-1.md)
 - [i3c-based-management-communication-interface](../concepts/i3c-based-management-communication-interface.md)
+- [i3cmci-required-subset-vs-mipi-i3c-feature-set](i3cmci-required-subset-vs-mipi-i3c-feature-set.md)
 - [cmis-over-i3c-roadmap](../synthesis/cmis-over-i3c-roadmap.md)
-

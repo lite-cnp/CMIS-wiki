@@ -15,7 +15,7 @@ This synthesis turns the candidate discussion into a practical recommendation fo
 
 ## Recommendation
 
-Use the STM32H563/573 evaluation-board path as the primary low-cost lab controller-bridge candidate, with the M450/M451S as the preferred module-side target platform. For analyzer and debug gear, treat the exact vendor ownership mapping as recorded in the inventory page: `SC4420` for the ADI-recommended path, `Introspect` for the Taiwan team purchase, `Prodigy` for Hong Kong, `Easyi3C` for your search, and `Keysight` for Hua Zhang's query. Keep the production dongle concept separate as a factory-test goal, not a prerequisite for early firmware bring-up.
+Use the STM32H563/573 evaluation-board path as the primary low-cost lab controller-bridge candidate, with the M450/M451S as the preferred module-side target platform. For analyzer and debug gear, treat the exact vendor ownership mapping as recorded in the inventory page: `SC4420` for the ADI-recommended path, `Introspect` for the Taiwan team purchase, `Prodigy` for Hong Kong, `Easyi3C` for your search, and `Keysight` for Hua Zhang's query. Track the production STM32H563/573 Ethernet-to-I3C fan-out as a parallel adapter workstream during the 12-week bring-up plan, while keeping module-side I3C-MCI proof as the critical path.
 
 ## Why This Is The Best Fit
 
@@ -23,6 +23,7 @@ Use the STM32H563/573 evaluation-board path as the primary low-cost lab controll
 - It matches the draft CMIS-over-I3C transport model and the firmware architecture note.
 - It gives the team a cheap, replaceable lab controller bridge instead of depending on scarce commercial protocol generators.
 - It preserves the ability to move from lab bring-up to a cost-effective production adapter later.
+- It allows the Ethernet-to-I3C fan-out concept to mature in parallel with firmware bring-up instead of being deferred until after the module-side path is done.
 
 ## Public References Used
 
@@ -34,7 +35,8 @@ Use the STM32H563/573 evaluation-board path as the primary low-cost lab controll
 
 ## Open Decisions
 
-- Whether the production dongle should be a separate workstream or folded into the lab bridge implementation.
+- Whether the Week 12 fan-out target should be lab prototype, factory prototype, or architecture review.
+- Whether fan-out should target multiple STM32 controller boards first, multiple I3C buses from one board if supported, or both.
 - Whether a second controller candidate should be kept as a backup for hardware risk reduction.
 - What the minimum analyzer feature set is for first-pass bring-up versus deeper debug.
 
