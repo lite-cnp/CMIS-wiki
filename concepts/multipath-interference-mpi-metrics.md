@@ -2,7 +2,7 @@
 type: concept
 title: Multipath Interference MPI Metrics
 created: 2026-06-12
-updated: 2026-06-12
+updated: 2026-06-15
 tags: [cmis, mpi, diagnostics, dust-detection, broadcom, vendor-specific]
 related: [../sources/broadcom-2025-mpi-metrics-feature.md, vendor-specific-cmis-customizations.md, versatile-diagnostics-monitoring.md]
 sources: [../sources/broadcom-2025-mpi-metrics-feature.md]

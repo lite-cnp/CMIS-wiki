@@ -2,7 +2,7 @@
 type: source
 title: Broadcom 2025 MPI Metrics Feature
 created: 2026-06-12
-updated: 2026-06-12
+updated: 2026-06-15
 tags: [cmis, broadcom, mpi, dust-detection, diagnostics, vendor-specific, source]
 related: [../concepts/multipath-interference-mpi-metrics.md, ../concepts/vendor-specific-cmis-customizations.md, ../concepts/versatile-diagnostics-monitoring.md, ../queries/how-should-hosts-use-broadcom-mpi-metrics.md, ../sources/broadcom-2026-sian3-apsu-application-notes.md]
 authors: [Broadcom]
@@ -17,7 +17,7 @@ status: draft
 
 This Broadcom application note is titled `BCM87XXX/BCM85XXX/BCM83XXX Application Note: MPI Metrics Feature`. It describes a firmware/cAPI method for dust detection using multipath interference (MPI) metrics in single-mode optical applications.
 
-The raw PDF is password-protected. It was opened locally with the user-provided password for extraction; the password is not stored in the wiki.
+The raw PDF is password-protected. It was opened locally with the user-provided password for extraction; the password is not stored in the wiki. The current raw upload is stored at `CMIS/raw/sources/87XXX-85XXX-83XXX-AN100.pdf`; the underscore-suffixed duplicate upload is zero bytes.
 
 ## Classification
 

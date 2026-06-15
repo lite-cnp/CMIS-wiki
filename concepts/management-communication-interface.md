@@ -2,10 +2,10 @@
 type: concept
 title: Management Communication Interface
 created: 2026-05-25
-updated: 2026-05-25
+updated: 2026-06-15
 tags: [cmis, mci, i2c, spi, i3c]
-related: [management-interface, register-access-layer, cmis-management-stack, i3c-based-management-communication-interface]
-sources: [oif-cmis-05-4, oif-cmis-05-3, oif2026-057-01-i3cmci-draft]
+related: [management-interface, register-access-layer, cmis-management-stack, i3c-based-management-communication-interface, cmis-over-i3c-firmware-architecture, mipi-i3c-basic-v1-1-1]
+sources: [oif-cmis-05-4, oif-cmis-05-3, oif2026-057-01-i3cmci-draft, oif2026-057-01-firmware-functional-design-authority-cmis-over-i3c, mipi-i3c-basic-v1-1-1]
 ---
 
 # Management Communication Interface
@@ -39,3 +39,7 @@ Separating MCI from RAL lets CMIS carry the same management application model ov
 CMIS 5.4 lists an I2C-compatible MCI based on I3C as a future direction. The draft I3CMCI contribution keeps byte-addressed [register-access-layer](register-access-layer.md) operations but moves transport negotiation, dynamic addressing, and higher-speed transfer behavior into MIPI I3C Basic semantics.
 
 Source anchors: CMIS 5.4 Appendix B and future directions section; OIF 2026.057.01 draft Appendix B.4.
+
+The uploaded implementation note adds the practical system view: to ship I3CMCI, a vendor also needs a portable I3C target HAL, a negotiation/recovery strategy, and validation against more than one controller implementation.
+
+The uploaded public [mipi-i3c-basic-v1-1-1](../sources/mipi-i3c-basic-v1-1-1.md) now serves as the local public baseline for those I3C semantics.

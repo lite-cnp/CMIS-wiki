@@ -5,6 +5,8 @@
 - [overview](overview.md) - current wiki overview.
 - [cmis-5-4-implementer-map](synthesis/cmis-5-4-implementer-map.md) - implementation reading order for CMIS 5.4.
 - [cmis-document-family-map](synthesis/cmis-document-family-map.md) - classification of base specs, supplements, drafts, IEEE references, and vendor-specific notes.
+- [i3c-host-adapter-decision](synthesis/i3c-host-adapter-decision.md) - recommended lab and production adapter path for CMIS-over-I3C.
+- [i3c-analyzer-candidate-inventory](synthesis/i3c-analyzer-candidate-inventory.md) - named I3C analyzer and adapter products plus unresolved internal gear.
 
 ## Entities
 
@@ -50,6 +52,7 @@
 - [cmis-form-factor-management](concepts/cmis-form-factor-management.md) - CMIS-FF form-factor hardware management supplement.
 - [elsfp-cmis](concepts/elsfp-cmis.md) - ELSFP external laser resource module companion IA.
 - [i3c-based-management-communication-interface](concepts/i3c-based-management-communication-interface.md) - Draft I3C-based CMIS MCI variant.
+- [cmis-over-i3c-firmware-architecture](concepts/cmis-over-i3c-firmware-architecture.md) - Implementation architecture for CMIS-over-I3C target firmware, HAL, and validation.
 - [autonomous-path-startup](concepts/autonomous-path-startup.md) - Draft IEEE 802.3dj APSU integration context plus vendor implementation notes.
 - [vendor-specific-cmis-customizations](concepts/vendor-specific-cmis-customizations.md) - Boundary for vendor-specific CMIS behavior.
 - [spec-to-wiki-transformation](concepts/spec-to-wiki-transformation.md) - Methodology for decomposing a specification into a structured wiki.
@@ -63,6 +66,16 @@
 - [oif-c-cmis-01-4](sources/oif-c-cmis-01-4.md) - C-CMIS coherent supplement source.
 - [oif-elsfp-cmis-01-0](sources/oif-elsfp-cmis-01-0.md) - ELSFP CMIS source.
 - [oif2026-057-01-i3cmci-draft](sources/oif2026-057-01-i3cmci-draft.md) - I3CMCI draft source.
+- [oif2026-057-01-firmware-functional-design-authority-cmis-over-i3c](sources/oif2026-057-01-firmware-functional-design-authority-cmis-over-i3c.md) - Firmware role note for CMIS over I3C implementation, validation, and HAL ownership.
+- [huabin-he-2026-i3c-bringup-schedule-planning](sources/huabin-he-2026-i3c-bringup-schedule-planning.md) - Outlook schedule-planning thread for I3C bring-up across STM32 and M450 platforms.
+- [mipi-i3c-basic-v1-2-hot-join-app-note](sources/mipi-i3c-basic-v1-2-hot-join-app-note.md) - Public MIPI Hot-Join application note for I3C Basic v1.2.
+- [mipi-i3c-virtual-devices-and-targets-app-note](sources/mipi-i3c-virtual-devices-and-targets-app-note.md) - Public MIPI note on virtual devices and virtual targets.
+- [mipi-i3c-version-history-table](sources/mipi-i3c-version-history-table.md) - Public I3C/I3C Basic feature version history table.
+- [mipi-i3c-v1-1-current-dcr-table](sources/mipi-i3c-v1-1-current-dcr-table.md) - Public current DCR table for I3C implementers.
+- [mipi-i3c-basic-v1-2-whats-new-webinar](sources/mipi-i3c-basic-v1-2-whats-new-webinar.md) - Public webinar summarizing what’s new in I3C Basic and the ecosystem.
+- [mipi-i3c-basic-faq-v1-1-1](sources/mipi-i3c-basic-faq-v1-1-1.md) - Public FAQ for MIPI I3C Basic v1.1.1 and version/licensing context.
+- [mipi-i3c-basic-v1-1-1](sources/mipi-i3c-basic-v1-1-1.md) - Public normative MIPI I3C Basic v1.1.1 specification.
+- [huabin-he-2026-i3c-host-adapter-candidates](sources/huabin-he-2026-i3c-host-adapter-candidates.md) - Outlook thread capturing I3C host adapter and analyzer candidates.
 - [oif2026-093-08-802-3dj-apsu-draft](sources/oif2026-093-08-802-3dj-apsu-draft.md) - APSU CMIS draft source.
 - [lumentum-2026-8023dj-apsu-ilt-support-plan](sources/lumentum-2026-8023dj-apsu-ilt-support-plan.md) - current APSU/iLT customer-note plan using vendor CDB today and planned CMIS Page 70h alignment later.
 - [lumentum-2026-dpsm-apsu-ilt-state-machine](sources/lumentum-2026-dpsm-apsu-ilt-state-machine.md) - state-machine diagram showing APSU/iLT actions as orthogonal to DPSM.
@@ -96,12 +109,16 @@
 - [ieee-apsu-ilt-fields-missing-from-sian3-capi](queries/ieee-apsu-ilt-fields-missing-from-sian3-capi.md) - Gap matrix comparing IEEE Annex 178B APSU/iLT variables against documented Sian3 cAPI fields.
 - [sian3-behavior-conflicts-with-802-3dj-apsu-ilt](queries/sian3-behavior-conflicts-with-802-3dj-apsu-ilt.md) - Conflict audit for Sian3 APSU/iLT behavior against IEEE 802.3dj and OIF Page 70h expectations.
 - [standard-apsu-ilt-procedure-host-vs-media-links](queries/standard-apsu-ilt-procedure-host-vs-media-links.md) - Standard APSU/iLT functional flow and host-side AUI/PMA versus media-side PMD link differences.
+- [what-implementation-decisions-does-cmis-over-i3c-require](queries/what-implementation-decisions-does-cmis-over-i3c-require.md) - Implementation decisions needed to ship CMIS over I3C beyond the draft transport text.
+- [what-is-the-current-i3c-bringup-schedule](queries/what-is-the-current-i3c-bringup-schedule.md) - Draft 4-phase bring-up schedule and unresolved dependencies.
 - [Legacy starter query](queries/thinkwe-need-to-answer-the-user-they-said-yes-to-m-2026-05-21-073851.md)
 
 ## Comparisons
 
 - [cmis-5-3-to-5-4](comparisons/cmis-5-3-to-5-4.md) - Summary of CMIS 5.4 changes relative to 5.3.
 - [cmis-5-2-to-5-3](comparisons/cmis-5-2-to-5-3.md) - Summary of CMIS 5.3 changes relative to 5.2.
+- [mipi-i3c-basic-v1-1-1-vs-v1-2](comparisons/mipi-i3c-basic-v1-1-1-vs-v1-2.md) - Public I3C Basic baseline versus the newer recommended public version.
+- [i3c-host-adapter-candidate-vs-public-baseline](comparisons/i3c-host-adapter-candidate-vs-public-baseline.md) - Internal adapter candidates linked to the public MIPI I3C references that justify them.
 
 ## Synthesis
 
@@ -111,4 +128,5 @@
 - [apsu-ilt-customer-note-plan](synthesis/apsu-ilt-customer-note-plan.md) - current APSU/iLT implementation status and customer-note development plan.
 - [apsu-ilt-verification-report](synthesis/apsu-ilt-verification-report.md) - customer-safe APSU/iLT verification status, evidence boundaries, open gaps, and validation actions for the 1.6T 2xDR4 FRO module.
 - [apsu-ilt-page70h-verification-plan](synthesis/apsu-ilt-page70h-verification-plan.md) - internal engineering verification plan and low-level test-case sheets for next-release CMIS Page 70h APSU/iLT firmware validation.
+- [cmis-over-i3c-roadmap](synthesis/cmis-over-i3c-roadmap.md) - combined roadmap for draft I3CMCI, firmware architecture, and the provisional bring-up schedule.
 - [mpi-customer-requirements-from-email](synthesis/mpi-customer-requirements-from-email.md) - customer-facing MPI requirements from MSFT, Broadcom, Marvell, Google/ZFR8, VM8, and Gungnir-S email evidence.

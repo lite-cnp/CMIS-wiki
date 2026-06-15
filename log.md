@@ -184,6 +184,90 @@
 - Converted internal wiki cross-references from Obsidian wikilinks to GitHub-navigable relative Markdown links.
 - Updated contributor guidance in `AGENTS.md` and `README.md` to keep future internal links GitHub-compatible.
 
+# 2026-06-15 synthesis | I3C analyzer candidate inventory
+
+- Added [i3c-analyzer-candidate-inventory](synthesis/i3c-analyzer-candidate-inventory.md) to normalize the exact vendor products mentioned in the email thread.
+- Updated [index](index.md) with the analyzer inventory entry.
+
+# 2026-06-15 clarification | I3C analyzer ownership mapping
+
+- Updated [i3c-analyzer-candidate-inventory](synthesis/i3c-analyzer-candidate-inventory.md) with the confirmed owner-to-product mapping: `SC4420` for ADI recommendation, `Introspect` for Taiwan, `Prodigy` for Hong Kong, `Easyi3C` for your search, and `Keysight` for Hua Zhang's query.
+- Aligned [huabin-he-2026-i3c-host-adapter-candidates](sources/huabin-he-2026-i3c-host-adapter-candidates.md) and [i3c-host-adapter-decision](synthesis/i3c-host-adapter-decision.md) to point at the inventory page.
+
+# 2026-06-15 roadmap | CMIS over I3C execution order
+
+- Reworked [cmis-over-i3c-roadmap](synthesis/cmis-over-i3c-roadmap.md) to start with `M45x/S` EVB bring-up, validate against `Introspect` and `SC4420`, then move to `STM32H563/573` bridging, I3C-MCI conformance, and transparent bridging to approved in-module DSP targets.
+- Added explicit access-control scope for the transparent-bridge extension and linked the roadmap to the analyzer inventory page.
+
+# 2026-06-15 synthesis | I3C host adapter decision
+
+- Added [i3c-host-adapter-decision](synthesis/i3c-host-adapter-decision.md) to turn the adapter candidate discussion into a recommended lab/prod path.
+- Linked the synthesis from [index](index.md).
+
+# 2026-06-15 ingest | I3C host adapter candidates
+
+- Added [huabin-he-2026-i3c-host-adapter-candidates](sources/huabin-he-2026-i3c-host-adapter-candidates.md) from the I3C bring-up thread family.
+- Added [i3c-host-adapter-candidate-vs-public-baseline](comparisons/i3c-host-adapter-candidate-vs-public-baseline.md) to link the internal adapter options with public MIPI I3C references.
+- Updated [cmis-over-i3c-roadmap](synthesis/cmis-over-i3c-roadmap.md) with the adapter candidate direction.
+
+# 2026-06-15 comparison | MIPI I3C Basic v1.1.1 vs v1.2
+
+- Added [mipi-i3c-basic-v1-1-1-vs-v1-2](comparisons/mipi-i3c-basic-v1-1-1-vs-v1-2.md) to capture the public baseline-versus-recommended-version distinction for I3C Basic.
+- Linked the comparison from [index](index.md).
+
+# 2026-06-15 clarification | I3C Basic baseline vs target version
+
+- Added explicit wording to the I3C MCI concept and CMIS-over-I3C roadmap that treats uploaded `I3C Basic v1.1.1` as the vault baseline and `v1.2` as the external target version.
+
+# 2026-06-15 browser + ingest | MIPI I3C FAQ review
+
+- Re-checked the public MIPI I3C FAQ and confirmed that `I3C Basic` is public, while MIPI recommends `I3C v1.2` / `I3C Basic v1.2` as the newest recommended versions.
+- Updated the public FAQ source page, the I3CMCI concept page, and the CMIS-over-I3C roadmap to treat the uploaded `v1.1.1` file as the local baseline reference.
+
+# 2026-06-15 ingest | MIPI I3C Basic v1.1.1 spec
+
+- Added [mipi-i3c-basic-v1-1-1](sources/mipi-i3c-basic-v1-1-1.md) from `CMIS/raw/sources/I3CMCI/I3C_MIPI-v1.1.1.pdf`.
+- Updated [i3c-based-management-communication-interface](concepts/i3c-based-management-communication-interface.md) and [management-communication-interface](concepts/management-communication-interface.md) to treat the uploaded Basic spec as the local public normative baseline.
+- Updated [index](index.md) with the new primary I3C Basic source page.
+
+# 2026-06-15 ingest | MIPI I3C Basic FAQ
+
+- Downloaded the public `MIPI-I3C-Basic-FAQ-v1-1-1-public.pdf` companion document into `raw/sources/I3CMCI/`.
+- Added [mipi-i3c-basic-faq-v1-1-1](sources/mipi-i3c-basic-faq-v1-1-1.md) as the public FAQ companion to the gated I3C Basic spec.
+
+# 2026-06-15 ingest | MIPI public I3C references
+
+- Added source pages for the downloaded public MIPI I3C files under `raw/sources/I3CMCI/`.
+- Linked the new MIPI sources into [index](index.md) and the CMIS-over-I3C roadmap context.
+
+# 2026-06-15 synthesis | CMIS over I3C roadmap
+
+- Added [cmis-over-i3c-roadmap](synthesis/cmis-over-i3c-roadmap.md) to unify the draft I3CMCI text, the firmware role note, and the provisional bring-up schedule.
+- Updated [index](index.md) with the roadmap synthesis entry.
+
+# 2026-06-15 ingest | I3C bring-up schedule planning email
+
+- Added [huabin-he-2026-i3c-bringup-schedule-planning](sources/huabin-he-2026-i3c-bringup-schedule-planning.md) from the Huabin He Outlook thread.
+- Added [what-is-the-current-i3c-bringup-schedule](queries/what-is-the-current-i3c-bringup-schedule.md) to preserve the draft phase plan without freezing the schedule.
+- Updated [index](index.md) with the new source and query pages.
+
+# 2026-06-15 query | CMIS over I3C implementation decisions
+
+- Added [what-implementation-decisions-does-cmis-over-i3c-require](queries/what-implementation-decisions-does-cmis-over-i3c-require.md) to capture the engineering decisions implied by the uploaded role note.
+- Linked the query from [index](index.md) so the CMIS-over-I3C work is discoverable from the wiki landing page.
+
+# 2026-06-15 ingest | CMIS over I3C role note
+
+- Added [oif2026-057-01-firmware-functional-design-authority-cmis-over-i3c](sources/oif2026-057-01-firmware-functional-design-authority-cmis-over-i3c.md) from `CMIS/raw/sources/oif2026.057.01.docx`.
+- Added [cmis-over-i3c-firmware-architecture](concepts/cmis-over-i3c-firmware-architecture.md) to capture the implementation architecture implied by the role note.
+- Updated [i3c-based-management-communication-interface](concepts/i3c-based-management-communication-interface.md) and [management-communication-interface](concepts/management-communication-interface.md) with the implementation-oriented delta.
+
+# 2026-06-15 ingest | Broadcom AN100 upload refresh
+
+- Confirmed `CMIS/raw/sources/87XXX-85XXX-83XXX-AN100.pdf` as the raw Broadcom MPI metrics application note upload.
+- Noted that `CMIS/raw/sources/87XXX-85XXX-83XXX-AN100_.pdf` is a zero-byte duplicate upload.
+- Refreshed the Broadcom AN100 source page and the MPI metrics concept page metadata to reflect the current raw upload.
+
 ## 2026-05-26 query | CMIS 5.4 upper-page register maps
 
 - Added upper-memory register-map pages for [upper-page-00h-register-map](concepts/upper-page-00h-register-map.md), [upper-page-01h-register-map](concepts/upper-page-01h-register-map.md), [upper-page-02h-register-map](concepts/upper-page-02h-register-map.md), [upper-page-04h-register-map](concepts/upper-page-04h-register-map.md), [upper-page-10h-register-map](concepts/upper-page-10h-register-map.md), [upper-page-11h-register-map](concepts/upper-page-11h-register-map.md), [upper-page-12h-register-map](concepts/upper-page-12h-register-map.md), [upper-page-13h-register-map](concepts/upper-page-13h-register-map.md), [upper-page-14h-register-map](concepts/upper-page-14h-register-map.md), and [upper-page-2fh-register-map](concepts/upper-page-2fh-register-map.md).
