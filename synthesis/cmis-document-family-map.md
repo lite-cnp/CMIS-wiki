@@ -2,15 +2,20 @@
 type: synthesis
 title: CMIS Document Family Map
 created: 2026-05-25
-updated: 2026-06-09
+updated: 2026-06-18
 tags: [cmis, synthesis, document-map]
-related: [sources/oif-cmis-05-4, cmis-supplements, elsfp-cmis, autonomous-path-startup, vendor-specific-cmis-customizations]
-sources: [oif-cmis-05-4, oif-cmis-vcs-01-1, oif-cmis-ff-01-0, oif-c-cmis-01-4, oif-elsfp-cmis-01-0, lumentum-2026-8023dj-apsu-ilt-support-plan, lumentum-2026-dpsm-apsu-ilt-state-machine, broadcom-2026-sian3-apsu-application-notes, broadcom-2025-sian3-ilt-procedure, broadcom-2025-mpi-metrics-feature]
+related: [sources/oif-cmis-05-4, sources/cmis-raw-markdown-extraction, cmis-supplements, elsfp-cmis, autonomous-path-startup, vendor-specific-cmis-customizations]
+sources: [cmis-raw-markdown-extraction, oif-cmis-05-4, oif-cmis-vcs-01-1, oif-cmis-ff-01-0, oif-c-cmis-01-4, oif-elsfp-cmis-01-0, lumentum-2026-8023dj-apsu-ilt-support-plan, lumentum-2026-dpsm-apsu-ilt-state-machine, broadcom-2026-sian3-apsu-application-notes, broadcom-2025-sian3-ilt-procedure, broadcom-2025-mpi-metrics-feature]
 ---
 
 # CMIS Document Family Map
 
 This page classifies the raw CMIS-related documents in the vault so base CMIS, optional supplements, draft extensions, standalone companion IAs, IEEE references, and vendor-specific notes do not blur together.
+
+## Searchable Extraction Cache
+
+- [cmis-raw-markdown-extraction](../sources/cmis-raw-markdown-extraction.md) records the MarkItDown pass across PDFs, DOCX, and PPTX files under `CMIS/raw/sources/`.
+- Use the generated Markdown for search and cross-source triage; use original specs and source pages for authoritative tables, figures, and requirement wording.
 
 ## Base Specifications
 

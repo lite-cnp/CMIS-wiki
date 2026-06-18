@@ -1,5 +1,19 @@
 # Research Log
 
+## 2026-06-18 extraction | Broadcom AN100 password-protected PDF recovery
+
+- Used the user-supplied password to decrypt `CMIS/raw/sources/87XXX-85XXX-83XXX-AN100.pdf` only into a temporary local file, ran MarkItDown against the temporary PDF, and removed the temporary file afterward.
+- Generated `CMIS/raw/sources/markdown/87XXX-85XXX-83XXX-AN100.md` and updated `CMIS/raw/sources/markdown/conversion-results.json` to show 23 of 23 current raw document candidates converted.
+- Deleted the zero-byte duplicate raw upload `CMIS/raw/sources/87XXX-85XXX-83XXX-AN100_.pdf`.
+- Updated [cmis-raw-markdown-extraction](sources/cmis-raw-markdown-extraction.md) and [broadcom-2025-mpi-metrics-feature](sources/broadcom-2025-mpi-metrics-feature.md) with the recovery status.
+
+## 2026-06-18 extraction | CMIS raw MarkItDown conversion
+
+- Converted 22 of 24 PDF/DOCX/PPTX raw candidates under `CMIS/raw/sources/` into `CMIS/raw/sources/markdown/` using `python -m markitdown`.
+- Installed the optional `markitdown[docx]` dependency and recovered conversions for `oif2026.057.01.docx` and `oif2026.093.08.docx`.
+- Recorded one protected-PDF failure, `87XXX-85XXX-83XXX-AN100.pdf`, and one zero-byte skipped duplicate, `87XXX-85XXX-83XXX-AN100_.pdf`, in `CMIS/raw/sources/markdown/conversion-results.json`.
+- Added [cmis-raw-markdown-extraction](sources/cmis-raw-markdown-extraction.md) and updated the overview, document-family map, I3CMCI/APSU draft source pages, Broadcom MPI source page, and MIPI DCR table source page with extraction caveats.
+
 ## 2026-06-12 concept | MPI calibration for module vendors
 
 - Added [mpi-calibration-module-vendor](concepts/mpi-calibration-module-vendor.md), covering lab setup, data collection, model fitting, verification, and production reporting for calibrated `mpi_metrics` and `mpi_metrics_mpicoff`.

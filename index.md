@@ -61,6 +61,7 @@
 
 ## Sources
 
+- [cmis-raw-markdown-extraction](sources/cmis-raw-markdown-extraction.md) - MarkItDown conversion manifest and searchable Markdown cache for CMIS raw PDF/DOCX/PPTX materials.
 - [oif-cmis-05-4](sources/oif-cmis-05-4.md) - OIF-CMIS-05.4 current base source page.
 - [oif-cmis-05-3](sources/oif-cmis-05-3.md) - OIF-CMIS-05.3 source page and document map.
 - [oif-cmis-vcs-01-1](sources/oif-cmis-vcs-01-1.md) - CMIS-VCS supplement source.

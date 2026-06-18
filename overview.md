@@ -2,10 +2,10 @@
 type: overview
 title: OIF CMIS Wiki Overview
 created: 2026-05-21
-updated: 2026-05-25
+updated: 2026-06-18
 tags: [cmis, oif, spec]
-related: [sources/oif-cmis-05-4, cmis-5-4-implementer-map, cmis-document-family-map, cmis-management-stack]
-sources: [oif-cmis-05-4, oif-cmis-05-3]
+related: [sources/oif-cmis-05-4, sources/cmis-raw-markdown-extraction, cmis-5-4-implementer-map, cmis-document-family-map, cmis-management-stack]
+sources: [cmis-raw-markdown-extraction, oif-cmis-05-4, oif-cmis-05-3]
 ---
 
 # OIF CMIS Wiki Overview
@@ -13,6 +13,8 @@ sources: [oif-cmis-05-4, oif-cmis-05-3]
 This wiki digests the OIF **Common Management Interface Specification** document family, centered on [OIF-CMIS-05.4](sources/oif-cmis-05-4.md) as the current base revision and retaining [OIF-CMIS-05.3](sources/oif-cmis-05-3.md) as the earlier baseline.
 
 Start with [cmis-5-4-implementer-map](synthesis/cmis-5-4-implementer-map.md) for implementation reading order and [cmis-document-family-map](synthesis/cmis-document-family-map.md) for source classification.
+
+For full-text search across raw PDF/DOCX/PPTX materials, use [cmis-raw-markdown-extraction](sources/cmis-raw-markdown-extraction.md) as the extraction manifest and caveat list.
 
 ## Current Base
 

@@ -2,13 +2,14 @@
 type: source
 title: OIF 2026.057.01 Firmware Functional Design Authority for CMIS over I3C
 created: 2026-06-15
-updated: 2026-06-15
+updated: 2026-06-18
 tags: [cmis, oif, i3c, mci, firmware, architecture, source]
 related: [../concepts/i3c-based-management-communication-interface.md, ../concepts/management-communication-interface.md, ../concepts/cmis-management-stack.md]
 authors: [Lumentum]
 year: 2026
 venue: Internal role / architecture note
 source_filename: oif2026.057.01.docx
+converted_markdown: raw/sources/markdown/oif2026.057.01.md
 status: draft
 ---
 
@@ -43,6 +44,11 @@ The note focuses on end-to-end ownership of the I3C target firmware subsystem fo
 The note references the draft I3CMCI specification and is best read as an implementation companion to [oif2026-057-01-i3cmci-draft](oif2026-057-01-i3cmci-draft.md).
 
 The required/not-required feature boundary is tracked in [i3cmci-required-subset-vs-mipi-i3c-feature-set](../comparisons/i3cmci-required-subset-vs-mipi-i3c-feature-set.md).
+
+## Extraction Notes
+
+- MarkItDown conversion succeeded on 2026-06-18 after installing the optional `markitdown[docx]` dependency.
+- The generated Markdown cache is `CMIS/raw/sources/markdown/oif2026.057.01.md`.
 
 ## Wiki Entry Points
 
